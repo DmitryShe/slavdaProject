@@ -1,0 +1,135 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block main %}
+<main>
+    <section class="card-grid">
+        <div class="card-grid-container p-l-63 p-r-63">
+            <div class="card-grid__left p-r-2">
+                <div class="card-grid__video-wrap">
+                    <video autoplay muted loop id="index-video">
+                        <source src="{% static 'video/videofly.webm' %}" />
+                    </video>
+                    <div class="video-content">
+                        <h3>Полет над Красноярском</h3>
+                        <p>Красивый обзор города</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-grid__right p-l-2">
+                <div class="swiper video-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="{% static 'img/gallery/img1.jpg' %}" alt="" /></div>
+                        <div class="swiper-slide"><img src="{% static 'img/gallery/img2.jpg' %}" alt="" /></div>
+                        <div class="swiper-slide"><img src="{% static 'img/gallery/img3.jpg' %}" alt="" /></div>
+                        <div class="swiper-slide"><img src="{% static 'img/gallery/img4.jpg' %}" alt="" /></div>
+                        <div class="swiper-slide"><img src="{% static 'img/gallery/img5.jpg' %}" alt="" /></div>
+                    </div>
+                    
+                    <div class="swiper-pagination"></div>
+        
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="index-news">
+        <div class="index-news-header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Новости</h2></div>
+        <div class="index-news-swiper p-l-63 p-r-63">
+            <div class="swiper news-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">News 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, reprehenderit corrupti est delectus sunt ad blanditiis a aperiam quod facilis!</div>
+                    <div class="swiper-slide">News 2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis ab quos veniam nihil tenetur nam unde nemo deserunt modi distinctio. Esse minus officia incidunt a fugit culpa qui mollitia tempore?</div>
+                    <div class="swiper-slide">News 3 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, neque animi? Possimus, deserunt eos? Velit, eligendi amet molestias, quia nemo perferendis reiciendis aperiam necessitatibus saepe, doloremque animi fugiat aliquid modi maiores in magni vel at dicta voluptatum quos molestiae suscipit.</div>
+                    <div class="swiper-slide">Slide 4</div>
+                    <div class="swiper-slide">Slide 5</div>
+                    <div class="swiper-slide">Slide 6</div>
+                    <div class="swiper-slide">Slide 7</div>
+                    <div class="swiper-slide">Slide 8</div>
+                    <div class="swiper-slide">
+                        <div class="index-news-img"><img src="{% static 'img/gallery/img1.jpg' %}" alt="news" /></div>
+                        <div class="index-news-text">
+                            <h4>Заголовок</h4>
+                            <h5>date</h5>
+                            <p>text news</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+        </div>
+        
+    </section>
+
+    <section class="index-excursions">
+        <div class="index-excursions-header"><h2 class="text-center">Интересные экскурсии</h2></div>
+        <div class="index-excursions-swiper">
+            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper excursions-swiper">
+                <div class="parallax-bg" style="
+                      background-image: url(https://swiperjs.com/demos/images/nature-1.jpg);
+                    " data-swiper-parallax="-23%"></div>
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="title" data-swiper-parallax="-300">Slide 1</div>
+                    <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+                    <div class="text" data-swiper-parallax="-100">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                        laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                        Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                        Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+                        ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+                        tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="title" data-swiper-parallax="-300">Slide 2</div>
+                    <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+                    <div class="text" data-swiper-parallax="-100">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                        laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                        Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                        Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+                        ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+                        tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="title" data-swiper-parallax="-300">Slide 3</div>
+                    <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
+                    <div class="text" data-swiper-parallax="-100">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                        laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                        Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                        Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+                        ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+                        tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+              </div>
+        </div>
+    </section>
+
+
+</main>
+{% endblock %}
+
+{% block script %} 
+<script src="{% static 'js/lib.swiper.min.js' %}"></script>
+<script src="{% static 'js/_swiper-index.js' %}"></script>
+{% endblock %}

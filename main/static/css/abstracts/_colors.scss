@@ -1,0 +1,59 @@
+// dark theme
+$dark-theme-main: #111111;
+$dark-theme-second: #333333;
+$dark-theme-third: #222222;
+$dark-theme-fourth: #38c2ac;
+$dark-theme-background: #000;
+
+// light theme
+$light-theme-main: #f3f4f6;
+$light-theme-second: #fff;
+$light-theme-third: #f3f4f6;
+$light-theme-fourth:#a1c2ff;
+$light-theme-background: #fff;
+$light-theme-textcolor: #111827;
+$light-theme-textcolor2: #757575;
+$light-theme-textcolor3: #e0e0e0;
+$spinnercolor: #616161;
+
+// other
+$color-light: #fff;
+$color-info: #3498db;
+$color-success: #07bc0c;
+$color-warning: #f1c40f;
+$color-error: #e74c3c;
+
+// buttons
+$button-primary: #f9a03e;
+
+:root {
+    --theme-main: #f3f4f6;
+    --theme-second: #fff;
+    --theme-third: #f3f4f6;
+    --theme-fourth: #a1c2ff;
+    --theme-background: #fff;
+    --text-color: #000;
+    
+}
+
+:root[data-theme='dark'] {
+    --theme-main: #111111;
+    --theme-second: #333333;
+    --theme-third: #222222;
+    --theme-fourth: #38c2ac;
+    --theme-background: #000;
+    --text-color: #fff;
+    
+    
+}
+
+/*.vvv {
+    a: #2196F3
+#FFC107
+#4CAF50
+#FF9800
+#E91E63
+#FFFFFF
+#9E9E9E
+}
+*/

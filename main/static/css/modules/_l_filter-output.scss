@@ -1,0 +1,11 @@
+/*.filter-output {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+*/
+.filter-output {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}

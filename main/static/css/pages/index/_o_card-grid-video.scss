@@ -1,0 +1,28 @@
+/* for index page */
+
+.card-grid__video-wrap {
+    position: relative;
+}
+
+#index-video {
+    width: 100%;
+}
+
+.video-content {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    
+    border-radius: 6px;
+    bottom: 30px;
+    left: 10px;
+
+    h3 {
+        padding: 2px;
+        color: white;
+    }
+
+    p {
+        padding: 4px 2px 4px 2px;
+        color: white;
+    }
+}

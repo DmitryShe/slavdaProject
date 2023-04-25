@@ -1,0 +1,22 @@
+/* for index page */
+
+.card-grid {
+    background-color: var(--theme-main);
+    transition: 0.3s ease;;
+}
+
+.card-grid-container {
+    display: flex;
+    background-color: var(--theme-main);
+    transition: 0.3s ease;;
+}
+
+.card-grid__left {
+    flex: 1 1 65%;
+}
+
+.card-grid__right {
+    flex: 1 1 32%;
+    width: 30%;
+    padding-bottom: 3px;
+}

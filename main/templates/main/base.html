@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=0490f1e1-8615-4a8c-828a-021f1724ca4e&lang=ru_RU" type="text/javascript"></script>
+    {% block title %}
+    <title>KrasPortal</title>
+    {% endblock %}
+</head>
+<body>
+    <header class="header p-l-63 p-r-63">
+        <div class="header-container">
+            <div class="logo__wrap"><img class="logo" src="{% static 'img/logo.png' %}" alt="logo" /></div>
+            <div class="header-nav__wrap">
+                <nav class="header-nav">
+                    <ul>
+                        <li><a class="header-nav__link" href="#">Где остановиться</a></li>
+                        <li><a class="header-nav__link" href="#">Где поесть</a></li>
+                        <li><a class="header-nav__link" href="#">Что посмотреть</a></li>
+                        <li><a class="header-nav__link" href="#">Новости</a></li>
+                        <li><a class="header-nav__link" href="#">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-button__wrap">
+                <button class="button-mode" id="mode">
+                    <img id="imgMode" src="{% static 'img/svg/sun.svg' %}" alt="mode" />
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    {% block main %} {% endblock %}
+    <footer class="footer">
+        
+        <div class="footer-container">
+            <div class="logo__wrap"><img class="logo" src="{% static 'img/logo.png' %}" alt="logo" /></div>
+            <div>
+                <h3>Что делать</h3>
+                <ul>
+                    <li><a href="#">Где остановиться</a></li>
+                    <li><a href="#">Где поесть</a></li>
+                    <li><a href="#">Как отдохнуть</a></li>
+                    <li><a href="#">Что посмотреть</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Навигатор</h3>
+                <ul>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">О Красноярске</a></li>
+                    <li><a href="#">Новости</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>О нас</h3>
+                <ul>
+                    <li><a href="#">Телефоны</a></li>
+                    <li><a href="#">e-mail</a></li>
+                    <li><div class="socials">
+                        <ul class="socials__list">
+                            <li class="socials__list-item"><a href="#"><img src="{% static 'img/ok.png' %}" alt="" /></a></li>
+                            <li class="socials__list-item"><a href="#"><img src="{% static 'img/tg.png' %}" alt="" /></a></li>
+                            <li class="socials__list-item"><a href="#"><img src="{% static 'img/vk.png' %}" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    {% block script %} {% endblock %}
+    <script type="module" src="{% static 'js/main.js' %}"></script>
+    
+</body>
+</html>

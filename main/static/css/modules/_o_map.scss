@@ -1,0 +1,12 @@
+.map {
+    flex: 0 0 33.30%;
+    box-sizing: border-box;
+    height: 400px;
+}
+
+@media (width <= 576px) {
+    .map {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+}

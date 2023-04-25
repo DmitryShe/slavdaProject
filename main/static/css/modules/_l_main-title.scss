@@ -1,0 +1,30 @@
+.main-title {
+    background-image: url($imgPath + 'chapel.png');
+    background-position: center center;
+    background-size: cover;
+    height: 484px;
+    position: relative;
+    display: flex;
+    
+}
+
+.main-title__blur {
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.main-title__container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    max-width: 768px;
+    margin-right: $globalMarginRight;
+    margin-left: $globalMarginLeft;
+}

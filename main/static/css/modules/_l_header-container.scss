@@ -1,0 +1,18 @@
+/* for header in all pages */
+
+.header-container {
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: var(--theme-main);
+    transition: $globalTransition;
+}
+
+.header-button__wrap {
+    width: 100px;
+    text-align: right;
+}

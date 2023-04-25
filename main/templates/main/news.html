@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+
+{% block header %} {% endblock %}
+
+{% block main %}
+<main>
+    <section><h1>Новости</h1></section>
+    <section>
+        
+        {% if news %}
+            {% for n in news %}
+            <div class="news-item-container">
+                <div class="news-item">
+                    <div class="news-item__img"><img src="{{ n.newsImg.url }}" alt="" /></div>
+                    <div class="news-item__text">
+                        <h3>{{ n.title }}</h3>
+                        <h4>{{ n.date }}</h4>
+                        <p>{{ n.description }} <a src="#">read next...</a></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+
+
+
+    </section>
+    <section class="pages">
+        <div>1,2,3,4 ...</div>
+    </section>
+</main>
+
+{% endblock %}

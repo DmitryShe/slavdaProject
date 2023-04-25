@@ -1,0 +1,29 @@
+.news-item-container {
+    height: 300px;
+    background-color:black;
+}
+
+.news-item {
+    display: flex;
+
+}
+
+.news-item__img {
+    flex: 1 1 25%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.news-item__img img {
+    width: 100%;
+    height: 100%;
+}
+
+.news-item__text {
+    flex: 1 1 74%;
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+}

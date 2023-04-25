@@ -1,0 +1,10 @@
+@import "abstracts";
+@import "modules";
+
+@import "swiper-bundle.min.css";
+
+body {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: var(--theme-main);
+}

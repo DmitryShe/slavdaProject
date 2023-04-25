@@ -1,0 +1,17 @@
+/* for index page */
+
+.card-grid-container {
+    display: flex;
+    background-color: var(--theme-second);
+    transition: $globalTransition;
+}
+
+.card-grid__left {
+    flex: 1 1 65%;
+    // background-color: blue;
+}
+
+.card-grid__right {
+    flex: 1 1 32%;
+    width: 30%;
+}
