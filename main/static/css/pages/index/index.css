@@ -27,9 +27,6 @@
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,64 +86,30 @@
   border-radius: 10%;
 }
 
-.autoplay-progress svg {
-  --progress: 0;
-  position: absolute;
-  left: 0;
-  top: 0px;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  stroke-width: 4px;
-  stroke: var(--swiper-theme-color);
-  fill: none;
-  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
-  stroke-dasharray: 125.6;
-  transform: rotate(-90deg);
-}
-
 /* for index page */
 .index-excursions-swiper {
   position: relative;
   height: 100%;
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
   margin: 0;
   padding: 0;
 }
 
-.excursions-swiper {
-  font-size: 18px;
-  color: #fff;
-  box-sizing: border-box;
-  padding: 40px 60px;
+.swiper-excursions {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-.parallax-bg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 130%;
-  height: 100%;
-  background-size: cover;
+.swiper-excursions-slide {
   background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
 }
 
-.swiper-slide .title {
-  font-size: 41px;
-  font-weight: 300;
-}
-
-.swiper-slide .subtitle {
-  font-size: 21px;
-}
-
-.swiper-slide .text {
-  font-size: 14px;
-  max-width: 400px;
-  line-height: 1.3;
+.swiper-excursions-slide img {
+  display: block;
+  width: 100%;
 }
 
 /* for index page */
@@ -175,16 +138,31 @@
 }
 
 .index-news-img {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
 }
 
-.index-news-text h4 {
-  color: black;
+.index-news-text {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  right: 10px;
+  left: 10px;
+  bottom: 10px;
+  text-align: right;
+  cursor: pointer;
 }
 .index-news-text h5 {
-  color: black;
+  color: white;
 }
 .index-news-text p {
-  color: black;
+  color: white;
+}
+
+.swiper-news-card {
+  cursor: pointer;
+}
+
+.swiper-news-card:hover {
+  opacity: 0.7;
+  transition: 0.5s all;
 }/*# sourceMappingURL=index.css.map */

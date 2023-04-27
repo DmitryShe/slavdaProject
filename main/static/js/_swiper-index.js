@@ -23,9 +23,10 @@ var swiper = new Swiper(".video-swiper", {
 
 /** news swiper */
 var newsSwiper = new Swiper(".news-swiper", {
-    slidesPerView: 3,
+    slidesPerView: 2,
     centeredSlides: true,
-    spaceBetween: 30,
+    spaceBetween: 20,
+    rewind: true,
     autoplay: {
         delay: 150000,
         disableOnInteraction: false
@@ -42,15 +43,19 @@ var newsSwiper = new Swiper(".news-swiper", {
 
 
 /** excursions swiper */
-var newsSwiper = new Swiper(".excursions-swiper", {
-    speed: 600,
-    parallax: true,
-    /*pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },*/
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+var excursionsSwiper = new Swiper(".excursions-swiper", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: "auto",
+  coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: true,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+  },
 });
