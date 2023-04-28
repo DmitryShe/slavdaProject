@@ -1,7 +1,13 @@
-@import './l_card-grid';
-@import './l_index-news';
-@import './o_card-grid-swiper';
-@import './o_excursions-swiper';
-@import './o_card-grid-video';
+/* index head */
+@import './index-grid';
+@import './index-grid__swiper';
+@import './index-grid__video';
+
+/* index news */
+@import './index-news';
+@import './index-news-swiper';
+
+/* buttons */
 @import './o_index-button';
-@import './u_index-news-card';
+
+

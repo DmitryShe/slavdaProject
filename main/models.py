@@ -21,10 +21,10 @@ class Hotels(models.Model):
         verbose_name_plural = 'Hotels'
 
 class News(models.Model):
+    date = models.DateTimeField()
     title = models.TextField('Заголовок', max_length=100)
     description = models.TextField('Описание', max_length=2000)
     newsImg = models.ImageField(upload_to='news')
-    date = models.DateTimeField()
 
     def __str__(self):
         return self.title

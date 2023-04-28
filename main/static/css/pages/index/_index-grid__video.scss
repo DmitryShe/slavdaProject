@@ -1,6 +1,6 @@
 /* for index page */
 
-.card-grid__video-wrap {
+.index-grid__video-container {
     position: relative;
 }
 
@@ -8,10 +8,9 @@
     width: 100%;
 }
 
-.video-content {
+.index-grid__video-content {
     position: absolute;
     background: rgba(0, 0, 0, 0.7);
-    
     border-radius: 6px;
     bottom: 30px;
     left: 10px;

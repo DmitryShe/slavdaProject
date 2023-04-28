@@ -1,22 +1,35 @@
 /* for index page */
 
-.card-grid {
+.index-grid {
     background-color: var(--theme-main);
     transition: 0.3s ease;;
 }
 
-.card-grid-container {
+.index-grid-container {
     display: flex;
     background-color: var(--theme-main);
     transition: 0.3s ease;;
 }
 
-.card-grid__left {
+.index-grid__col_1 {
     flex: 1 1 65%;
 }
 
-.card-grid__right {
+.index-grid__col_2 {
     flex: 1 1 32%;
     width: 30%;
     padding-bottom: 3px;
 }
+
+/*
+index-grid
+index-grid-container
+index-grid__col_1
+index-grid__col_2
+
+index-grid__video-container
+index-grid__video-content
+
+index-grid__swiper
+index-grid__swiper-slide_text
+*/

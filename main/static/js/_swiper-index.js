@@ -2,10 +2,7 @@
  * 
  */
 
-const progressCircle = document.querySelector(".autoplay-progress svg");
-const progressContent = document.querySelector(".autoplay-progress span");
-
-var swiper = new Swiper(".video-swiper", {
+var swiper = new Swiper(".index-grid__swiper", {
     spaceBetween: 30,
     centeredSlides: true,
     autoplay: {
@@ -22,40 +19,35 @@ var swiper = new Swiper(".video-swiper", {
 });
 
 /** news swiper */
-var newsSwiper = new Swiper(".news-swiper", {
-    slidesPerView: 2,
-    centeredSlides: true,
+var newsSwiper = new Swiper(".index-news__swiper", {
+    slidesPerView: 3,
     spaceBetween: 20,
     rewind: true,
     autoplay: {
         delay: 150000,
         disableOnInteraction: false
     },
-    /*pagination: {
-      el: ".swiper-pagination",
-      type: "fraction",
-    },*/
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+        nextEl: ".index-news__button-next",
+        prevEl: ".index-news__button-prev",
     },
-  });
+});
 
 
 /** excursions swiper */
 var excursionsSwiper = new Swiper(".excursions-swiper", {
-  effect: "coverflow",
-  grabCursor: true,
-  centeredSlides: true,
-  slidesPerView: "auto",
-  coverflowEffect: {
-    rotate: 50,
-    stretch: 0,
-    depth: 100,
-    modifier: 1,
-    slideShadows: true,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-  },
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
 });
