@@ -721,6 +721,18 @@ select {
   margin-bottom: 16px;
 }
 
+.m-20 {
+  margin: 20px;
+}
+
+.m-t-20 {
+  margin-top: 20px;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}
+
 .m-t-40 {
   margin-top: 40px;
 }
@@ -1015,7 +1027,7 @@ index-news__button-next
 /* for index page */
 .index-news__swiper-container {
   position: relative;
-  height: 100%;
+  height: 300px;
   margin: 0;
 }
 
@@ -1026,7 +1038,6 @@ index-news__button-next
 
 .index-news__swiper-slide {
   text-align: center;
-  font-size: 18px;
   background: #fff;
   display: flex;
   justify-content: center;
@@ -1079,6 +1090,51 @@ index-news__card_img
 index-news__card_title
 index-news__card_text
 */
+/* index hotels */
+/* for index page */
+.index-hotels__swiper-container {
+  position: relative;
+  height: 100%;
+  background: #eee;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.index-hotels__swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.index-hotels__swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/*
+index-hotels
+  index-hotels__header
+  index-hotels__swiper-container
+    index-hotels__swiper
+      swiper-wrapper
+        index-hotels__swiper-slide
+          index-hotels__card
+            index-hotels__card_img
+          index-hotels__card_content
+            index-hotels__card_title
+*/
 /* buttons */
 .index-news__buttons {
   display: flex;
@@ -1109,6 +1165,164 @@ index-news__card_text
   color: black;
 }
 
+/* modal */
+/* for index page */
+.index-modal-container {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.index-modal__content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.index-modal__close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.index-modal__close:hover, .index-modal__close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* for news page */
+.news-path-container {
+  background-color: var(--theme-second);
+}
+
+.news-path__list-item {
+  display: inline;
+}
+
+.news-path__list-item span {
+  font-family: "Merriweather";
+  opacity: 0.7;
+  color: var(--text-color);
+}
+
+.news-path__list-item span::before {
+  content: "/";
+  padding-right: 0.3rem;
+}
+
+/*
+section.news-path
+  div.news-path-container
+    ul.news-path__list
+      li.news-path__list-item
+        a.news-path__link
+
+*/
+/* for news page */
+.news-filter__elem {
+  display: flex;
+  align-items: center;
+}
+
+.news-filter__elem span {
+  margin: 20px;
+}
+
+.news-filter__datepicker_input {
+  background-color: #4CAF50;
+  color: white;
+  font-family: "Rubik";
+  width: 155px;
+  height: 47px;
+  border-radius: 4px;
+  border: 1px solid black;
+  font-size: 18px;
+  padding: 0 16px;
+}
+
+/*
+section.news-filter
+  div.news-filter__elem
+    div.news-filter__datepicker
+      input.news-filter__datepicker_input
+*/
+/* for news page */
+.news-panel {
+  background-color: var(--theme-second);
+}
+
+.news-card {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.news-card__img-wrap {
+  flex-grow: 2;
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+}
+.news-card__img-wrap .news-card__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.news-card__content {
+  width: 70%;
+  padding-left: 16px;
+}
+
+.news-card__header {
+  font-size: 30px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.news-card__header a {
+  font-family: "Rubik";
+}
+
+.news-card__date {
+  font-size: 20px;
+  line-height: 32px;
+  font-style: italic;
+  font-weight: 100;
+}
+
+/*
+section.news-panel
+  div.news-panel-container
+    div.news-card
+      div.news-card__img-wrap
+        img.news-card__img
+      div.news-card__content
+        h3.news-card__header
+        h4.news-card__date
+        p.news-card__description
+
+
+
+
+*/
+/* for news page */
 body {
   max-width: 1280px;
   margin: 0 auto;

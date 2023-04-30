@@ -33,6 +33,13 @@ var newsSwiper = new Swiper(".index-news__swiper", {
     },
 });
 
+/** hotels swiper */
+var hotelsSwiper = new Swiper(".index-hotels__swiper", {
+    slidesPerView: 6,
+    spaceBetween: 30,
+    freeMode: true,
+    rewind: true,
+});
 
 /** excursions swiper */
 var excursionsSwiper = new Swiper(".excursions-swiper", {

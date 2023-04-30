@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block header %} {% endblock %}
+
+{% block main %}
+<main>
+    <section class="news-path">
+        <div class="news-path-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <ul class="news-path__list">
+                <li class="news-path__list-item"><a href="/">Главная страница</a></li>
+                <li class="news-path__list-item"><a href="/news">Рубрика: Новости</a></li>
+                <li class="news-path__list-item"><span>{{ news.title }}</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section></section>
+</main>
+{% endblock %}
+
+{% block script %} 
+<script src="{% static 'js/lib.swiper.min.js' %}"></script>
+{% endblock %}

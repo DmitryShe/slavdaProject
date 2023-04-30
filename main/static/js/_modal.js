@@ -1,16 +1,20 @@
-let modal = document.getElementById('temp');
+let modal = document.getElementById('index-modal');
+let cardNews = document.getElementsByClassName('index-news__swiper-slide');
+let closeModal = document.getElementsByClassName('index-modal__close')[0];
 
-let img = document.getElementById('tempImg');
-let modalImg = document.getElementById("img01");
-let captionText = document.getElementById("caption");
 
-img.onclick = () => {
-    modal.style.display = 'block';
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-};
+for (let i = 0; i < cardNews.length; i++) {
+    cardNews[i].onclick = () => {
+        modal.style.display = "block";
+    }
+}
 
-let span = document.getElementsByClassName('close')[0];
-span.onclick = () => {
+closeModal.onclick = () => {
     modal.style.display = "none";
-};
+}
+
+window.onclick = (event) => {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}

@@ -26,7 +26,7 @@
             <div class="swiper-slide index-grid__swiper-slide"><img src="{% static 'img/gallery/img4.jpg' %}" alt="" /><h5 class="index-grid__swiper-slide_text">Улица Ленина</h5></div>
             <div class="swiper-slide index-grid__swiper-slide"><img src="{% static 'img/gallery/img5.jpg' %}" alt="" /><h5 class="index-grid__swiper-slide_text">Фонтаны на центральной площади</h5></div>
           </div>
-                    
+
           <div class="swiper-pagination"></div>
         
         </div>
@@ -39,37 +39,70 @@
     <div class="index-news__swiper-container p-l-63 p-r-63">
       <div class="swiper index-news__swiper">
         <div class="swiper-wrapper">
+        {% for el in news %}
+
           <div class="swiper-slide index-news__swiper-slide">
             <div class="index-news__card">
-              <img src="{% static 'img/gallery/img1.jpg' %}" alt="news" class="index-news__card_img"/>
+              <img src="{{ el.newsImg.url }}" alt="news" class="index-news__card_img"/>
             </div>
             <div class="index-news__card_content">
-              <h5 class="index-news__card_title">Заголовок большой новости</h5>
-              <p class="index-news__card_text">скандал в Богемии!</p>
+              <h5 class="index-news__card_title">{{ el.title }} {{ el.id }}</h5>
             </div>
           </div>
-          <div class="swiper-slide index-news__swiper-slide">News 2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis ab quos veniam nihil tenetur nam unde nemo deserunt modi distinctio. Esse minus officia incidunt a fugit culpa qui mollitia tempore?</div>
-          <div class="swiper-slide index-news__swiper-slide">News 3 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, neque animi? Possimus, deserunt eos? Velit, eligendi amet molestias, quia nemo perferendis reiciendis aperiam necessitatibus saepe, doloremque animi fugiat aliquid modi maiores in magni vel at dicta voluptatum quos molestiae suscipit.</div>
-          <div class="swiper-slide index-news__swiper-slide">Slide 4</div>
-          <div class="swiper-slide index-news__swiper-slide">Slide 8</div>
 
+        {% endfor %}
         </div>
       </div>
     </div>
-    <div class="index-news__buttons">
+    <div class="index-news__buttons m-t-20 m-b-20">
       <div class="next-prev index-news__button-prev">&#8249;</div>
       <button class="btn info">Все новости</button>
       <div class="next-prev index-news__button-next">&#8250;</div>
     </div>
   </section>
 
+  <section class="index-hotels">
+    <div class="index-hotels__header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Где остановиться</h2></div>
+    <div class="index-hotels__swiper-container p-l-63 p-r-63">
+      <div class="swiper index-hotels__swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 1</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 2</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 3</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 4</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 5</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 6</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 7</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 8</div>
+          <div class="swiper-slide index-hotels__swiper-slide">Slide 9</div>
+        </div>
+      </div>
+    </div>
+    <div class="index-news__buttons m-t-20 m-b-20">
+      <div class="next-prev index-news__button-prev">&#8249;</div>
+      <button class="btn info">Все отели</button>
+      <div class="next-prev index-news__button-next">&#8250;</div>
+    </div>
+    <div>fgsjdfljklkfm</div>
+    <div><button id="test_btn">btn</button></div>
+  </section>
 
 
 
+  <section class="index-modal" >
+    <div class="index-modal-container" id="index-modal">
+      <div class="index-modal__content">
+        <span class="index-modal__close">close</span>
+        <h5>and header</h5>
+        <p>some text</p>
+      </div>
+    </div>
+  </section>
 </main>
 {% endblock %}
 
 {% block script %} 
 <script src="{% static 'js/lib.swiper.min.js' %}"></script>
 <script src="{% static 'js/_swiper-index.js' %}"></script>
+<script src="{% static 'js/_modal.js' %}"></script>
 {% endblock %}

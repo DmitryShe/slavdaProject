@@ -1,0 +1,30 @@
+/* for news page */
+
+.news-filter__elem {
+    display: flex;
+    align-items: center;
+}
+
+.news-filter__elem span {
+    margin: 20px;
+}
+
+.news-filter__datepicker_input {
+    background-color: #4CAF50;
+    color: white;
+    font-family: "Rubik";
+    width: 155px;
+    height: 47px;
+    border-radius: 4px;
+    border: 1px solid black;
+    font-size: 18px;
+    padding: 0 16px;
+}
+
+
+/*
+section.news-filter
+  div.news-filter__elem
+    div.news-filter__datepicker
+      input.news-filter__datepicker_input
+*/
