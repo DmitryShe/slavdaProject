@@ -1,27 +1,29 @@
 import { setTheme, changeModeBtnImg } from './_mode.js';
-// import { getFetch } from './_res.js'
 
 
 const currenTheme = localStorage.getItem('theme') || 'light';
 
-changeModeBtnImg(currenTheme);
-setTheme();
 
-// getFetch();
-/*async function getFetch() {
-    // let address = document.location.href;
-    console.log('async fun is run');
-    let response = await fetch('/test', {
-        method: 'get',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/json'
-        }
-    });
+/*console.log(headerMenu);
+headerMenu.onclick = () => {
+    let elem = document.getElementsByClassName('mobile-menu__nav')[0];
+    elem.style.width === '0px' ? 
+        elem.style.width = '250px' : 
+        elem.style.width = '0px';
+    console.log(elem.style.width);
+}*/
+
+let closeMenuBtn = document.getElementById('menuCloseBtn');
+closeMenuBtn.onclick = () => {
+    document.getElementsByClassName('mobile-menu__nav')[0].style.width = "0";
     
-    let data = await response.json();
-    console.log(await data);
 }
 
-const fetchFunc = document.getElementById('test_btn');
-fetchFunc.onclick = () => getFetch();*/
+let openMenuBtn = document.getElementById('menuOpenBtn');
+openMenuBtn.onclick = () => {
+    document.getElementsByClassName('mobile-menu__nav')[0].style.width = "100%";
+}
+
+
+changeModeBtnImg(currenTheme);
+setTheme();

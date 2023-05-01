@@ -25,3 +25,9 @@
         color: white;
     }
 }
+
+@media (width <= 375px) {
+    .index-grid__video-content {
+        display: none;
+    }
+}

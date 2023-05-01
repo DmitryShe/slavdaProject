@@ -8,11 +8,11 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('news/', views.news),
     path('news/<int:news_id>', views.newsPage),
+    path('hotel_card', views.hotelPage, name='hotels'),
+    path('hotels/<int:hotel_id>/', views.hotelPage),
     path('about-us', views.about, name='about'),
     path('hotels', views.about, name='hotels'),
     path('test', views.AjaxHandler.as_view()),
-    path('hotels/<int:hotel_id>/', views.hotelPage),
-    path('hotel_card', views.hotelPage, name='hotels'),
 ]
 
 

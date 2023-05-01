@@ -2,17 +2,26 @@
 
 .header-container {
     flex: 1 1 auto;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
     background-color: var(--theme-main);
-    transition: $globalTransition;
+    transition: all 0.3s ease-in-out;
+    height: 150px;
 }
 
-.header-button__wrap {
-    width: 100px;
-    text-align: right;
+
+@media (width <= 1050px) {
+    .header {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+    }
+
+    .header-container {
+        height: 110px;
+    }
+
 }

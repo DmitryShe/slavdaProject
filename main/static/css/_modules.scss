@@ -9,44 +9,26 @@
 @import "modules/b_ul-li";
 
 // layouts
-@import "modules/l_aboutus";
 
-
-@import "modules/l_carusel-map";
-@import "modules/l_contactus";
 @import "modules/l_content-block_container";
-@import "modules/l_filter-form";
 @import "modules/l_filter-output";
-@import "modules/l_footer-container";
-@import "modules/l_footer";
-@import "modules/l_gallery";
-@import "modules/l_header-container";
-@import "modules/l_header";
 @import "modules/l_location";
-@import "modules/l_main-title";
 @import "modules/l_reviews";
 @import "modules/l_services-container";
 @import "modules/l_services";
-@import "modules/l_social-list";
-@import "modules/l_special-list";
+
 
 // objects
 @import "modules/o_button-form_search";
-@import "modules/o_button-mode";
 @import "modules/o_button-primary";
 @import "modules/o_button-search";
-
 @import "modules/o_carusel";
-@import "modules/o_content-block";
 @import "modules/o_filter-item";
 @import "modules/o_gallery-item";
-@import "modules/_o_header-navigation";
-@import "modules/o_logo";
 @import "modules/o_map";
 @import "modules/o_news-item_container";
 @import "modules/o_services-container-item";
-@import "modules/o_social-item";
-@import "modules/o_special-item";
+
 
 //@import "modules/o_swiper.scss";
 
@@ -56,8 +38,11 @@
 @import "modules/u_padding";
 @import "modules/u_text-color";
 @import "modules/u_text";
+@import "modules/u_opacity";
 
 
 /* pages */
+@import "./pages/base/index.scss";
 @import "./pages/index/index.scss";
 @import "./pages/news/index.scss";
+@import "./pages/hotels/index.scss";

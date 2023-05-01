@@ -1,3 +1,13 @@
+/* for header in all pages */
+
+.header-button__wrap {
+    width: 100px;
+    text-align: right;
+    order: 3;
+    margin: auto 0;
+
+}
+
 .button-mode {
     border-radius: 50%;
     background-color: var(--theme-main);
@@ -5,9 +15,8 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
-    
+    box-sizing: content-box;
 }
-
 
 .button-mode img {
     width: 100%;

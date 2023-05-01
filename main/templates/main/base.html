@@ -12,33 +12,57 @@
     {% endblock %}
 </head>
 <body>
-    <header class="header p-l-63 p-r-63">
-        <div class="header-container">
-            <div class="logo__wrap"><img class="logo" src="{% static '/img/logo.png' %}" alt="logo" /></div>
-            <div class="header-nav__wrap">
-                <nav class="header-nav">
-                    <ul>
-                        <li><a class="header-nav__link" href="#">Где остановиться</a></li>
-                        <li><a class="header-nav__link" href="#">Где поесть</a></li>
-                        <li><a class="header-nav__link" href="#">Что посмотреть</a></li>
-                        <li><a class="header-nav__link" href="#">Новости</a></li>
-                        <li><a class="header-nav__link" href="#">Контакты</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-button__wrap">
-                <button class="button-mode" id="mode">
-                    <img id="imgMode" src="{% static 'img/svg/sun.svg' %}" alt="mode" />
-                </button>
-            </div>
+  <header class="header">
+    <div class="header-container p-l-63 p-r-63">
+
+      <div class="logo__wrap">
+        <a href="/"><img class="logo" src="{% static '/img/logo.png' %}" alt="logo" /></a>
+      </div>
+
+      <div class="header-nav__wrap">
+        <nav class="header-nav">
+        <ul>
+            <li><a class="header-nav__link" href="#">Где остановиться</a></li>
+            <li><a class="header-nav__link" href="#">Где поесть</a></li>
+            <li><a class="header-nav__link" href="#">Что посмотреть</a></li>
+            <li><a class="header-nav__link" href="#">Экскурсии</a></li>
+            <li><a class="header-nav__link" href="./news">Новости</a></li>
+            <li><a class="header-nav__link" href="#">Контакты</a></li>
+        </ul>
+        </nav>
+      </div>
+
+      <div class="header-mobile-menu">
+        <div class="mobile-menu__button" id="menuOpenBtn">
+          <img class="mobile-menu__button-img" src="{% static '/img/svg/menu.svg' %}" alt="" />
         </div>
-    </header>
+        <nav class="mobile-menu__nav">
+          <ul>
+              <li><a href="javascript:void(0)" id="menuCloseBtn">&times;</a></li>
+              <li><a class="mobile-menu__nav_link" href="#">Где остановиться</a></li>
+              <li><a class="mobile-menu__nav_link" href="#">Где поесть</a></li>
+              <li><a class="mobile-menu__nav_link" href="#">Что посмотреть</a></li>
+              <li><a class="mobile-menu__nav_link" href="#">Экскурсии</a></li>
+              <li><a class="mobile-menu__nav_link" href="./news">Новости</a></li>
+              <li><a class="mobile-menu__nav_link" href="#">Контакты</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-button__wrap">
+        <button class="button-mode" id="mode">
+          <img id="imgMode" src="{% static 'img/svg/sun.svg' %}" alt="mode" />
+        </button>
+      </div>
+
+    </div>
+  </header>
 
 
     {% block main %} {% endblock %}
     <footer class="footer">
         
-        <div class="footer-container">
+        <div class="footer-container p-r-63 p-l-63">
             <div class="logo__wrap"><img class="logo" src="{% static 'img/logo.png' %}" alt="logo" /></div>
             <div>
                 <h3>Что делать</h3>
@@ -64,20 +88,20 @@
                 <ul>
                     <li><a href="#">Телефоны</a></li>
                     <li><a href="#">e-mail</a></li>
-                    <li><div class="socials">
+                    <li>
+                      <div class="socials">
                         <ul class="socials__list">
                             <li class="socials__list-item"><a href="#"><img src="{% static 'img/ok.png' %}" alt="" /></a></li>
                             <li class="socials__list-item"><a href="#"><img src="{% static 'img/tg.png' %}" alt="" /></a></li>
                             <li class="socials__list-item"><a href="#"><img src="{% static 'img/vk.png' %}" alt="" /></a></li>
                         </ul>
-                    </div>
+                      </div>
                     </li>
                 </ul>
             </div>
         </div>
     </footer>
     {% block script %} {% endblock %}
-    <script type="module" src="{% static 'js/main.js' %}"></script>
-    
+    <script src="{% static 'js/main.js' %}" type="module"></script>
 </body>
 </html>

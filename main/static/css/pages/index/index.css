@@ -20,6 +20,20 @@
   padding-bottom: 3px;
 }
 
+@media (width <= 912px) {
+  .index-grid-container {
+    flex-direction: column;
+  }
+  .index-grid__col_1 {
+    width: 100%;
+    padding-right: 0;
+  }
+  .index-grid__col_2 {
+    width: 100%;
+    padding-left: 0;
+    display: none;
+  }
+}
 /*
 index-grid
 index-grid-container
@@ -112,6 +126,11 @@ index-grid__swiper-slide_text
   color: white;
 }
 
+@media (width <= 375px) {
+  .index-grid__video-content {
+    display: none;
+  }
+}
 /* index news */
 /* for index page */
 .index-news {

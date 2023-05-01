@@ -10,16 +10,25 @@
         <div class="news-path-container p-l-63 p-r-63 p-t-20 p-b-20">
             <ul class="news-path__list">
                 <li class="news-path__list-item"><a href="/">Главная страница</a></li>
-                <li class="news-path__list-item"><a href="/news">Рубрика: Новости</a></li>
+                <li class="news-path__list-item"><a href="/news"><span class="opacity-1">Рубрика: Новости</span></a></li>
                 <li class="news-path__list-item"><span>{{ news.title }}</span></li>
             </ul>
         </div>
     </section>
 
-    <section></section>
+    <section class="news_card-content">
+        <div class="news_card-content-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <div class="news_card__header"><h1>{{ news.title }}</h1></div>
+            <div class="news_card__date"><h2>{{ news.date }}</h2></div>
+            <div class="news_card__img_wrap">
+                <img src="{{ news.newsImg.url }}" alt="" class="news_card__img" />
+            </div>
+            <div class="news_card__description"><p>{{ news.description }}</p></div>
+        </div>
+    </section>
 </main>
 {% endblock %}
 
 {% block script %} 
-<script src="{% static 'js/lib.swiper.min.js' %}"></script>
+<!-- <script src="{% static 'js/lib.swiper.min.js' %}"></script> -->
 {% endblock %}

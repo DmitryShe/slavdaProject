@@ -41,12 +41,7 @@ def test(request):
 def footer(request):
     return render(request, 'main/_footer.html')
 
-def hotelPage(request, hotel_id):
-    hotel = Hotels.objects.get(id = hotel_id)
-    context = {
-        'hotel': hotel,
-    }
-    return render(request, 'main/_hotel_card.html', context)
+
 
 
 
@@ -73,3 +68,11 @@ def newsPage(request, news_id):
         'news': news
     }
     return render(request, 'main/_news_card.html', context)
+
+# hotels function
+def hotelPage(request, hotel_id):
+    hotel = Hotels.objects.get(id = hotel_id)
+    context = {
+        'hotel': hotel,
+    }
+    return render(request, 'main/_hotel_card.html', context)

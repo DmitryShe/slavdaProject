@@ -1,14 +1,21 @@
 /* for header in all pages */
-$logoPath: '../img/';
-
 
 .logo__wrap {
     height: 100px;
     width: 100px;
+    order: 1;
+    margin: auto 0;
 }
 
 .logo {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+
+@media (width <= 1050px) {
+    .logo__wrap {
+        order: 2;
+    }
 }
