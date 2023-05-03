@@ -4,76 +4,86 @@
 
 {% block main %} 
 <main>
-    <section class="p-l-63 p-r-63"><h1 class="text-color-black">Где остановиться</h1></section>
-    <section>
-        <div class="carusel-map">
-            <div class="carusel p-l-12 p-r-12">
-
-                <div class="carusel__wrap">
-                    <div class="swiper hotelSwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="{% static 'img/gallery/img1.jpg' %}" alt="" /></div>
-                            <div class="swiper-slide"><img src="{% static 'img/gallery/img2.jpg' %}" alt="" /></div>
-                            <div class="swiper-slide"><img src="{% static 'img/gallery/img3.jpg' %}" alt="" /></div>
-                            <div class="swiper-slide"><img src="{% static 'img/gallery/img4.jpg' %}" alt="" /></div>
-                            <div class="swiper-slide"><img src="{% static 'img/gallery/img5.jpg' %}" alt="" /></div>
-                            
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="map p-l-12 p-r-12" id="map"></div>
+    <section class="hotel-path">
+        <div class="hotel-path-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <ul class="hotel-path__list">
+                <li class="hotel-path__list-item"><a href="/">Главная страница</a></li>
+                <li class="hotel-path__list-item"><a href="/hotels"><span class="opacity-1">Рубрика: Где остановиться</span></a></li>
+                <li class="hotel-path__list-item"><span>{{ hotel.title }}</span></li>
+            </ul>
         </div>
     </section>
-    <section>
-        <div class="content-block__container">
-            <div class="content-block__description p-l-12 p-r-12">
-                <div class="content-block">
-                    <h4 class="content-block__header">Описание</h4>
-                    <p class="content-block__text">{{ hotel.description }}</p>
+
+    <section class="hotel_card-content">
+        <div class="hotel_card-content-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <div class="hotel_card__header"><h1>{{ hotel.title }}</h1></div>
+        </div>
+    </section>
+
+    <section class="hotel-swiper">
+        <div class="hotel-swiper-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <div class="swiper hotel_swiper">
+                <div class="swiper-wrapper">
+                    {% for img in hotel.hotel_images.all %}
+                    <div class="swiper-slide hotel-swiper-slide"><img src="{{ img.getUrl.url }}" alt="" /></div>
+                    {% endfor %}
                 </div>
-            </div>
-            <div class="content-block__info p-l-12 p-r-12">
-                <div class="content-block">
-                    <h4 class="content-block__header">Услуги</h4>
-                    <p class="content-block__text">{{ hotel.services }}</p>
-                </div>
-                <div class="content-block">
-                    <h4 class="content-block__header">Контакты</h4>
-                    <p class="content-block__text">{{ hotel.contacts }}</p>
-                </div>
-                <div class="content-block">
-                    <h4 class="content-block__header">Доступная среда</h4>
-                    <p class="content-block__text">some text</p>
-                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
 
+    <section class="hotel-description">
+        <div class="hotel-description p-l-63 p-r-63 p-t-20 p-b-20">
+            <p>{{ hotel.description }}</p>
+        </div>
+    </section>
 
-    <script src="{% static 'js/lib.swiper.min.js' %}"></script>
-    <script>
-        var swiper = new Swiper(".hotelSwiper", {
-          pagination: {
-            el: ".swiper-pagination",
-            type: "progressbar",
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-        });
-      </script>
-    <script src="{% static 'js/_ymap.js' %}"></script>
+    <section class="hotel-services">
+        <div class="hotel-services-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <div class="hotel__address">
+                <h4>Адреса</h4>
+                <p>{{ hotel.address }}</p>
+            </div>
+            <div class="hotel__contacts">
+                <h4>Контакты</h4>
+                <p>{{ hotel.contacts }}</p>
+            </div>
+            <div class="hotel__links">
+                <h4>Ссылки</h4>
+                <p>{{ hotel.link }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="hotel-map">
+        <div class="hotel-map-container">
+            <div id="HotelMap"></div>
+        </div>
+    </section>
 
 
+    
 </main>
+{% endblock %}
 
+{% block script %} 
+    <script src="{% static 'js/lib.swiper.min.js' %}"></script>
+    <script src="{% static 'js/_swiper-hotel.js' %}"></script>
+    <script>
+        
+        ymaps.ready(init);
 
+        function init() {
+            let hotelMap = new ymaps.Map('HotelMap', {
+                center: [55.751574, 37.573856],
+                zoom: 10
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
+        }
 
-
+    </script>
 {% endblock %}

@@ -1,16 +1,29 @@
 from django.db import models
 
+
+class PlacementType(models.Model):
+    typeOfInstitution = models.CharField('Тип заведения', max_length=100)
+
+    def __str__(self):
+        return self.typeOfInstitution
+    
+    class Meta:
+        verbose_name = 'Placment type'
+        verbose_name_plural = 'Placment type'
+
 class Hotels(models.Model):
-    title         = models.CharField('Название', max_length=50)
+    title         = models.CharField('Название', max_length=200)
+    description   = models.TextField('Описание')
     address       = models.TextField('Адрес', max_length=200)
     contacts      = models.TextField('Контакты')
-    description   = models.TextField()
-    reviews       = models.TextField()
-    services      = models.TextField()
-    coordinates   = models.TextField()
-    price         = models.FloatField()
-    stars         = models.IntegerField()
-    hotelImg      = models.ImageField(upload_to='hotels')
+    link          = models.TextField('Ссылки на сайт', blank=False)
+    placementType = models.ForeignKey(PlacementType, on_delete=models.CASCADE)
+    price         = models.FloatField("Средний чек")
+    coordinates   = models.TextField("Координаты учреждения для яндекс карт")
+    #hotelImg      = models.ImageField('Фотографии отеля', upload_to='hotels')
+    #services      = models.TextField()
+    #reviews       = models.TextField()
+    #stars         = models.IntegerField()
     #isHear        = models.BooleanField(blank=False)
     
     def __str__(self):
@@ -19,6 +32,28 @@ class Hotels(models.Model):
     class Meta:
         verbose_name = 'Hotels'
         verbose_name_plural = 'Hotels'
+
+class HotelsGallery(models.Model):
+    title = models.CharField('Наименование изображения', max_length=200)
+    image = models.ImageField(upload_to='hotels_gallery')
+    hotel = models.ForeignKey(Hotels, on_delete=models.CASCADE, related_name='hotel_images')
+
+    def getUrl(self):
+        return self.image
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Фото из гостиниц'
+        verbose_name_plural = 'Hotels Photo'
+
+
+
+
+
+
+
 
 class News(models.Model):
     date = models.DateTimeField()
@@ -32,3 +67,4 @@ class News(models.Model):
     class Meta:
         verbose_name = 'News'
         verbose_name_plural = 'News'
+

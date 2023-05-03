@@ -1,0 +1,53 @@
+/* for hotels page */
+
+.hotels-filters-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hotels-form {
+    display: flex;
+}
+
+.hotels-form__select {
+    padding: 14px 28px;
+    padding: 0 16px;
+    min-width: 170px;
+    height: 47px;
+    font-family: 'Rubik';
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+
+    .hotels-form__option {
+
+    }
+}
+
+.btn-hotels {
+    background-color: #4CAF50;
+    font-size: 18px;
+    font-family: 'Rubik';
+    border-radius: 4px;
+}
+
+
+/*
+section.hotels-filters
+  div.hotels-filters-container
+    div.hotels-filter__options
+      form.hotels-form
+        select.hotels-form__select
+          option.hotels-form__option
+          ...
+        select.hotels-form__select
+          option.hotels-form__option
+          ...
+    div.hotels-filters__btn-map_wrap
+      button.hotels-filter__btn_map
+
+btn-hotels
+*/

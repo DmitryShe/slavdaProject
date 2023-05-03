@@ -17,9 +17,115 @@
 
     <section class="hotels-header"><h1 class="p-l-63 p-r-63 p-t-20 p-b-20">Где остановиться</h1></section>
 
-    <section class="hotels-filters"></section>
+    <section class="hotels-filters">
+        <div class="hotels-filters-container p-l-63 p-r-63">
+            <div class="hotels-filters__options">
+                <form action="" method="get" class="hotels-form">
+                  <span class="m-r-2">
+                    <select name="" id="" class="hotels-form__select">
+                        <option value="" class="hotels-form__option">Размещение</option>
+                        <option value="" class="hotels-form__option">Хостел</option>
+                        <option value="" class="hotels-form__option">Отель</option>
+                        <option value="" class="hotels-form__option">Квартира</option>
+                        <option value="" class="hotels-form__option">Гостиница</option>
+                        <option value="" class="hotels-form__option">Санаторий</option>
+                    </select>
+                    <div class="m-t-2 m-b-2">
+                        <button class="btn btn-hotels">Показать</button>
+                    </div>
+                  </span>
+                  <span>
+                    <select name="" id="" class="hotels-form__select">
+                        <option value="" class="hotels-form__option">Цена</option>
+                        <option value="" class="hotels-form__option">Меньше 2000р.</option>
+                        <option value="" class="hotels-form__option">2000-4000р.</option>
+                        <option value="" class="hotels-form__option">4000-6000р.</option>
+                        <option value="" class="hotels-form__option">6000-8000р.</option>
+                        <option value="" class="hotels-form__option">8000-10000р.</option>
+                        <option value="" class="hotels-form__option">Больше 10000р.</option>
+                    </select>
 
-    <section class="hotels-cards"></section>
+                    <div class="m-t-2 m-b-2">
+
+                        <button class="btn btn-hotels">Сбросить</button>
+                    </div>
+                  </span>
+                </form>
+            </div>
+
+            <div class="hotels-filters__btn-map_wrap">
+                <button class="btn btn-hotels">На карте</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="hotels-cards">
+        <div class="hotels-cards-container p-l-63 p-r-63">
+        {% for hotel in hotels %}
+            <div class="hotels-card-elem">
+                <div class="hotels-card-elem__img_wrap">
+                    <img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/>
+                </div>
+
+                <div class="hotels-card-elem__type">
+                    <p>{{ hotel.placementType }}</p>
+                </div>
+
+                <div class="hotels-card-elem__header_wrap">
+                    <h4 class="hotels-card-elem__header">{{ hotel.title }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for hotel in hotels %}
+            <div class="hotels-card-elem">
+                <div class="hotels-card-elem__img_wrap">
+                    <a href="{% url 'hotel-page' hotel.id %}"><img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/></a>
+                </div>
+
+                <div class="hotels-card-elem__type">
+                    <p>{{ hotel.placementType }}</p>
+                </div>
+
+                <div class="hotels-card-elem__header_wrap">
+                    <a href="{{ hotel.id }}"><h4 class="hotels-card-elem__header">{{ hotel.title }}</h4></a>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for hotel in hotels %}
+            <div class="hotels-card-elem">
+                <div class="hotels-card-elem__img_wrap">
+                    <img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/>
+                </div>
+
+                <div class="hotels-card-elem__type">
+                    <p>{{ hotel.placementType }}</p>
+                </div>
+
+                <div class="hotels-card-elem__header_wrap">
+                    <h4 class="hotels-card-elem__header">{{ hotel.title }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for hotel in hotels %}
+            <div class="hotels-card-elem">
+                <div class="hotels-card-elem__img_wrap">
+                    <img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/>
+                </div>
+
+                <div class="hotels-card-elem__type">
+                    <p>{{ hotel.placementType }}</p>
+                </div>
+
+                <div class="hotels-card-elem__header_wrap">
+                    <h4 class="hotels-card-elem__header">{{ hotel.title }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </section>
 
 
 </main>

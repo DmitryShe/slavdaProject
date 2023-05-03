@@ -38,7 +38,7 @@
                     <img class="news-card__img" src="{{ elem.newsImg.url }}" />
                 </div>
                 <div class="news-card__content">
-                    <h3 class="news-card__header text-right"><a href="{{ elem.id }}">{{ elem.title }}</a></h3>
+                    <h3 class="news-card__header text-right"><a href="{% url 'news-page' elem.id %}">{{ elem.title }}</a></h3>
                     <h4 class="news-card__date text-right">{{ elem.date | date:"j E Y" }}</h4>
                     <p class="news-card__description">{{ elem.description }}</p>
                 </div>

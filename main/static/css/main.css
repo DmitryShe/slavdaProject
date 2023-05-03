@@ -272,27 +272,6 @@ ul > li {
   margin-bottom: 10px;
 }
 
-.content-block__container {
-  display: flex;
-}
-
-.content-block__description {
-  flex: 0 0 66.66%;
-  box-sizing: border-box;
-  background-color: black;
-}
-
-.content-block__info {
-  flex: 0 0 33.33%;
-  box-sizing: border-box;
-  background-color: black;
-}
-
-@media (width <= 576px) {
-  .content-block__container {
-    display: block;
-  }
-}
 /*.filter-output {
     display: flex;
     flex-flow: row wrap;
@@ -341,19 +320,6 @@ ul > li {
   border-color: #f9a03e;
 }
 
-.carusel {
-  flex: 0 0 66.66%;
-  box-sizing: border-box;
-  height: 400px;
-  width: 66.66%;
-}
-
-@media (width <= 576px) {
-  .carusel {
-    flex: 0 0 100%;
-    width: 100%;
-  }
-}
 .filter-item {
   width: 386px;
   min-height: 300px;
@@ -409,18 +375,6 @@ ul > li {
   border-radius: 2rem;
 }
 
-.map {
-  flex: 0 0 33.3%;
-  box-sizing: border-box;
-  height: 400px;
-}
-
-@media (width <= 576px) {
-  .map {
-    flex: 0 0 100%;
-    width: 100%;
-  }
-}
 .news-item-container {
   height: 300px;
   background-color: black;
@@ -865,6 +819,83 @@ ul > li {
 .socials__list-item img {
   width: 100%;
   height: 100%;
+}
+
+/* for hotel-page */ /* for hotel page */ /* for hotel-card */
+.hotel-map-container {
+  height: 300px;
+}
+
+#HotelMap {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* for hotel page */
+.hotel-path-container {
+  background-color: var(--theme-second);
+}
+
+.hotel-path__list-item {
+  display: inline;
+}
+
+.hotel-path__list-item span {
+  font-family: "Merriweather";
+  opacity: 0.7;
+  color: var(--text-color);
+}
+
+.hotel-path__list-item span::before {
+  content: "/";
+  padding-right: 0.3rem;
+}
+
+/* for hotel-page */
+.hotel-services-container {
+  background-color: var(--theme-second);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 120px;
+}
+
+/* for hotel page */
+.hotel-swiper-container {
+  position: relative;
+  height: 400px;
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.hotel_swiper {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hotel-swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hotel-swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /* index head */ /* for index page */
@@ -1338,6 +1369,158 @@ section.news_card-content
       img.news_card__img
     div.news_card__description
 */
+/* for hotels page */
+.hotels-cards-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.hotels-card-elem {
+  height: 270px;
+  width: 280px;
+  position: relative;
+  margin-top: 14px;
+  cursor: pointer;
+}
+
+.hotels-card-elem__img_wrap {
+  width: 280px;
+  height: 200px;
+}
+.hotels-card-elem__img_wrap .hotels-card-elem__img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: brightness(40%);
+  transition: all 0.3s;
+}
+.hotels-card-elem__img_wrap .hotels-card-elem__img:hover {
+  filter: brightness(100%);
+  transition: all 0.3s;
+}
+
+.hotels-card-elem__type {
+  position: absolute;
+  background-color: #ff931e;
+  top: 25px;
+  padding: 6px;
+  border-radius: 0 4px 4px 0;
+}
+.hotels-card-elem__type p {
+  color: white;
+}
+
+.hotels-card-elem__header_wrap .hotels-card-elem__header {
+  font-size: 20px;
+  line-height: 24px;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -ms-line-clamp: 3;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+}
+
+@media (width <= 1265px) {
+  .hotels-card-elem {
+    width: 320px;
+  }
+  .hotels-card-elem__img_wrap {
+    width: 320px;
+  }
+}
+@media (width <= 1105px) {
+  .hotels-card-elem {
+    width: 360px;
+  }
+  .hotels-card-elem__img_wrap {
+    width: 360px;
+  }
+}
+@media (width <= 865px) {
+  .hotels-cards-container {
+    flex-direction: column;
+  }
+  .hotels-card-elem {
+    width: 100%;
+  }
+  .hotels-card-elem__img_wrap {
+    width: 100%;
+  }
+}
+/* for hotels page */
+.hotels-filters-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hotels-form {
+  display: flex;
+}
+
+.hotels-form__select {
+  padding: 14px 28px;
+  padding: 0 16px;
+  min-width: 170px;
+  height: 47px;
+  font-family: "Rubik";
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+}
+.btn-hotels {
+  background-color: #4CAF50;
+  font-size: 18px;
+  font-family: "Rubik";
+  border-radius: 4px;
+}
+
+/*
+section.hotels-filters
+  div.hotels-filters-container
+    div.hotels-filter__options
+      form.hotels-form
+        select.hotels-form__select
+          option.hotels-form__option
+          ...
+        select.hotels-form__select
+          option.hotels-form__option
+          ...
+    div.hotels-filters__btn-map_wrap
+      button.hotels-filter__btn_map
+
+btn-hotels
+*/
+/* for hotels page */
+.hotels-path-container {
+  background-color: var(--theme-second);
+}
+
+.hotels-path__list-item {
+  display: inline;
+}
+
+.hotels-path__list-item span {
+  font-family: "Merriweather";
+  opacity: 0.7;
+  color: var(--text-color);
+}
+
+.hotels-path__list-item span::before {
+  content: "/";
+  padding-right: 0.3rem;
+}
+
 body {
   max-width: 1280px;
   margin: 0 auto;

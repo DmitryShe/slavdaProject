@@ -10,7 +10,7 @@
 
 // layouts
 
-@import "modules/l_content-block_container";
+
 @import "modules/l_filter-output";
 @import "modules/l_location";
 @import "modules/l_reviews";
@@ -22,15 +22,15 @@
 @import "modules/o_button-form_search";
 @import "modules/o_button-primary";
 @import "modules/o_button-search";
-@import "modules/o_carusel";
+
 @import "modules/o_filter-item";
 @import "modules/o_gallery-item";
-@import "modules/o_map";
+
 @import "modules/o_news-item_container";
 @import "modules/o_services-container-item";
 
 
-//@import "modules/o_swiper.scss";
+
 
 // util
 @import "modules/u_background-colors";
@@ -43,6 +43,7 @@
 
 /* pages */
 @import "./pages/base/index.scss";
+@import "./pages/hotel-page/index.scss";
 @import "./pages/index/index.scss";
 @import "./pages/news/index.scss";
 @import "./pages/hotels/index.scss";

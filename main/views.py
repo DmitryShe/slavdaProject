@@ -5,6 +5,7 @@ from django.views.generic import View
 
 from .models import Hotels
 from .models import News
+from .models import HotelsGallery
 
 from random import randint
 
@@ -38,19 +39,6 @@ class AjaxHandler(View):
 def test(request):
     return render(request, 'main/__test.html')
 
-def footer(request):
-    return render(request, 'main/_footer.html')
-
-
-
-
-
-def about(request):
-    hotels = Hotels.objects.all()
-    return render(request, 'main/hotels.html', 
-                  {'title': 'maintitle',
-                   'hotels': hotels,
-                   })
 
 
 # news functions
@@ -70,6 +58,14 @@ def newsPage(request, news_id):
     return render(request, 'main/_news_card.html', context)
 
 # hotels function
+def hotels(request):
+    hotels = Hotels.objects.all()
+    
+    context = {
+        'hotels': hotels
+    }
+    return render(request, 'main/hotels.html', context)
+
 def hotelPage(request, hotel_id):
     hotel = Hotels.objects.get(id = hotel_id)
     context = {
