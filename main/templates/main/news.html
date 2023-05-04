@@ -31,14 +31,14 @@
 
     <section class="news-panel">
         <div class="news-panel-container p-l-63 p-r-63 p-t-20 p-b-20">
-        {% if news %}
-            {% for elem in news %}
+        {% if news_list %}
+            {% for elem in news_list %}
             <div class="news-card">
                 <div class="news-card__img-wrap">
                     <img class="news-card__img" src="{{ elem.newsImg.url }}" />
                 </div>
                 <div class="news-card__content">
-                    <h3 class="news-card__header text-right"><a href="{% url 'news-page' elem.id %}">{{ elem.title }}</a></h3>
+                    <h3 class="news-card__header text-right"><a href="{% url 'news_detail' elem.id %}">{{ elem.title }}</a></h3>
                     <h4 class="news-card__date text-right">{{ elem.date | date:"j E Y" }}</h4>
                     <p class="news-card__description">{{ elem.description }}</p>
                 </div>

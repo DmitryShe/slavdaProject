@@ -42,12 +42,14 @@
         {% for el in news %}
 
           <div class="swiper-slide index-news__swiper-slide">
+            <a class="index-news__swiper-slide_link " href="{% url 'news_detail' el.id %}">
             <div class="index-news__card">
               <img src="{{ el.newsImg.url }}" alt="news" class="index-news__card_img"/>
             </div>
             <div class="index-news__card_content">
               <h5 class="index-news__card_title">{{ el.title }} {{ el.id }}</h5>
             </div>
+            </a>
           </div>
 
         {% endfor %}
@@ -55,9 +57,37 @@
       </div>
     </div>
     <div class="index-news__buttons m-t-20 m-b-20">
-      <div class="next-prev index-news__button-prev">&#8249;</div>
-      <button class="btn info">Все новости</button>
-      <div class="next-prev index-news__button-next">&#8250;</div>
+      <div class="next-prev index-news__button-prev ">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px" 
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-left">
+            <polygon points="247.35,35.7 211.65,0 58.65,153 211.65,306 247.35,270.3 130.05,153"/>
+          </g>
+        </svg>
+      </div>
+
+      <button class="btn info m-l-20 m-r-20" onclick="document.location='/news' ">Все новости</button>
+
+      <div class="next-prev index-news__button-next">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px"
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-right">
+            <polygon points="58.65,267.75 175.95,153 58.65,35.7 94.35,0 247.35,153 94.35,306 "/>
+          </g>
+        </svg>
+      </div>
     </div>
   </section>
 
@@ -78,10 +108,43 @@
         </div>
       </div>
     </div>
+
     <div class="index-news__buttons m-t-20 m-b-20">
-      <div class="next-prev index-news__button-prev">&#8249;</div>
-      <button class="btn info">Все отели</button>
-      <div class="next-prev index-news__button-next">&#8250;</div>
+      <div class="next-prev index-news__button-prev">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px" 
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-left">
+            <polygon points="247.35,35.7 211.65,0 58.65,153 211.65,306 247.35,270.3 130.05,153"/>
+          </g>
+        </svg>
+      
+      </div>
+      <button class="btn info m-l-20 m-r-20">Все отели</button>
+      <div class="next-prev index-news__button-next">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px"
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-right">
+            <polygon points="58.65,267.75 175.95,153 58.65,35.7 94.35,0 247.35,153 94.35,306 "/>
+          </g>
+        </svg>
+      </div>
+
+
+
+
+
     </div>
 
   </section>
@@ -97,11 +160,12 @@
       </div>
     </div>
   </section>
+
 </main>
 {% endblock %}
 
 {% block script %} 
 <script src="{% static 'js/lib.swiper.min.js' %}"></script>
 <script src="{% static 'js/_swiper-index.js' %}"></script>
-<script src="{% static 'js/_modal.js' %}"></script>
+
 {% endblock %}

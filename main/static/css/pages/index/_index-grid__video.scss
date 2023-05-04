@@ -26,8 +26,30 @@
     }
 }
 
+
+@media (width <= 768px) {
+    
+}
+
+@media (width <= 576px) {
+    .index-grid__video-content {
+        bottom: 5px;
+        left: 2px;
+        p {
+            padding: 1px;
+            font-size: 12px;
+        }
+
+        h3 {
+            padding: 1px;
+            font-size: 15px;
+        }
+    }
+}
+
 @media (width <= 375px) {
     .index-grid__video-content {
         display: none;
     }
+    
 }

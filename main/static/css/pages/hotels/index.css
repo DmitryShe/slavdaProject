@@ -29,6 +29,9 @@
   filter: brightness(100%);
   transition: all 0.3s;
 }
+.hotels-card-elem__img_wrap a:hover {
+  opacity: 1;
+}
 
 .hotels-card-elem__type {
   position: absolute;

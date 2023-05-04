@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static '/css/main.css' %}" />
+    <link type="image/x-icon" href="{% static '/img/favicon.ico' %}" rel="shortcut icon">
+    <link type="Image/x-icon" href="{% static '/img/favicon.ico' %}" rel="icon">
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=0490f1e1-8615-4a8c-828a-021f1724ca4e&lang=ru_RU" type="text/javascript"></script>
     {% block title %}
     <title>KrasPortal</title>
@@ -34,16 +36,21 @@
 
       <div class="header-mobile-menu">
         <div class="mobile-menu__button" id="menuOpenBtn">
-          <img class="mobile-menu__button-img" src="{% static '/img/svg/menu.svg' %}" alt="" />
+          <!--<img class="mobile-menu__button-img" src="{% static '/img/svg/menu.svg' %}" alt="" />-->
+          <svg id="mobile-menu" viewBox="0 0 24 24" width="50px" height="50px">
+            <rect y="11" width="24" height="2" rx="1" />
+            <rect y="4 " width="24" height="2" rx="1" />
+            <rect y="18" width="24" height="2" rx="1" />
+          </svg>
         </div>
         <nav class="mobile-menu__nav">
           <ul>
               <li><a href="javascript:void(0)" id="menuCloseBtn">&times;</a></li>
-              <li><a class="mobile-menu__nav_link" href="#">Где остановиться</a></li>
+              <li><a class="mobile-menu__nav_link" href="/hotels">Где остановиться</a></li>
               <li><a class="mobile-menu__nav_link" href="#">Где поесть</a></li>
               <li><a class="mobile-menu__nav_link" href="#">Что посмотреть</a></li>
               <li><a class="mobile-menu__nav_link" href="#">Экскурсии</a></li>
-              <li><a class="mobile-menu__nav_link" href="./news">Новости</a></li>
+              <li><a class="mobile-menu__nav_link" href="/news">Новости</a></li>
               <li><a class="mobile-menu__nav_link" href="#">Контакты</a></li>
           </ul>
         </nav>
@@ -62,12 +69,12 @@
     {% block main %} {% endblock %}
     <footer class="footer">
         
-        <div class="footer-container p-r-63 p-l-63">
+        <div class="footer-container p-r-63 p-l-63 p-t-20 p-b-20">
             <div class="logo__wrap"><img class="logo" src="{% static 'img/logo.png' %}" alt="logo" /></div>
             <div>
                 <h3>Что делать</h3>
                 <ul>
-                    <li><a href="#">Где остановиться</a></li>
+                    <li><a href="/hotels">Где остановиться</a></li>
                     <li><a href="#">Где поесть</a></li>
                     <li><a href="#">Как отдохнуть</a></li>
                     <li><a href="#">Что посмотреть</a></li>
@@ -79,7 +86,7 @@
                 <ul>
                     <li><a href="#">Контакты</a></li>
                     <li><a href="#">О Красноярске</a></li>
-                    <li><a href="#">Новости</a></li>
+                    <li><a href="/news">Новости</a></li>
                 </ul>
             </div>
 

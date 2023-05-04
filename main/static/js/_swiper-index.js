@@ -31,6 +31,17 @@ var newsSwiper = new Swiper(".index-news__swiper", {
         nextEl: ".index-news__button-next",
         prevEl: ".index-news__button-prev",
     },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        500: {
+            slidesPerView: 2,
+        },
+        769: {
+            slidesPerView: 3,
+        }
+    }
 });
 
 /** hotels swiper */

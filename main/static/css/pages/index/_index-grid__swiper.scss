@@ -55,6 +55,16 @@
     background: #007aff;
 }
 
+@media (width <= 768px) {
+    .index-grid__swiper { height: 350px;}
+}
 
+@media (width <= 576px) {
+    .index-grid__swiper { height: 250px;}
+}
+
+@media (width <= 375px) {
+    .index-grid__swiper { height: 140px;}
+}
 
 
