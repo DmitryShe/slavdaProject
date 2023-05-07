@@ -1,47 +1,87 @@
 /* for index page */
 
-.index-hotels__swiper-container {
-    position: relative;
-    height: 100%;
-    background: #eee;
-    color: #000;
-    margin: 0;
-    padding: 0;
+
+.index-hotels__header h2 {
+  background-color: var(--theme-second);
+  transition: 0.3s ease;
 }
 
-.index-hotels__swiper {
+.index-hotels__swiper-container {
+    position: relative;
+    height: 270px;
+    color: #000;
+}
+
+.index-hotels__swiper,
+.index-food__swiper,
+.index-look__swiper
+{
     width: 100%;
     height: 100%;
 }
 
 .index-hotels__swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    text-align: center;
+    font-size: 18px;
+    background:  var(--theme-background); //#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    a {
+      width: 100%;
+      height: 100%;
+    }
 }
 
-.swiper-slide img {
-  display: block;
+/* card */
+.index-hotel__card-wrap {
+    height: 100%;
+    
+}
+
+.index-hotels__card {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 70%;
+}
+
+.index-hotels__card_img {
+    /*display: block;
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+
+}
+
+.index-hotels__card_content {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-hotels__card_title {
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 3;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
 }
 
 
-
-
-/*
-index-hotels
-  index-hotels__header
-  index-hotels__swiper-container
-    index-hotels__swiper
-      swiper-wrapper
-        index-hotels__swiper-slide
-          index-hotels__card
-            index-hotels__card_img
-          index-hotels__card_content
-            index-hotels__card_title
-*/

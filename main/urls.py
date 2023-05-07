@@ -11,7 +11,7 @@ urlpatterns = [
     path('news', views.NewsListView.as_view(), name='news'),
     path('news/<int:pk>', views.NewsDetailView.as_view(), name='news_detail'),
     path('hotels', views.hotels),
-    path('hotels/<int:hotel_id>/', views.hotelPage, name='hotel-page'),
+    path('hotels/<int:hotel_id>/', views.hotelPage, name='hotel_page'),
     #path('about-us', views.about, name='about'),
     #path('hotels', views.about, name='hotels'),
     path('test', views.AjaxHandler.as_view()),

@@ -320,160 +320,6 @@ ul > li {
   margin-bottom: 10px;
 }
 
-/*.filter-output {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    align-content: flex-start;
-}
-*/
-.filter-output {
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
-.location {
-  background-color: #222222;
-}
-
-.location-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.reviews {
-  background-color: #222222;
-}
-
-.services-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.services {
-  background-color: #333333;
-}
-
-.button-search {
-  background-color: #f9a03e;
-  color: rgb(0, 0, 0);
-  border-color: #f9a03e;
-}
-
-.button-primary {
-  background-color: #f9a03e;
-  color: rgb(0, 0, 0);
-  border-color: #f9a03e;
-}
-
-.filter-item {
-  width: 386px;
-  min-height: 300px;
-  /* todo */
-  margin: 10px 10px 10px 0;
-}
-
-.filter-item__container {
-  position: relative;
-  margin: 0 auto;
-  transition: 0.5s ease;
-  cursor: pointer;
-}
-
-.filter-item__container:hover {
-  opacity: 0.7;
-}
-
-.filter-item__img {
-  width: 100%;
-}
-
-.filter-item__content {
-  position: absolute;
-  bottom: 20px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
-  width: 100%;
-}
-
-.filter-item__footer {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-content: center;
-}
-
-.filter-item__price {
-  flex: 0 0 30%;
-  text-align: end;
-}
-
-.gallery-carousel > div {
-  width: 298px;
-  height: 168px;
-}
-
-.gallery-carousel > div span img {
-  width: 100%;
-  height: 100%;
-  border-radius: 2rem;
-}
-
-.news-item-container {
-  height: 300px;
-  background-color: black;
-}
-
-.news-item {
-  display: flex;
-}
-
-.news-item__img {
-  flex: 1 1 25%;
-  text-align: center;
-  overflow: hidden;
-}
-
-.news-item__img img {
-  width: 100%;
-  height: 100%;
-}
-
-.news-item__text {
-  flex: 1 1 74%;
-}
-.news-item__text p {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.services-container__item {
-  width: 298px;
-  height: 419px;
-}
-
-.services-container__imgwrap {
-  width: 298px;
-  height: 198px;
-}
-
-.services-container__img {
-  width: 100%;
-  height: 100%;
-}
-
-.services-container__txtwrap > h4 {
-  font-size: 24px;
-}
-
-.services-container__txtwrap > p {
-  font-size: 16px;
-}
-
 .background-blue {
   background-color: blue;
 }
@@ -1266,16 +1112,20 @@ index-news__card_text
 */
 /* index hotels */
 /* for index page */
-.index-hotels__swiper-container {
-  position: relative;
-  height: 100%;
-  background: #eee;
-  color: #000;
-  margin: 0;
-  padding: 0;
+.index-hotels__header h2 {
+  background-color: var(--theme-second);
+  transition: 0.3s ease;
 }
 
-.index-hotels__swiper {
+.index-hotels__swiper-container {
+  position: relative;
+  height: 270px;
+  color: #000;
+}
+
+.index-hotels__swiper,
+.index-food__swiper,
+.index-look__swiper {
   width: 100%;
   height: 100%;
 }
@@ -1283,32 +1133,65 @@ index-news__card_text
 .index-hotels__swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: var(--theme-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.index-hotels__swiper-slide a {
+  width: 100%;
+  height: 100%;
+}
+
+/* card */
+.index-hotel__card-wrap {
+  height: 100%;
+}
+
+.index-hotels__card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 70%;
+}
+
+.index-hotels__card_img {
+  /*display: block;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.index-hotels__card_content {
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+.index-hotels__card_title {
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -ms-line-clamp: 3;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
 }
 
-/*
-index-hotels
-  index-hotels__header
-  index-hotels__swiper-container
-    index-hotels__swiper
-      swiper-wrapper
-        index-hotels__swiper-slide
-          index-hotels__card
-            index-hotels__card_img
-          index-hotels__card_content
-            index-hotels__card_title
-*/
 /* buttons */
 .index-news__buttons {
   display: flex;
@@ -1514,21 +1397,29 @@ section.news_card-content
 */
 /* for hotels page */
 .hotels-cards-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: stretch;
+  gap: 10px;
 }
 
 .hotels-card-elem {
   height: 270px;
-  width: 280px;
   position: relative;
   margin-top: 14px;
   cursor: pointer;
 }
+.hotels-card-elem .hotels-card-elem__img_wrap {
+  transition: all 0.3s;
+  filter: brightness(40%);
+}
+
+.hotels-card-elem:hover .hotels-card-elem__img_wrap {
+  transition: all 0.3s;
+  filter: brightness(100%);
+}
 
 .hotels-card-elem__img_wrap {
-  width: 280px;
   height: 200px;
 }
 .hotels-card-elem__img_wrap .hotels-card-elem__img {
@@ -1536,12 +1427,6 @@ section.news_card-content
      object-fit: cover;
   width: 100%;
   height: 100%;
-  filter: brightness(40%);
-  transition: all 0.3s;
-}
-.hotels-card-elem__img_wrap .hotels-card-elem__img:hover {
-  filter: brightness(100%);
-  transition: all 0.3s;
 }
 .hotels-card-elem__img_wrap a:hover {
   opacity: 1;
@@ -1575,30 +1460,18 @@ section.news_card-content
 }
 
 @media (width <= 1265px) {
-  .hotels-card-elem {
-    width: 320px;
-  }
-  .hotels-card-elem__img_wrap {
-    width: 320px;
-  }
-}
-@media (width <= 1105px) {
-  .hotels-card-elem {
-    width: 360px;
-  }
-  .hotels-card-elem__img_wrap {
-    width: 360px;
+  .hotels-cards-container {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 @media (width <= 865px) {
   .hotels-cards-container {
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
   }
-  .hotels-card-elem {
-    width: 100%;
-  }
-  .hotels-card-elem__img_wrap {
-    width: 100%;
+}
+@media (width <= 524px) {
+  .hotels-cards-container {
+    grid-template-columns: 1fr;
   }
 }
 /* for hotels page */

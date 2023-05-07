@@ -63,6 +63,7 @@
         <div class="hotels-cards-container p-l-63 p-r-63">
         {% for hotel in hotels %}
             <div class="hotels-card-elem">
+                <a class="opacity-1" href="">
                 <div class="hotels-card-elem__img_wrap">
                     <img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/>
                 </div>
@@ -74,56 +75,11 @@
                 <div class="hotels-card-elem__header_wrap">
                     <h4 class="hotels-card-elem__header">{{ hotel.title }}</h4>
                 </div>
+                </a>
             </div>
         {% endfor %}
 
-        {% for hotel in hotels %}
-            <div class="hotels-card-elem">
-                <div class="hotels-card-elem__img_wrap">
-                    <a href="{% url 'hotel-page' hotel.id %}"><img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/></a>
-                </div>
 
-                <div class="hotels-card-elem__type">
-                    <p>{{ hotel.placementType }}</p>
-                </div>
-
-                <div class="hotels-card-elem__header_wrap">
-                    <a href="{{ hotel.id }}"><h4 class="hotels-card-elem__header">{{ hotel.title }}</h4></a>
-                </div>
-            </div>
-        {% endfor %}
-
-        {% for hotel in hotels %}
-            <div class="hotels-card-elem">
-                <div class="hotels-card-elem__img_wrap">
-                    <img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/>
-                </div>
-
-                <div class="hotels-card-elem__type">
-                    <p>{{ hotel.placementType }}</p>
-                </div>
-
-                <div class="hotels-card-elem__header_wrap">
-                    <h4 class="hotels-card-elem__header">{{ hotel.title }}</h4>
-                </div>
-            </div>
-        {% endfor %}
-
-        {% for hotel in hotels %}
-            <div class="hotels-card-elem">
-                <div class="hotels-card-elem__img_wrap">
-                    <img class="hotels-card-elem__img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt=""/>
-                </div>
-
-                <div class="hotels-card-elem__type">
-                    <p>{{ hotel.placementType }}</p>
-                </div>
-
-                <div class="hotels-card-elem__header_wrap">
-                    <h4 class="hotels-card-elem__header">{{ hotel.title }}</h4>
-                </div>
-            </div>
-        {% endfor %}
         </div>
     </section>
 

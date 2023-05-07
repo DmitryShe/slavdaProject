@@ -12,15 +12,19 @@ from .models import HotelsGallery
 from random import randint
 
 
+def index(request):
+    news = News.objects.all()
+    hotels = Hotels.objects.all()
+    context = {
+        'news': news,
+        'hotels': hotels,
+    }
+    return render(request, 'main/index.html', context)
+
 def page_not_found_view(request, exception):
     return render(request, 'main/404.html', status=404)
 
-def index(request):
-    news = News.objects.all()
-    context = {
-        'news': news
-    }
-    return render(request, 'main/index.html', context)
+
 
 class AjaxHandler(View):
 
@@ -38,12 +42,8 @@ class AjaxHandler(View):
             return JsonResponse(d)
         return render(request, 'main/__test.html')
 
-
-
-
 def test(request):
     return render(request, 'main/__test.html')
-
 
 
 # news functions

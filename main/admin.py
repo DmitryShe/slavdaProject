@@ -1,18 +1,51 @@
 from django.contrib import admin
-from .models import Hotels
-from .models import News
+
 from .models import PlacementType
+from .models import ShowplacesType
+from .models import KitchenType
+from .models import OrganizationCoordinaties
 from .models import HotelsGallery
+from .models import FoodBusinessGallery
+from .models import ShowplacesGallery
+
+from .models import News
+from .models import Hotels
+from .models import FoodBusiness
+from .models import Showplaces
 
 
-admin.site.register(News)
+
+
 admin.site.register(PlacementType)
+admin.site.register(KitchenType)
+admin.site.register(ShowplacesType)
+admin.site.register(News)
+admin.site.register(OrganizationCoordinaties)
 
 
-class GalleryInline(admin.TabularInline):
+
+class GalleryHotelInline(admin.TabularInline):
     fk_name = 'hotel'
     model = HotelsGallery
 
+class GalleryFoodInline(admin.TabularInline):
+    fk_name = 'foodBusiness'
+    model = FoodBusinessGallery
+
+class GalleryShowplacesInline(admin.TabularInline):
+    fk_name = 'showplaces'
+    model = ShowplacesGallery
+
+
 @admin.register(Hotels)
 class HotelAdmin(admin.ModelAdmin):
-    inlines = [GalleryInline,]
+    inlines = [GalleryHotelInline,]
+
+@admin.register(FoodBusiness)
+class FoodAdmin(admin.ModelAdmin):
+    inlines = [GalleryFoodInline, ]
+
+@admin.register(Showplaces)
+class ShoplacesAdmin(admin.ModelAdmin):
+    inlines = [GalleryShowplacesInline, ]
+

@@ -1,42 +1,93 @@
 from django.db import models
 
 
+# # # # # # # # #
+# справочники
+# # # # # # # # #
+
+
+# тип заведения: отель, гостиница...
 class PlacementType(models.Model):
-    typeOfInstitution = models.CharField('Тип заведения', max_length=100)
+    typeOfPlacment = models.CharField('Тип заведения', max_length=100)
 
     def __str__(self):
-        return self.typeOfInstitution
+        return self.typeOfPlacment
     
     class Meta:
-        verbose_name = 'Placment type'
-        verbose_name_plural = 'Placment type'
+        verbose_name = 'Тип отеля'
+        verbose_name_plural = 'Тип отеля'
 
+# тип кухни: суши, въетнамская, горячее, холодное и пр.
+class KitchenType(models.Model):
+    typeOfKitchen = models.CharField('Тип кухни', max_length=100)
+
+    def __str__(self):
+        return self.typeOfKitchen
+    
+    class Meta:
+        verbose_name = 'Тип кухни'
+        verbose_name_plural = 'Тип кухни'
+
+# тип места которое можно посмотреть
+class ShowplacesType(models.Model):
+    typeOfLooks = models.CharField('Тип достопримечательности', max_length=100)
+
+    def __str__(self):
+        return self.typeOfLooks
+    
+    class Meta:
+        verbose_name = 'Тип достопримечательности'
+        verbose_name_plural = 'Тип достопримечательности'
+
+# коориднаты организации, чтобы отметить ее на картах яндекса
+class OrganizationCoordinaties(models.Model):
+    title = models.CharField('Наименование', max_length=200)
+    pointX = models.FloatField('X координата', blank=False, default=55.751574, help_text='Координата X для отображения предприятия на карте')
+    pointY = models.FloatField('Y координата', blank=False, default=37.573856, help_text='Координата Y для отображения предприятия на карте')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Координаты предприятия'
+        verbose_name_plural = 'Координаты предприятий'
+
+
+# # # # # # # # #
+# Модели
+# # # # # # # # #
+
+
+# модель для отелей, гостиниц и пр.
 class Hotels(models.Model):
     title         = models.CharField('Название', max_length=200)
-    description   = models.TextField('Описание')
-    address       = models.TextField('Адрес', max_length=200)
+    description   = models.TextField('Описание', max_length=40000)
+    address       = models.TextField('Адрес', max_length=250)
     contacts      = models.TextField('Контакты')
     link          = models.TextField('Ссылки на сайт', blank=False)
-    placementType = models.ForeignKey(PlacementType, on_delete=models.CASCADE)
+    workingHours  = models.TextField('Время работы', blank=False)
     price         = models.FloatField("Средний чек")
-    coordinates   = models.TextField("Координаты учреждения для яндекс карт")
+    coordinates   = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True)
+    placementType = models.ForeignKey(PlacementType, on_delete=models.SET_NULL, null=True)
     #hotelImg      = models.ImageField('Фотографии отеля', upload_to='hotels')
     #services      = models.TextField()
     #reviews       = models.TextField()
     #stars         = models.IntegerField()
     #isHear        = models.BooleanField(blank=False)
+    #upload = models.FileField(upload_to='uploads/%Y/%m/%d/')
     
     def __str__(self):
         return self.title
     
     class Meta:
-        verbose_name = 'Hotels'
-        verbose_name_plural = 'Hotels'
+        verbose_name = 'Отели'
+        verbose_name_plural = 'Отели'
 
+# модель для сохранения пути картинки для модели отелей
 class HotelsGallery(models.Model):
     title = models.CharField('Наименование изображения', max_length=200)
     image = models.ImageField(upload_to='hotels_gallery')
-    hotel = models.ForeignKey(Hotels, on_delete=models.CASCADE, related_name='hotel_images')
+    hotel = models.ForeignKey(Hotels, on_delete=models.SET_NULL, related_name='hotel_images', null=True)
 
     def getUrl(self):
         return self.image
@@ -48,17 +99,81 @@ class HotelsGallery(models.Model):
         verbose_name = 'Фото из гостиниц'
         verbose_name_plural = 'Hotels Photo'
 
+# модель для организаций по питанию
+class FoodBusiness(models.Model):
+    title         = models.CharField('Название', max_length=250)
+    description   = models.TextField('Описание')
+    address       = models.TextField('Адрес', max_length=250)
+    contacts      = models.TextField('Контакты')
+    link          = models.TextField('Ссылки на сайт', blank=False)
+    workingHours  = models.TextField('Время работы', blank=False)
+    price         = models.IntegerField('Средний чек')
+    orgFoodCoord  = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True)
+    kitchenType   = models.ForeignKey(KitchenType, on_delete = models.SET_NULL, null=True)
+    
+    def __str__(self):
+        return self.title
 
+    class Meta:
+        verbose_name = 'Общепит'
+        verbose_name_plural = 'Общепит'
 
+# модель для сохранения пути картинки для модели общепита
+class FoodBusinessGallery(models.Model):
+    title = models.CharField('Наименование изображения', max_length=200)
+    image = models.ImageField(upload_to='FoodBusiness_gallery/%Y/%m/%d/')
+    foodBusiness = models.ForeignKey(FoodBusiness, on_delete=models.SET_NULL, related_name='FoodBusiness_images', null=True)
 
+    def getUrl(self):
+        return self.image
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Фото из общепита'
+        verbose_name_plural = 'Фото из общепита'
 
+# модель для достопримечательности
+class Showplaces(models.Model):
+    title            = models.CharField('Название', max_length=250)
+    description      = models.TextField('Описание')
+    address          = models.TextField('Адрес', max_length=250)
+    contacts         = models.TextField('Контакты')
+    link             = models.TextField('Ссылки на сайт', blank=False)
+    workingHours     = models.TextField('Время работы', blank=False)
+    price            = models.IntegerField('Средний чек')
+    showPlacesCoord  = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True)
+    showplacesType   = models.ForeignKey(ShowplacesType, on_delete = models.SET_NULL, null=True)
+    
+    def __str__(self):
+        return self.title
 
+    class Meta:
+        verbose_name = 'Достопримечательность'
+        verbose_name_plural = 'Достопримечательности'
 
+# модель для сохранения пути картинки для модели достопримечательности
+class ShowplacesGallery(models.Model):
+    title = models.CharField('Наименование изображения', max_length=200)
+    image = models.ImageField(upload_to='Showplaces_gallery/%Y/%m/%d/')
+    showplaces = models.ForeignKey(Showplaces, on_delete=models.SET_NULL, related_name='Showplaces_images', null=True)
 
+    def getUrl(self):
+        return self.image
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Фото достопримечательности'
+        verbose_name_plural = 'Фото достопримечательности'
+
+# новости
 class News(models.Model):
     date = models.DateTimeField()
     title = models.TextField('Заголовок', max_length=100)
-    description = models.TextField('Описание', max_length=2000)
+    description = models.TextField('Описание', max_length=20000)
     newsImg = models.ImageField(upload_to='news')
 
     def __str__(self):

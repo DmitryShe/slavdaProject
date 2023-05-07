@@ -7,14 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <style>
-        
+        .test-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .test-grid > div {
+            border: 1px solid black;
+        }
     </style>
     <title>test</title>
 </head>
 <body>
+    <section class="test-grid">
+        <div><p>one</p></div>
+        <div><p>two</p></div>
+        <div><p>three</p></div>
+        <div><p>four</p></div>
+        <div><p>five</p></div>
+        <div><p>six</p></div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div><button id="test_btn">btn</button></div>
+
 
     <script>
         async function getFetch() {

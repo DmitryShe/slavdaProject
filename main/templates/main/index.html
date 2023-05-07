@@ -36,6 +36,7 @@
 
   <section class="index-news">
     <div class="index-news__header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Новости</h2></div>
+    {% if news %}
     <div class="index-news__swiper-container p-l-63 p-r-63">
       <div class="swiper index-news__swiper">
         <div class="swiper-wrapper">
@@ -56,6 +57,7 @@
         </div>
       </div>
     </div>
+  
     <div class="index-news__buttons m-t-20 m-b-20">
       <div class="next-prev index-news__button-prev ">
         <svg 
@@ -89,28 +91,37 @@
         </svg>
       </div>
     </div>
+    {% else %}
+    <div><h3 class="text-center">На сегодня нет новостей</h3></div>
+    {% endif %}
   </section>
 
   <section class="index-hotels">
     <div class="index-hotels__header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Где остановиться</h2></div>
+    {% if hotels %}
     <div class="index-hotels__swiper-container p-l-63 p-r-63">
       <div class="swiper index-hotels__swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 1</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 2</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 3</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 4</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 5</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 6</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 7</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 8</div>
-          <div class="swiper-slide index-hotels__swiper-slide">Slide 9</div>
+          {% for hotel in hotels %}
+          <div class="swiper-slide index-hotels__swiper-slide">
+            <a href="{% url 'hotel_page' hotel.id %}">
+              <div class="index-hotel__card-wrap">
+                <div class="index-hotels__card">
+                  <img class="index-hotels__card_img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt="" />
+                </div>
+                <div class="index-hotels__card_content">
+                  <h5 class="index-hotels__card_title">{{ hotel.title }}</h5>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
 
     <div class="index-news__buttons m-t-20 m-b-20">
-      <div class="next-prev index-news__button-prev">
+      <div class="next-prev index-hotels__button-prev">
         <svg 
           version="1.1" 
           x="0px" y="0px" 
@@ -125,8 +136,8 @@
         </svg>
       
       </div>
-      <button class="btn info m-l-20 m-r-20">Все отели</button>
-      <div class="next-prev index-news__button-next">
+      <button class="btn info m-l-20 m-r-20" onclick="document.location='/hotels' ">Все отели</button>
+      <div class="next-prev index-hotels__button-next">
         <svg 
           version="1.1" 
           x="0px" y="0px"
@@ -141,10 +152,135 @@
         </svg>
       </div>
 
+      {% else %}
+      <div><h3 class="text-center">Отели отсутствуют</h3></div>
+      {% endif %}
+    </div>
 
+  </section>
 
+  <section class="index-hotels">
+    <div class="index-hotels__header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Где поесть</h2></div>
+    {% if hotels %}
+    <div class="index-hotels__swiper-container p-l-63 p-r-63">
+      <div class="swiper index-food__swiper">
+        <div class="swiper-wrapper">
+          {% for hotel in hotels %}
+          <div class="swiper-slide index-food__swiper-slide">
+            <a href="{% url 'hotel_page' hotel.id %}">
+              <div class="index-hotel__card-wrap">
+                <div class="index-hotels__card">
+                  <img class="index-hotels__card_img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt="" />
+                </div>
+                <div class="index-hotels__card_content">
+                  <h5 class="index-hotels__card_title">{{ hotel.title }}</h5>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 
+    <div class="index-news__buttons m-t-20 m-b-20">
+      <div class="next-prev index-food__button-prev">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px" 
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-left">
+            <polygon points="247.35,35.7 211.65,0 58.65,153 211.65,306 247.35,270.3 130.05,153"/>
+          </g>
+        </svg>
+      
+      </div>
+      <button class="btn info m-l-20 m-r-20" onclick="document.location='/food' ">Все заведения</button>
+      <div class="next-prev index-food__button-next">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px"
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-right">
+            <polygon points="58.65,267.75 175.95,153 58.65,35.7 94.35,0 247.35,153 94.35,306 "/>
+          </g>
+        </svg>
+      </div>
 
+      {% else %}
+      <div><h3 class="text-center">Заведения отсутствуют</h3></div>
+      {% endif %}
+    </div>
+
+  </section>
+
+  <section class="index-hotels">
+    <div class="index-hotels__header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Что посмотреть</h2></div>
+    {% if hotels %}
+    <div class="index-hotels__swiper-container p-l-63 p-r-63">
+      <div class="swiper index-look__swiper">
+        <div class="swiper-wrapper">
+          {% for hotel in hotels %}
+          <div class="swiper-slide index-hotels__swiper-slide">
+            <a href="{% url 'hotel_page' hotel.id %}">
+              <div class="index-hotel__card-wrap">
+                <div class="index-hotels__card">
+                  <img class="index-hotels__card_img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt="" />
+                </div>
+                <div class="index-hotels__card_content">
+                  <h5 class="index-hotels__card_title">{{ hotel.title }}</h5>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="index-news__buttons m-t-20 m-b-20">
+      <div class="next-prev index-look__button-prev">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px" 
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-left">
+            <polygon points="247.35,35.7 211.65,0 58.65,153 211.65,306 247.35,270.3 130.05,153"/>
+          </g>
+        </svg>
+      
+      </div>
+      <button class="btn info m-l-20 m-r-20" onclick="document.location='/hotels' ">Все достопримечательности</button>
+      <div class="next-prev index-look__button-next">
+        <svg 
+          version="1.1" 
+          x="0px" y="0px"
+          width="40px" 
+          height="40px" 
+          viewBox="0 0 306 306" 
+          style="enable-background:new 0 0 306 306;" 
+          xml:space="preserve">
+          <g id="keyboard-arrow-right">
+            <polygon points="58.65,267.75 175.95,153 58.65,35.7 94.35,0 247.35,153 94.35,306 "/>
+          </g>
+        </svg>
+      </div>
+
+      {% else %}
+      <div><h3 class="text-center">Пока пусто</h3></div>
+      {% endif %}
     </div>
 
   </section>
