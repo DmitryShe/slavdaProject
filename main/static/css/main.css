@@ -692,7 +692,7 @@ ul > li {
 .footer-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--theme-fourth);
+  background-color: var(--theme-main);
 }
 
 .footer-container > div {
@@ -1226,42 +1226,6 @@ index-news__card_text
   fill: var(--text-color);
 }
 
-/* modal */
-/* for index page */
-.index-modal-container {
-  display: none;
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.index-modal__content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.index-modal__close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.index-modal__close:hover, .index-modal__close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 /* news page */ /* for news page */
 .news-path-container {
   background-color: var(--theme-second);
@@ -1538,6 +1502,50 @@ btn-hotels
 .hotels-path__list-item span::before {
   content: "/";
   padding-right: 0.3rem;
+}
+
+/* for index page */
+.hotels-modal {
+  display: none;
+}
+
+.hotels-modal-container {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hotels-modal__content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.hotels-modal__close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.hotels-modal__close:hover,
+.hotels-modal__close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#HotelsMap {
+  width: 100%;
+  height: 500px;
 }
 
 body {

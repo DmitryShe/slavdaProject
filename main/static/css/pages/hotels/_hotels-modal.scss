@@ -1,11 +1,11 @@
 /* for index page */
 
-.index-modal {
-    
+.hotels-modal {
+    display: none;
 }
 
-.index-modal-container {
-    display: none;
+.hotels-modal-container {
+    //display: none;
     z-index: 1;
     position: absolute;
     left: 0;
@@ -17,7 +17,7 @@
     background-color: rgba(0,0,0,0.4); 
 }
 
-.index-modal__content {
+.hotels-modal__content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -25,15 +25,21 @@
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
-.index-modal__close {
+.hotels-modal__close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.index-modal__close:hover, .index-modal__close:focus {
+.hotels-modal__close:hover, 
+.hotels-modal__close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#HotelsMap {
+    width: 100%;
+    height: 500px;
 }

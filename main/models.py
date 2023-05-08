@@ -79,6 +79,9 @@ class Hotels(models.Model):
     def __str__(self):
         return self.title
     
+    def getCoordinates(self):
+        return self.coordinates
+    
     class Meta:
         verbose_name = 'Отели'
         verbose_name_plural = 'Отели'

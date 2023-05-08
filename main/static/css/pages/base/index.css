@@ -153,7 +153,7 @@
 .footer-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--theme-fourth);
+  background-color: var(--theme-main);
 }
 
 .footer-container > div {

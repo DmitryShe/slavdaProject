@@ -46,7 +46,7 @@ var newsSwiper = new Swiper(".index-news__swiper", {
 
 /** hotels swiper */
 let hotelsSwiper = new Swiper(".index-hotels__swiper", {
-    slidesPerView: 5,
+    slidesPerView: 4,
     spaceBetween: 30,
     freeMode: true,
     rewind: true,

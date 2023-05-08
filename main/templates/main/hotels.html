@@ -20,42 +20,40 @@
     <section class="hotels-filters">
         <div class="hotels-filters-container p-l-63 p-r-63">
             <div class="hotels-filters__options">
-                <form action="" method="get" class="hotels-form">
-                  <span class="m-r-2">
-                    <select name="" id="" class="hotels-form__select">
-                        <option value="" class="hotels-form__option">Размещение</option>
-                        <option value="" class="hotels-form__option">Хостел</option>
-                        <option value="" class="hotels-form__option">Отель</option>
-                        <option value="" class="hotels-form__option">Квартира</option>
-                        <option value="" class="hotels-form__option">Гостиница</option>
-                        <option value="" class="hotels-form__option">Санаторий</option>
+                <form action="/hotels" method="GET" class="hotels-form" id="HotelsForm">
+                  <div>
+                    
+                    <select name="type" id="" class="hotels-form__select">
+                        <option value="0" class="hotels-form__option">Тип гостиницы</option>
+                    {% if view.filter_options %}
+                        {% for el in view.filter_options %}
+                        <option value="{{ el }}" class="hotels-form__option">{{ el }}</option>
+                        {% endfor %}
+                    {% endif %}
                     </select>
-                    <div class="m-t-2 m-b-2">
-                        <button class="btn btn-hotels">Показать</button>
-                    </div>
-                  </span>
-                  <span>
-                    <select name="" id="" class="hotels-form__select">
-                        <option value="" class="hotels-form__option">Цена</option>
-                        <option value="" class="hotels-form__option">Меньше 2000р.</option>
-                        <option value="" class="hotels-form__option">2000-4000р.</option>
-                        <option value="" class="hotels-form__option">4000-6000р.</option>
-                        <option value="" class="hotels-form__option">6000-8000р.</option>
-                        <option value="" class="hotels-form__option">8000-10000р.</option>
-                        <option value="" class="hotels-form__option">Больше 10000р.</option>
+                    <select name="price" id="" class="hotels-form__select" form="HotelsForm">
+                        <option value="0" class="hotels-form__option">Цена</option>
+                        <option value="2000" class="hotels-form__option">Меньше 2000р.</option>
+                        <option value="4000" class="hotels-form__option">2000-4000р.</option>
+                        <option value="6000" class="hotels-form__option">4000-6000р.</option>
+                        <option value="8000" class="hotels-form__option">6000-8000р.</option>
+                        <option value="10000" class="hotels-form__option">8000-10000р.</option>
+                        <option value="12000" class="hotels-form__option">Больше 10000р.</option>
                     </select>
-
-                    <div class="m-t-2 m-b-2">
-
-                        <button class="btn btn-hotels">Сбросить</button>
-                    </div>
-                  </span>
+                    
+                  </div>
+                    
                 </form>
+                <div class="m-t-2 m-b-2">
+                    <input type="submit" class="btn btn-hotels" form="HotelsForm" />
+                    <button class="btn btn-hotels">Сбросить</button>
+                </div>
             </div>
 
             <div class="hotels-filters__btn-map_wrap">
-                <button class="btn btn-hotels">На карте</button>
+                <button class="btn btn-hotels" id="OnMapBtn">На карте</button>
             </div>
+            
         </div>
     </section>
 
@@ -82,9 +80,97 @@
 
         </div>
     </section>
+    <section class="hotels-pagination">
+    {% if is_paginated %}
+        <div class="pagination text-center">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+              <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+          </span>
+        </div>
+    {% endif %}
+    </section>
 
+    <section class="hotels-modal" >
+        <div class="hotels-modal-container" id="index-modal">
+          <div class="hotels-modal__content">
+            <div id="HotelsMap"></div>
+            <span class="hotels-modal__close">close</span>
+            <h5>and header</h5>
+            <p>some textаыва</p>
+          </div>
+        </div>
+    </section>
 
 </main>
 {% endblock %}
 
-{% block script %} {% endblock %}
+{% block script %} 
+<script src="{% static 'js/_modal.js' %}"></script>
+<script>
+
+    let geoData = {
+        "type": "FeatureCollection",
+        "features": []
+    };
+
+    '{% for hotel in hotels %}'
+	geoData.features.push({ 
+        'type': "Feature",
+        'id': Number('{{hotel.getCoordinates.id}}'),
+        'geometry': {
+            "type": "Point", 
+            "coordinates": [
+                parseFloat(('{{ hotel.getCoordinates.pointX }}').replace(',', '.')),
+                parseFloat(('{{ hotel.getCoordinates.pointY }}').replace(',', '.'))
+            ]
+        },
+        "properties": {
+            "balloonContentHeader": "<font size=3><b><a target='_blank' href='https://yandex.ru'>Здесь может быть ваша ссылка</a></b></font>", 
+            "balloonContentBody": "<p>Ваше имя: <input name='login'></p><p><em>Телефон в формате 2xxx-xxx:</em>  <input></p><p><input type='submit' value='Отправить'></p>", 
+            "balloonContentFooter": "<font size=1>Информация предоставлена: </font> <strong>этим балуном</strong>", 
+            "clusterCaption": "<strong><s>Еще</s> одна</strong> метка", 
+            "hintContent": "<strong>Текст  <s>подсказки</s></strong>"
+        }
+    });
+    '{% endfor %}'
+
+
+
+    ymaps.ready(init);
+
+    function init() {
+        let hotelsMap = new ymaps.Map('HotelsMap', {
+            center: [55.751574, 37.573856],
+            zoom: 10
+        }, {
+            searchControlProvider: 'yandex#search'
+        }),
+        objectManager = new ymaps.ObjectManager({
+            // Чтобы метки начали кластеризоваться, выставляем опцию.
+            clusterize: true,
+            // ObjectManager принимает те же опции, что и кластеризатор.
+            gridSize: 32,
+            clusterDisableClickZoom: true
+        });
+
+            // Чтобы задать опции одиночным объектам и кластерам,
+            // обратимся к дочерним коллекциям ObjectManager.
+        objectManager.objects.options.set('preset', 'islands#greenDotIcon');
+        objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+        hotelsMap.geoObjects.add(objectManager);
+
+        objectManager.add(geoData);
+    }
+</script>
+
+
+
+{% endblock %}
