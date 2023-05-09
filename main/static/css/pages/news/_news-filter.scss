@@ -22,9 +22,18 @@
 }
 
 
-/*
-section.news-filter
-  div.news-filter__elem
-    div.news-filter__datepicker
-      input.news-filter__datepicker_input
-*/
+@media (max-width: 768px) {
+  .news-filter__elem {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .news-filter__elem span {
+    display: none;
+  }
+
+  .news-filter__datepicker {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

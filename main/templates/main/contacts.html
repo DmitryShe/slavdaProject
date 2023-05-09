@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block main %}
+<main>
+    <section class="contacts-path">
+        <div class="contacts-path-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <ul class="contacts-path__list">
+                <li class="contacts-path__list-item"><a href="/">Главная страница</a></li>
+                <li class="contacts-path__list-item"><span>Рубрика: Контакты</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="contacts-header"><h1 class="p-l-63 p-r-63 p-t-20 p-b-20">Контакты</h1></section>
+
+    <section class="contacts-organization">
+        <div class="contacts-organization-container p-l-63 p-r-63 p-t-20 p-b-20" >
+            <div class="contacts-organization__title">{{ contacts.first.organizationTitle|safe }}</div>
+            <div class="contacts-organization__contact">{{ contacts.first.organizationContacts|safe }}</div>
+            
+        </div>
+    </section>
+
+    <section class="contacts-aboutus">
+        <div class="contacts-aboutus-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <h2>Разработчик</h2>
+            <div class="developers-info">
+                <div class="developer__img-wrap"><img src="" alt=""/></div>
+                <div class="developer__about">{{ contacts.first.organizationDeveloper|safe }}</div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block script %} 
+{% endblock %}

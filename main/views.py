@@ -11,6 +11,7 @@ from .models import Hotels
 from .models import News
 from .models import HotelsGallery
 from .models import PlacementType
+from .models import CiteInformations
 
 from .forms import HotelsFilterForm
 
@@ -36,8 +37,6 @@ class HotelsView(generic.ListView):
     context_object_name = 'hotels'
     paginate_by = 12
 
-    
-
     @staticmethod
     def filter_options():
         return PlacementType.objects.all()
@@ -52,10 +51,17 @@ class HotelPageView(generic.DetailView):
 class NewsListView(generic.ListView):
     model = News
     template_name = "main/news.html"
+    paginate_by = 2
 
 class NewsDetailView(generic.DetailView):
     model = News
     template_name = "main/_news_card.html"
+    context_object_name = 'news_detail'
+
+class CotactsView(generic.ListView):
+    model = CiteInformations
+    template_name = "main/contacts.html"
+    context_object_name = 'contacts'
 
 
 # hotels function

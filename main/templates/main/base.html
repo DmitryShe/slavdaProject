@@ -29,7 +29,7 @@
             <li><a class="header-nav__link" href="#">Что посмотреть</a></li>
             <li><a class="header-nav__link" href="#">Экскурсии</a></li>
             <li><a class="header-nav__link" href="/news">Новости</a></li>
-            <li><a class="header-nav__link" href="#">Контакты</a></li>
+            <li><a class="header-nav__link" href="/contacts">Контакты</a></li>
         </ul>
         </nav>
       </div>
@@ -67,9 +67,12 @@
 
 
     {% block main %} {% endblock %}
+    <hr style="margin: 0 63px;" />
     <footer class="footer">
+      
         
         <div class="footer-container p-r-63 p-l-63 p-t-20 p-b-20">
+          
             <div class="logo__wrap"><img class="logo" src="{% static 'img/logo.png' %}" alt="logo" /></div>
             <div>
                 <h3>Что делать</h3>
@@ -84,7 +87,7 @@
             <div>
                 <h3>Навигатор</h3>
                 <ul>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
                     <li><a href="#">О Красноярске</a></li>
                     <li><a href="/news">Новости</a></li>
                 </ul>

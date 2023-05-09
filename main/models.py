@@ -1,5 +1,7 @@
 from django.db import models
 
+from froala_editor.fields import FroalaField
+
 
 # # # # # # # # #
 # справочники
@@ -176,7 +178,9 @@ class ShowplacesGallery(models.Model):
 class News(models.Model):
     date = models.DateTimeField()
     title = models.TextField('Заголовок', max_length=100)
-    description = models.TextField('Описание', max_length=20000)
+    description = FroalaField()
+    #models.TextField('Описание', max_length=20000)
+    
     newsImg = models.ImageField(upload_to='news')
 
     def __str__(self):
@@ -185,4 +189,37 @@ class News(models.Model):
     class Meta:
         verbose_name = 'News'
         verbose_name_plural = 'News'
+
+# 
+
+class CiteInformations(models.Model):
+    organizationTitle = FroalaField()
+    organizationContacts = FroalaField()
+    organizationDeveloper = FroalaField()
+    organizationVideo = models.FileField(upload_to='indexPageVideo')
+    organizationVideoContentHeader = models.CharField('заголовок видео', max_length=30)
+    organizationVideoContentDescription = models.CharField('описание видео', max_length=30)
+
+    def __str__(self):
+        return 'Organization DB'
+
+    class Meta:
+        verbose_name = 'OrganizationDB'
+        verbose_name_plural = 'OrganizationDB'
+
+
+class OrganizationGallery(models.Model):
+    title = models.CharField('Наименование изображения', max_length=30)
+    image = models.ImageField(upload_to='OrganizationDB_gallery/%Y/%m/%d/')
+    contacts = models.ForeignKey(CiteInformations, on_delete=models.SET_NULL, related_name='Showplaces_images', null=True)
+
+    def getUrl(self):
+        return self.image
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Фото для слайдера'
+        verbose_name_plural = 'Фото для слайдера'
 

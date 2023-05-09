@@ -7,6 +7,7 @@
 @import "modules/b_h";
 @import "modules/b_p";
 @import "modules/b_ul-li";
+@import "modules/b_strong";
 
 // util
 @import "modules/u_background-colors";
@@ -16,11 +17,15 @@
 @import "modules/u_text";
 @import "modules/u_opacity";
 
+// layers
+@import "modules/l_pagination-main.scss";
 
 /* pages */
 @import "./pages/404/index.scss";
 @import "./pages/base/index.scss";
+@import "./pages/contacts/index.scss";
 @import "./pages/hotel-page/index.scss";
 @import "./pages/index/index.scss";
 @import "./pages/news/index.scss";
+@import "./pages/news-page/index.scss";
 @import "./pages/hotels/index.scss";

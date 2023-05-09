@@ -1,0 +1,29 @@
+.pagination-main {
+    background-color: var(--theme-second);
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination svg {
+    fill: var(--text-color);
+}
+
+.pagination__page-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination__page-current {
+    font-family: 'Rubik';
+    color: var(--text-color);
+}
+
+.pagination__arrow-prev, 
+.pagination__arrow-next {
+    width: 44px;
+    height: 44px;
+}
+

@@ -7,11 +7,13 @@ from .models import OrganizationCoordinaties
 from .models import HotelsGallery
 from .models import FoodBusinessGallery
 from .models import ShowplacesGallery
+from .models import OrganizationGallery
 
 from .models import News
 from .models import Hotels
 from .models import FoodBusiness
 from .models import Showplaces
+from .models import CiteInformations
 
 
 
@@ -36,6 +38,10 @@ class GalleryShowplacesInline(admin.TabularInline):
     fk_name = 'showplaces'
     model = ShowplacesGallery
 
+class OrganizationGalleryInline(admin.TabularInline):
+    fk_name = 'contacts'
+    model = OrganizationGallery
+
 
 @admin.register(Hotels)
 class HotelAdmin(admin.ModelAdmin):
@@ -49,3 +55,6 @@ class FoodAdmin(admin.ModelAdmin):
 class ShoplacesAdmin(admin.ModelAdmin):
     inlines = [GalleryShowplacesInline, ]
 
+@admin.register(CiteInformations)
+class CiteInformationsAdmin(admin.ModelAdmin):
+    inlines = [OrganizationGalleryInline, ]

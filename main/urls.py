@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -12,9 +12,10 @@ urlpatterns = [
     path('news/<int:pk>', views.NewsDetailView.as_view(), name='news_detail'),
     path('hotels', views.HotelsView.as_view(), name='hotels'),
     path('hotels/<int:pk>/', views.HotelPageView.as_view(), name='hotel_page'),
-
+    path('contacts/', views.CotactsView.as_view(), name='contacts'),
     path('test', views.AjaxHandler.as_view()),
-    #path('404/', views.page_not_found_view),
+    
+    re_path(r'^froala_editor/', include('froala_editor.urls'))
 ]
 
 
