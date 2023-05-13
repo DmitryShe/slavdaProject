@@ -46,6 +46,18 @@
   color: white;
 }
 
+.hotels-card-elem__price {
+  position: absolute;
+  background-color: #ff931e;
+  bottom: 70px;
+  right: 0;
+  padding: 2px;
+  border-radius: 0 0px 0px 0;
+}
+.hotels-card-elem__price p {
+  color: white;
+}
+
 .hotels-card-elem__header_wrap .hotels-card-elem__header {
   font-size: 20px;
   line-height: 24px;
@@ -89,40 +101,45 @@
 }
 
 .hotels-form__select {
-  padding: 14px 28px;
   padding: 0 16px;
   min-width: 170px;
   height: 47px;
   font-family: "Rubik";
-  border: 1px solid black;
   border-radius: 4px;
   background-color: #4CAF50;
   color: white;
   font-size: 18px;
+  margin: 2px 0;
 }
 .btn-hotels {
-  background-color: #4CAF50;
-  font-size: 18px;
+  background: #4CAF50;
+  transition: all 0.2s linear;
+  padding: 0px 20px;
+  height: 36px;
   font-family: "Rubik";
   border-radius: 4px;
 }
 
-/*
-section.hotels-filters
-  div.hotels-filters-container
-    div.hotels-filter__options
-      form.hotels-form
-        select.hotels-form__select
-          option.hotels-form__option
-          ...
-        select.hotels-form__select
-          option.hotels-form__option
-          ...
-    div.hotels-filters__btn-map_wrap
-      button.hotels-filter__btn_map
+.btn-hotels:hover {
+  opacity: 0.7;
+}
 
-btn-hotels
-*/
+@media (width <= 865px) {
+  .hotels-filters-container {
+    flex-direction: column;
+  }
+  .hotels-filters__options {
+    width: 100%;
+  }
+  .hotels-form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .hotels-form__button_wrap {
+    display: flex;
+  }
+}
 /* for hotels page */
 .hotels-path-container {
   background-color: var(--theme-second);
@@ -149,8 +166,8 @@ btn-hotels
 }
 
 .hotels-modal-container {
-  z-index: 1;
-  position: absolute;
+  z-index: 2;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -158,11 +175,12 @@ btn-hotels
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
 .hotels-modal__content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 150px auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
@@ -170,9 +188,9 @@ btn-hotels
 
 .hotels-modal__close {
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  font-family: "Merriweather";
 }
 
 .hotels-modal__close:hover,

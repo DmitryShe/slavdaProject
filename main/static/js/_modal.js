@@ -1,9 +1,11 @@
 let modal = document.getElementsByClassName('hotels-modal')[0];
-let cardNews = document.getElementById('OnMapBtn');
+let btnOpenMap = document.getElementById('OnMapBtn');
 let closeModal = document.getElementsByClassName('hotels-modal__close')[0];
+let modalContainer = document.getElementsByClassName('hotels-modal-container')[0];
 
 
-cardNews.onclick = () => {
+
+btnOpenMap.onclick = () => {
     modal.style.display = "block";
 }
 
@@ -12,7 +14,9 @@ closeModal.onclick = () => {
 }
 
 window.onclick = (event) => {
-    if (event.target == modal) {
+    if (event.target == modalContainer) {
+        console.log('true')
         modal.style.display = "none";
     }
 }
+

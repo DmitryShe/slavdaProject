@@ -16,10 +16,10 @@ class PlacementType(models.Model):
         return self.typeOfPlacment
     
     class Meta:
-        verbose_name = 'Тип отеля'
-        verbose_name_plural = 'Тип отеля'
+        verbose_name = 'Формат отеля'
+        verbose_name_plural = 'Формат отеля'
 
-# тип кухни: суши, въетнамская, горячее, холодное и пр.
+# тип заведения: столовая, бар...
 class KitchenType(models.Model):
     typeOfKitchen = models.CharField('Тип кухни', max_length=100)
 
@@ -27,8 +27,19 @@ class KitchenType(models.Model):
         return self.typeOfKitchen
     
     class Meta:
-        verbose_name = 'Тип кухни'
-        verbose_name_plural = 'Тип кухни'
+        verbose_name = 'Формат общепита'
+        verbose_name_plural = 'Формат общепита'
+
+# тип кухни: суши, въетнамская, горячее, холодное и пр.
+class FoodType(models.Model):
+    typeOfFood = models.CharField('Вид еды', max_length=100)
+
+    def __str__(self):
+        return self.typeOfFood
+    
+    class Meta:
+        verbose_name = 'Вид еды'
+        verbose_name_plural = 'Вид еды'
 
 # тип места которое можно посмотреть
 class ShowplacesType(models.Model):
@@ -38,8 +49,8 @@ class ShowplacesType(models.Model):
         return self.typeOfLooks
     
     class Meta:
-        verbose_name = 'Тип достопримечательности'
-        verbose_name_plural = 'Тип достопримечательности'
+        verbose_name = 'Формат достопримечательности'
+        verbose_name_plural = 'Формат достопримечательности'
 
 # коориднаты организации, чтобы отметить ее на картах яндекса
 class OrganizationCoordinaties(models.Model):
@@ -63,20 +74,16 @@ class OrganizationCoordinaties(models.Model):
 # модель для отелей, гостиниц и пр.
 class Hotels(models.Model):
     title         = models.CharField('Название', max_length=200)
-    description   = models.TextField('Описание', max_length=40000)
+    isShowedInIndexPage = models.BooleanField('Показывать карточку организации на главной странице')
     address       = models.TextField('Адрес', max_length=250)
     contacts      = models.TextField('Контакты')
     link          = models.TextField('Ссылки на сайт', blank=False)
     workingHours  = models.TextField('Время работы', blank=False)
     price         = models.FloatField("Средний чек")
-    coordinates   = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True)
-    placementType = models.ForeignKey(PlacementType, on_delete=models.SET_NULL, null=True)
-    #hotelImg      = models.ImageField('Фотографии отеля', upload_to='hotels')
-    #services      = models.TextField()
-    #reviews       = models.TextField()
-    #stars         = models.IntegerField()
-    #isHear        = models.BooleanField(blank=False)
-    #upload = models.FileField(upload_to='uploads/%Y/%m/%d/')
+    coordinates   = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True, verbose_name="Координаты")
+    placementType = models.ForeignKey(PlacementType, on_delete=models.SET_NULL, null=True, verbose_name="Заведение")
+    description   = FroalaField()
+    
     
     def __str__(self):
         return self.title
@@ -107,7 +114,7 @@ class HotelsGallery(models.Model):
 # модель для организаций по питанию
 class FoodBusiness(models.Model):
     title         = models.CharField('Название', max_length=250)
-    description   = models.TextField('Описание')
+    isShowedInIndexPage = models.BooleanField('Показывать карточку организации на главной странице')
     address       = models.TextField('Адрес', max_length=250)
     contacts      = models.TextField('Контакты')
     link          = models.TextField('Ссылки на сайт', blank=False)
@@ -115,10 +122,15 @@ class FoodBusiness(models.Model):
     price         = models.IntegerField('Средний чек')
     orgFoodCoord  = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True)
     kitchenType   = models.ForeignKey(KitchenType, on_delete = models.SET_NULL, null=True)
+    foodType      = models.ForeignKey(FoodType, on_delete = models.SET_NULL, null=True)
+    description   = FroalaField()
     
     def __str__(self):
         return self.title
-
+    
+    def getCoordinates(self):
+        return self.orgFoodCoord
+    
     class Meta:
         verbose_name = 'Общепит'
         verbose_name_plural = 'Общепит'
@@ -142,7 +154,7 @@ class FoodBusinessGallery(models.Model):
 # модель для достопримечательности
 class Showplaces(models.Model):
     title            = models.CharField('Название', max_length=250)
-    description      = models.TextField('Описание')
+    isShowedInIndexPage = models.BooleanField('Показывать карточку организации на главной странице')
     address          = models.TextField('Адрес', max_length=250)
     contacts         = models.TextField('Контакты')
     link             = models.TextField('Ссылки на сайт', blank=False)
@@ -150,6 +162,7 @@ class Showplaces(models.Model):
     price            = models.IntegerField('Средний чек')
     showPlacesCoord  = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True)
     showplacesType   = models.ForeignKey(ShowplacesType, on_delete = models.SET_NULL, null=True)
+    description      = FroalaField()
     
     def __str__(self):
         return self.title

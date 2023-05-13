@@ -1,5 +1,8 @@
 /* for index page */
 
+.index-hotels {
+    transition: 0.3s ease;
+}
 
 .index-hotels__header h2 {
   background-color: var(--theme-second);
@@ -8,8 +11,9 @@
 
 .index-hotels__swiper-container {
     position: relative;
-    height: 270px;
+    height: 230px;
     color: #000;
+    
 }
 
 .index-hotels__swiper,
@@ -23,54 +27,64 @@
 .index-hotels__swiper-slide {
     text-align: center;
     font-size: 18px;
-    background:  var(--theme-background); //#fff;
+    //background:  var(--theme-background); //#fff;
     display: flex;
     justify-content: center;
     align-items: center;
-  
+    
+    
     a {
       width: 100%;
       height: 100%;
+      
+    }
+    a:hover {
+        opacity: 1;
     }
 }
 
 /* card */
 .index-hotel__card-wrap {
     height: 100%;
-    
+    position: relative;
 }
 
 .index-hotels__card {
   position: relative;
-  overflow: hidden;
+
   width: 100%;
-  height: 70%;
+  height: 100%;
+  :hover {
+    opacity: 0.5;
+  }
 }
 
 .index-hotels__card_img {
-    /*display: block;
-
     width: 100%;
     height: 100%;
-    object-fit: cover;*/
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%;
-    height: 200px;
     object-fit: cover;
-
+    //filter: brightness(70%);
 }
 
 .index-hotels__card_content {
-    height: 30%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background:  var(--theme-second);
+    height: 48px;
+    opacity: 0.95;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
+
+
 .index-hotels__card_title {
+    
+
+
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;

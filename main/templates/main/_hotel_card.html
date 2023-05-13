@@ -9,14 +9,14 @@
             <ul class="hotel-path__list">
                 <li class="hotel-path__list-item"><a href="/">Главная страница</a></li>
                 <li class="hotel-path__list-item"><a href="/hotels"><span class="opacity-1">Рубрика: Где остановиться</span></a></li>
-                <li class="hotel-path__list-item"><span>{{ hotel.title }}</span></li>
+                <li class="hotel-path__list-item"><span>{{ hotel_page.title }}</span></li>
             </ul>
         </div>
     </section>
 
     <section class="hotel_card-content">
         <div class="hotel_card-content-container p-l-63 p-r-63 p-t-20 p-b-20">
-            <div class="hotel_card__header"><h1>{{ hotel.title }}</h1></div>
+            <div class="hotel_card__header"><h1>{{ hotel_page.title }}</h1></div>
         </div>
     </section>
 
@@ -24,12 +24,12 @@
         <div class="hotel-swiper-container p-l-63 p-r-63 p-t-20 p-b-20">
             <div class="swiper hotel_swiper">
                 <div class="swiper-wrapper">
-                    {% for img in hotel.hotel_images.all %}
+                    {% for img in hotel_page.hotel_images.all %}
                     <div class="swiper-slide hotel-swiper-slide"><img src="{{ img.getUrl.url }}" alt="" /></div>
                     {% endfor %}
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next swiper-button__hotel"></div>
+                <div class="swiper-button-prev swiper-button__hotel"></div>
                 <div class="swiper-pagination"></div>
             </div>
         </div>
@@ -37,7 +37,7 @@
 
     <section class="hotel-description">
         <div class="hotel-description p-l-63 p-r-63 p-t-20 p-b-20">
-            <p>{{ hotel.description }}</p>
+            <p>{{ hotel_page.description|safe }}</p>
         </div>
     </section>
 
@@ -45,15 +45,16 @@
         <div class="hotel-services-container p-l-63 p-r-63 p-t-20 p-b-20">
             <div class="hotel__address">
                 <h4>Адреса</h4>
-                <p>{{ hotel.address }}</p>
+                <p>{{ hotel_page.address }}</p>
             </div>
             <div class="hotel__contacts">
                 <h4>Контакты</h4>
-                <p>{{ hotel.contacts }}</p>
+                <p>{{ hotel_page.contacts }}</p>
+                
             </div>
             <div class="hotel__links">
                 <h4>Ссылки</h4>
-                <p>{{ hotel.link }}</p>
+                <a href="{{ hotel_page.link }}">{{ hotel_page.link }}</a>
             </div>
         </div>
     </section>
@@ -67,6 +68,7 @@
 
     
 </main>
+<hr />
 {% endblock %}
 
 {% block script %} 
@@ -77,12 +79,29 @@
         ymaps.ready(init);
 
         function init() {
+            let coordX = Number( {{ hotel_page.getCoordinates.pointX }} );
+            let coordY = Number( {{ hotel_page.getCoordinates.pointY }} );
+            let title = '{{ hotel_page.title }}';
+            let link = '{{ hotel_page.link }}';
+
             let hotelMap = new ymaps.Map('HotelMap', {
-                center: [55.751574, 37.573856],
-                zoom: 10
+                center: [coordX, coordY],
+            
+                zoom: 13
             }, {
                 searchControlProvider: 'yandex#search'
             });
+
+            hotelMap.geoObjects.add(
+                new ymaps.Placemark([coordX, coordY], 
+                {
+                    // balloonContent: link,
+                    iconCaption: title,
+                }, 
+                {
+                    preset: 'islands#greenDotIconWithCaption'
+                }
+            ))
         }
 
     </script>

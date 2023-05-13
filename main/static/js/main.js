@@ -4,14 +4,6 @@ import { setTheme, changeModeBtnImg } from './_mode.js';
 const currenTheme = localStorage.getItem('theme') || 'light';
 
 
-/*console.log(headerMenu);
-headerMenu.onclick = () => {
-    let elem = document.getElementsByClassName('mobile-menu__nav')[0];
-    elem.style.width === '0px' ? 
-        elem.style.width = '250px' : 
-        elem.style.width = '0px';
-    console.log(elem.style.width);
-}*/
 
 let closeMenuBtn = document.getElementById('menuCloseBtn');
 closeMenuBtn.onclick = () => {
@@ -27,3 +19,6 @@ openMenuBtn.onclick = () => {
 
 changeModeBtnImg(currenTheme);
 setTheme();
+
+
+

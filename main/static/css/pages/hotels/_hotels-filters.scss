@@ -11,43 +11,69 @@
 }
 
 .hotels-form__select {
-    padding: 14px 28px;
+    //padding: 14px 28px;
     padding: 0 16px;
     min-width: 170px;
     height: 47px;
     font-family: 'Rubik';
-    border: 1px solid black;
+    //border: 1px solid black;
     border-radius: 4px;
     background-color: #4CAF50;
     color: white;
     font-size: 18px;
+    margin: 2px 0;
 
     .hotels-form__option {
 
     }
+
 }
 
 .btn-hotels {
-    background-color: #4CAF50;
-    font-size: 18px;
-    font-family: 'Rubik';
-    border-radius: 4px;
+  background: #4CAF50;
+  
+  //color: dodgerblue;
+  transition: all 0.2s linear;
+  padding: 0px 20px;
+  height: 36px;
+  font-family: "Rubik";
+  border-radius: 4px;
+
+  
+}
+
+.btn-hotels:hover {
+  opacity: 0.7;
 }
 
 
-/*
-section.hotels-filters
-  div.hotels-filters-container
-    div.hotels-filter__options
-      form.hotels-form
-        select.hotels-form__select
-          option.hotels-form__option
-          ...
-        select.hotels-form__select
-          option.hotels-form__option
-          ...
-    div.hotels-filters__btn-map_wrap
-      button.hotels-filter__btn_map
+@media (width <= 1265px) {
+  
+}
 
-btn-hotels
-*/
+@media (width <= 865px) {
+  .hotels-filters-container {
+    flex-direction: column;
+  }
+  .hotels-filters__options {
+    width: 100%;
+  }
+  .hotels-form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .hotels-form__button_wrap {
+    display: flex;
+    //justify-content: space-between;
+  }
+  .hotels-form__select {
+
+  }
+
+}
+
+@media (width <= 524px) {
+  
+
+}

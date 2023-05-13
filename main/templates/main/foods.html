@@ -10,12 +10,12 @@
         <div class="hotels-path-container p-l-63 p-r-63 p-t-20 p-b-20">
             <ul class="hotels-path__list">
                 <li class="hotels-path__list-item"><a href="/">Главная страница</a></li>
-                <li class="hotels-path__list-item"><span>Рубрика: Где остановиться</span></li>
+                <li class="hotels-path__list-item"><span>Рубрика: Где поесть</span></li>
             </ul>
         </div>
     </section>
 
-    <section class="hotels-header"><h1 class="p-l-63 p-r-63 p-t-20 p-b-20">Где остановиться</h1></section>
+    <section class="hotels-header"><h1 class="p-l-63 p-r-63 p-t-20 p-b-20">Где поесть</h1></section>
 
     <section class="hotels-filters">
         <div class="hotels-filters-container p-l-63 p-r-63">
@@ -23,7 +23,7 @@
                 <form action="/hotels" method="GET" class="hotels-form" id="HotelsForm">
                   <div>
                     <select name="type" class="hotels-form__select">
-                        <option value="0" class="hotels-form__option">Тип гостиницы</option>
+                        <option value="0" class="hotels-form__option">Тип заведения</option>
 
                         {% if view.filter_options %}
                         {% for el in view.filter_options %}
@@ -32,6 +32,18 @@
                         {% endfor %}
                         {% endif %}
                     </select>
+
+                    <select name="kitchen" class="hotels-form__select">
+                        <option value="0" class="hotels-form__option">Кухня</option>
+
+                        {% if view.filter_food_options %}
+                        {% for el in view.filter_food_options %}
+                        <option value="{{ el }}" class="hotels-form__option">{{ el }}</option>
+                
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+
                     <select name="price" id="" class="hotels-form__select" form="HotelsForm">
                         <option value="0" class="hotels-form__option">Цена</option>
                         <option value="2000" class="hotels-form__option">Меньше 2000р.</option>

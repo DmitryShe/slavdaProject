@@ -8,14 +8,29 @@
     min-height: 120px;
 }
 
-.hotel__address {
-
-}
-
-.hotel__contacts {
-
-}
-
+.hotel__address,
+.hotel__contacts,
 .hotel__links {
+    width: 33.33%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+@media (width <= 1265px) {
+}
+
+@media (width <= 865px) {
+    .hotel-services-container {
+        flex-direction: column;
+    }
+    .hotel__address,
+    .hotel__contacts,
+    .hotel__links {
+        width: 100%;
+    }
+}
+
+@media (width <= 524px) {
 
 }

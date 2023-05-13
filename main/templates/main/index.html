@@ -10,6 +10,7 @@
           <video autoplay muted loop id="index-video" class="index-grid__video">
             <source src="{% static 'video/videofly.webm' %}" />
           </video>
+
           <div class="index-grid__video-content">
             <h3>Полет над Красноярском</h3>
             <p>Красивый обзор города</p>
@@ -166,7 +167,7 @@
       <div class="swiper index-food__swiper">
         <div class="swiper-wrapper">
           {% for hotel in hotels %}
-          <div class="swiper-slide index-food__swiper-slide">
+          <div class="swiper-slide index-hotels__swiper-slide">
             <a href="{% url 'hotel_page' hotel.id %}">
               <div class="index-hotel__card-wrap">
                 <div class="index-hotels__card">
@@ -288,8 +289,8 @@
 
 
   
-
 </main>
+<hr style="margin: 0 63px;" />
 {% endblock %}
 
 {% block script %} 

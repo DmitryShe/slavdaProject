@@ -1,4 +1,5 @@
-from typing import Any
+from typing import Any, Dict
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse
 from django.http import HttpResponse
@@ -9,21 +10,22 @@ from django.views import generic
 
 from .models import Hotels
 from .models import News
-from .models import HotelsGallery
+from .models import FoodBusiness
 from .models import PlacementType
+from .models import KitchenType
+from .models import FoodType
 from .models import CiteInformations
 
-from .forms import HotelsFilterForm
-
-from random import randint
 
 
 def index(request):
     news = News.objects.all()
     hotels = Hotels.objects.all()
+    foods = FoodBusiness.objects.all()
     context = {
         'news': news,
         'hotels': hotels,
+        'foods': foods,
     }
     return render(request, 'main/index.html', context)
 
@@ -37,21 +39,88 @@ class HotelsView(generic.ListView):
     context_object_name = 'hotels'
     paginate_by = 12
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filter_a = self.request.GET.get('type') 
+        filter_b = self.request.GET.get('price')
+        k = 2000
+
+        if (filter_a == None and filter_b == None) or (filter_a == 0 and filter_b == 0):
+            return queryset
+        
+        if filter_a != None and filter_b == None:
+            queryset = queryset.filter(placementType__typeOfPlacment=filter_a)
+            return queryset
+        
+        if filter_a == '0' and filter_b:
+            
+            x = int(filter_b) - k
+            if x < 0:
+                queryset = queryset
+            elif 0 <= int(filter_b) < 10001:
+                queryset = queryset.filter(price__range=(x, filter_b))
+            else:
+                queryset = queryset.filter(price__range=(10001, 1000000))
+            return queryset
+
+        if filter_a and filter_b:
+            x = int(filter_b) - k
+
+
+            if x <= 0:
+                queryset = queryset.filter(placementType__typeOfPlacment=filter_a)
+            elif 1 <= x < 12000:
+                queryset = queryset.filter(placementType__typeOfPlacment=filter_a, price__range=(x, filter_b))
+            else:
+                queryset = queryset.filter(placementType__typeOfPlacment=filter_a, price__range=(12000, 1000000))
+            return queryset
+        
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if self.request.method == 'GET':
+            selected_value = self.request.GET.get('type')
+            self.request.session['selected_type'] = selected_value
+        else:
+            selected_value = self.request.session.get('selected_type', None)
+
+        context['selected_type'] = selected_value
+        
+        return context
+
     @staticmethod
     def filter_options():
+        
         return PlacementType.objects.all()
-    
-
 
 class HotelPageView(generic.DetailView):
     model = Hotels
+    context_object_name = 'hotel_page'
     template_name = 'main/_hotel_card.html'
+
+# foods pages
+class FoodView(generic.ListView):
+    model = FoodBusiness
+    template_name = "main/foods.html"
+    context_object_name = "foods"
+    paginate_by = 12
+
+    @staticmethod
+    def filter_options():
+        return KitchenType.objects.all()
+    
+    @staticmethod
+    def filter_food_options():
+        return FoodType.objects.all()
 
 # news pages
 class NewsListView(generic.ListView):
     model = News
     template_name = "main/news.html"
-    paginate_by = 2
+    paginate_by = 6
 
 class NewsDetailView(generic.DetailView):
     model = News

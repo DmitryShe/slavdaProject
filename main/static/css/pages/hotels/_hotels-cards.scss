@@ -54,6 +54,19 @@
     }
 }
 
+.hotels-card-elem__price {
+    position: absolute;
+    background-color: #ff931e;
+    bottom: 70px;
+    right: 0;
+    padding: 2px;
+    border-radius: 0 0px 0px 0;
+    
+    p {
+        color: white;
+    }
+}
+
 .hotels-card-elem__header_wrap {
 
     .hotels-card-elem__header {

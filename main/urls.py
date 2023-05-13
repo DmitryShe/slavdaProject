@@ -12,6 +12,8 @@ urlpatterns = [
     path('news/<int:pk>', views.NewsDetailView.as_view(), name='news_detail'),
     path('hotels', views.HotelsView.as_view(), name='hotels'),
     path('hotels/<int:pk>/', views.HotelPageView.as_view(), name='hotel_page'),
+    path('foods', views.FoodView.as_view(), name='foods'),
+    path('foods/<int:pk>/', views.HotelPageView.as_view(), name='food'),
     path('contacts/', views.CotactsView.as_view(), name='contacts'),
     path('test', views.AjaxHandler.as_view()),
     

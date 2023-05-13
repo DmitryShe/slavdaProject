@@ -39,6 +39,24 @@
   min-height: 120px;
 }
 
+.hotel__address,
+.hotel__contacts,
+.hotel__links {
+  width: 33.33%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media (width <= 865px) {
+  .hotel-services-container {
+    flex-direction: column;
+  }
+  .hotel__address,
+  .hotel__contacts,
+  .hotel__links {
+    width: 100%;
+  }
+}
 /* for hotel page */
 .hotel-swiper-container {
   position: relative;
@@ -73,4 +91,8 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.swiper-button__hotel {
+  color: #000;
 }/*# sourceMappingURL=index.css.map */

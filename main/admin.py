@@ -14,12 +14,13 @@ from .models import Hotels
 from .models import FoodBusiness
 from .models import Showplaces
 from .models import CiteInformations
-
+from .models import FoodType
 
 
 
 admin.site.register(PlacementType)
 admin.site.register(KitchenType)
+admin.site.register(FoodType)
 admin.site.register(ShowplacesType)
 admin.site.register(News)
 admin.site.register(OrganizationCoordinaties)

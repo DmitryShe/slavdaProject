@@ -47,34 +47,77 @@ var newsSwiper = new Swiper(".index-news__swiper", {
 /** hotels swiper */
 let hotelsSwiper = new Swiper(".index-hotels__swiper", {
     slidesPerView: 4,
-    spaceBetween: 30,
+    spaceBetween: 4,
     freeMode: true,
     rewind: true,
     navigation: {
         nextEl: ".index-hotels__button-next",
         prevEl: ".index-hotels__button-prev",
+    }, 
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        550: {
+            slidesPerView: 2,
+        },
+        800: {
+            slidesPerView: 3,
+        },
+        970 : {
+            slidesPerView: 4,
+        }
+       
     }
 });
 
 let foodSwiper = new Swiper(".index-food__swiper", {
-    slidesPerView: 5,
-    spaceBetween: 30,
+    slidesPerView: 4,
+    spaceBetween: 4,
     freeMode: true,
     rewind: true,
     navigation: {
         nextEl: ".index-food__button-next",
         prevEl: ".index-food__button-prev",
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        550: {
+            slidesPerView: 2,
+        },
+        800: {
+            slidesPerView: 3,
+        },
+        970 : {
+            slidesPerView: 4,
+        }
     }
 });
 
 let lookSwiper = new Swiper(".index-look__swiper", {
-    slidesPerView: 5,
-    spaceBetween: 30,
+    slidesPerView: 4,
+    spaceBetween: 4,
     freeMode: true,
     rewind: true,
     navigation: {
         nextEl: ".index-look__button-next",
         prevEl: ".index-look__button-prev",
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        550: {
+            slidesPerView: 2,
+        },
+        800: {
+            slidesPerView: 3,
+        },
+        970 : {
+            slidesPerView: 4,
+        }
     }
 });
 
