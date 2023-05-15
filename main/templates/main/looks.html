@@ -10,20 +10,20 @@
         <div class="hotels-path-container p-l-63 p-r-63 p-t-20 p-b-20">
             <ul class="hotels-path__list">
                 <li class="hotels-path__list-item"><a href="/">Главная страница</a></li>
-                <li class="hotels-path__list-item"><span>Рубрика: Где поесть</span></li>
+                <li class="hotels-path__list-item"><span>Рубрика: Что посмотреть</span></li>
             </ul>
         </div>
     </section>
 
-    <section class="hotels-header"><h1 class="p-l-63 p-r-63 p-t-20 p-b-20">Где поесть</h1></section>
+    <section class="hotels-header"><h1 class="p-l-63 p-r-63 p-t-20 p-b-20">Что посмотреть</h1></section>
 
     <section class="hotels-filters">
         <div class="hotels-filters-container p-l-63 p-r-63">
             <div class="hotels-filters__options">
-                <form action="/foods" method="GET" class="hotels-form" id="HotelsForm">
+                <form action="/looks" method="GET" class="hotels-form" id="HotelsForm">
                   <div>
                     <select name="type" class="hotels-form__select">
-                        <option value="0" class="hotels-form__option">Тип заведения</option>
+                        <option value="0" class="hotels-form__option">Тип достопримечательности</option>
 
                         {% if view.filter_options %}
                         {% for el in view.filter_options %}
@@ -32,18 +32,6 @@
                         {% endfor %}
                         {% endif %}
                     </select>
-
-                    <select name="kitchen" class="hotels-form__select">
-                        <option value="0" class="hotels-form__option">Кухня</option>
-
-                        {% if view.filter_food_options %}
-                        {% for el in view.filter_food_options %}
-                        <option value="{{ el }}" class="hotels-form__option">{{ el }}</option>
-                
-                        {% endfor %}
-                        {% endif %}
-                    </select>
-
                     <select name="price" id="" class="hotels-form__select" form="HotelsForm">
                         <option value="0" class="hotels-form__option">Цена</option>
                         <option value="2000" class="hotels-form__option">Меньше 2000р.</option>
@@ -72,23 +60,23 @@
 
     <section class="hotels-cards">
         <div class="hotels-cards-container p-l-63 p-r-63">
-        {% for food in foods %}
+        {% for look in looks %}
             <div class="hotels-card-elem">
-                <a class="opacity-1" href="{% url 'food' food.id %}">
+                <a class="opacity-1" href="{% url 'look' look.id %}">
                 <div class="hotels-card-elem__img_wrap">
-                    <img class="hotels-card-elem__img" src="{{ food.FoodBusiness_images.first.getUrl.url }}" alt=""/>
+                    <img class="hotels-card-elem__img" src="{{ look.Showplaces_images.first.getUrl.url }}" alt=""/>
                 </div>
 
                 <div class="hotels-card-elem__type">
-                    <p>{{ food.kitchenType }}</p>
+                    <p>{{ look.showplacesType }}</p>
                 </div>
 
                 <div class="hotels-card-elem__price">
-                    <p>Цена: {{ food.price }}</p>
+                    <p>Цена: {{ look.price }}</p>
                 </div>
 
                 <div class="hotels-card-elem__header_wrap">
-                    <h4 class="hotels-card-elem__header">{{ food.title }}</h4>
+                    <h4 class="hotels-card-elem__header">{{ look.title }}</h4>
                 </div>
                 </a>
             </div>
@@ -141,15 +129,15 @@
         "features": []
     };
 
-    '{% for food in foods %}'
+    '{% for look in looks %}'
 	geoData.features.push({ 
         'type': "Feature",
-        'id': Number('{{food.getCoordinates.id}}'),
+        'id': Number('{{look.getCoordinates.id}}'),
         'geometry': {
             "type": "Point", 
             "coordinates": [
-                parseFloat(('{{ food.getCoordinates.pointX }}').replace(',', '.')),
-                parseFloat(('{{ food.getCoordinates.pointY }}').replace(',', '.'))
+                parseFloat(('{{ look.getCoordinates.pointX }}').replace(',', '.')),
+                parseFloat(('{{ look.getCoordinates.pointY }}').replace(',', '.'))
             ]
         },
         "properties": {
@@ -168,7 +156,7 @@
 
     function init() {
         let hotelsMap = new ymaps.Map('HotelsMap', {
-            center: [56.0038, 92.8706],
+            center: [55.751574, 37.573856],
             zoom: 10
         }, {
             searchControlProvider: 'yandex#search'

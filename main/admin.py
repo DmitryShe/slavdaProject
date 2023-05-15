@@ -4,17 +4,21 @@ from .models import PlacementType
 from .models import ShowplacesType
 from .models import KitchenType
 from .models import OrganizationCoordinaties
+from .models import RouteCoordinates
 from .models import HotelsGallery
 from .models import FoodBusinessGallery
 from .models import ShowplacesGallery
-from .models import OrganizationGallery
+from .models import ExcursionGallery
+
 
 from .models import News
 from .models import Hotels
 from .models import FoodBusiness
+from .models import Excursion
 from .models import Showplaces
 from .models import CiteInformations
 from .models import FoodType
+from .models import ExcursionType
 
 
 
@@ -24,6 +28,9 @@ admin.site.register(FoodType)
 admin.site.register(ShowplacesType)
 admin.site.register(News)
 admin.site.register(OrganizationCoordinaties)
+admin.site.register(CiteInformations)
+admin.site.register(ExcursionType)
+
 
 
 
@@ -39,9 +46,13 @@ class GalleryShowplacesInline(admin.TabularInline):
     fk_name = 'showplaces'
     model = ShowplacesGallery
 
-class OrganizationGalleryInline(admin.TabularInline):
-    fk_name = 'contacts'
-    model = OrganizationGallery
+class GalleryExcursionInline(admin.TabularInline):
+    fk_name = 'excursion'
+    model = ExcursionGallery
+
+class RouteExcursionInline(admin.TabularInline):
+    fk_name = 'excursion'
+    model = RouteCoordinates
 
 
 @admin.register(Hotels)
@@ -56,6 +67,6 @@ class FoodAdmin(admin.ModelAdmin):
 class ShoplacesAdmin(admin.ModelAdmin):
     inlines = [GalleryShowplacesInline, ]
 
-@admin.register(CiteInformations)
-class CiteInformationsAdmin(admin.ModelAdmin):
-    inlines = [OrganizationGalleryInline, ]
+@admin.register(Excursion)
+class ExcursionAdmin(admin.ModelAdmin):
+    inlines = [GalleryExcursionInline, RouteExcursionInline]

@@ -65,6 +65,17 @@ class OrganizationCoordinaties(models.Model):
         verbose_name = 'Координаты предприятия'
         verbose_name_plural = 'Координаты предприятий'
 
+# вид экскурсии, пешая на машине, велосипед
+class ExcursionType(models.Model):
+    typeOfexcursion = models.CharField('Вид экскурсии', max_length=100)
+
+    def __str__(self):
+        return self.typeOfexcursion
+    
+    class Meta:
+        verbose_name = 'Вид экскурсии'
+        verbose_name_plural = 'Вид экскурсии'
+
 
 # # # # # # # # #
 # Модели
@@ -166,6 +177,9 @@ class Showplaces(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def getCoordinates(self):
+        return self.showPlacesCoord
 
     class Meta:
         verbose_name = 'Достопримечательность'
@@ -186,6 +200,46 @@ class ShowplacesGallery(models.Model):
     class Meta:
         verbose_name = 'Фото достопримечательности'
         verbose_name_plural = 'Фото достопримечательности'
+
+# модель для экскурсии
+class Excursion(models.Model):
+    title = models.CharField('Название экскурсии', max_length=200)
+    description = FroalaField()
+    route = FroalaField()
+    timeStart = models.CharField('Время начала экскурсии', max_length=20)
+    exDuration = models.CharField('Продолжительность экскурсии', max_length=20)
+    tourOperator = models.CharField('Организатор', max_length=100)
+    link = models.CharField('Ссылка на экскурсию, организатора', max_length=100)
+    price = models.IntegerField('Цена экскурсии')
+    excursionType = models.ForeignKey(ExcursionType, on_delete = models.SET_NULL, null=True, verbose_name='вид экскурсии')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Экскурсии'
+        verbose_name_plural = 'Экскурсии'
+
+class RouteCoordinates(models.Model):
+    title = models.CharField('Название точки', max_length=40)
+    routeX = models.FloatField('координата X')
+    routeY = models.FloatField('координата Y')
+    excursion = models.ForeignKey(Excursion, on_delete=models.SET_NULL, related_name='ex_route', null=True, verbose_name='экскурсия')
+
+class ExcursionGallery(models.Model):
+    title = models.CharField('Наименование изображения', max_length=200)
+    image = models.ImageField(upload_to='Excursion_gallery/%Y/%m/%d/')
+    excursion = models.ForeignKey(Excursion, on_delete=models.SET_NULL, related_name='Excursion_images', null=True, verbose_name='фото')
+
+    def getUrl(self):
+        return self.image
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Фото экскурсии'
+        verbose_name_plural = 'Фото экскурсии'
 
 # новости
 class News(models.Model):
@@ -209,9 +263,10 @@ class CiteInformations(models.Model):
     organizationTitle = FroalaField()
     organizationContacts = FroalaField()
     organizationDeveloper = FroalaField()
-    organizationVideo = models.FileField(upload_to='indexPageVideo')
-    organizationVideoContentHeader = models.CharField('заголовок видео', max_length=30)
-    organizationVideoContentDescription = models.CharField('описание видео', max_length=30)
+    organizationDeveloperImage = models.ImageField(upload_to='developer_img/%Y/%m/%d/')
+
+    def getUrl(self):
+        return self.organizationDeveloperImage
 
     def __str__(self):
         return 'Organization DB'
@@ -221,18 +276,4 @@ class CiteInformations(models.Model):
         verbose_name_plural = 'OrganizationDB'
 
 
-class OrganizationGallery(models.Model):
-    title = models.CharField('Наименование изображения', max_length=30)
-    image = models.ImageField(upload_to='OrganizationDB_gallery/%Y/%m/%d/')
-    contacts = models.ForeignKey(CiteInformations, on_delete=models.SET_NULL, related_name='Showplaces_images', null=True)
-
-    def getUrl(self):
-        return self.image
-    
-    def __str__(self):
-        return self.title
-    
-    class Meta:
-        verbose_name = 'Фото для слайдера'
-        verbose_name_plural = 'Фото для слайдера'
 

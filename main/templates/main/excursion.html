@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block main %}
+<main>
+    <section class="excursions-path">
+        <div class="excursions-path-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <ul class="excursions-path__list">
+                <li class="excursions-path__list-item"><a href="/">Главная страница</a></li>
+                <li class="excursions-path__list-item"><span>Рубрика: Экскурсии</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="excursions-header"><h1 class="p-l-63 p-r-63 p-t-20 p-b-20">Экскурсии</h1></section>
+
+    <section class="excursions-cards_wrap">
+        <div class="excursions-filters">
+            <div class="excursions-filters-container p-l-63 p-r-63">
+                <div class="excursions-filters__options">
+                    <form action="/excursions" method="GET" class="excursions-form" id="ExcursionsForm">
+                    <div>
+                        <select name="type" class="excursions-form__select">
+                            <option value="0" class="excursions-form__option">Тип экскурсии</option>
+
+                        </select>
+                        <select name="price" id="" class="excursions-form__select" form="ExcursionsForm">
+                            <option value="0" class="excursions-form__option">Цена</option>
+                            <option value="2000" class="excursions-form__option">Меньше 2000р.</option>
+                            <option value="4000" class="excursions-form__option">2000-4000р.</option>
+                            
+                        </select>
+                        
+                    </div>
+                        
+                    </form>
+                    <div class="m-t-2 m-b-2 excursions-form__button_wrap">
+                        <input type="submit" class="btn btn-excursions m-r-4" form="ExcursionsForm" />
+                        <button class="btn btn-excursions">Сбросить</button>
+                    </div>
+                </div>
+
+                <div class="excursions-filters__btn-map_wrap m-t-2 m-b-2">
+                    <button class="btn btn-excursions" id="OnMapBtn">На карте</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="excursions-cards">
+            <div class="excursions-cards-container p-l-63 p-r-63">
+                {% for ex in excursions %}
+                <div class="excursions-card-elem">
+                    <a class="opacity-1" href="todo">
+                        <div class="excursions-card-elem__img_wrap">
+                            <img class="excursions-card-elem__img" src="{{ ex.Excursion_images.first.getUrl.url }}" alt=""/>
+                        </div>
+        
+                        <div class="excursions-card-elem__type">
+                            <p>{{ ex.excursionType }}</p>
+                        </div>
+        
+                        <div class="excursions-card-elem__price">
+                            <p>Цена: {{ ex.price }}</p>
+                        </div>
+        
+                        <div class="excursions-card-elem__header_wrap">
+                            <h4 class="excursions-card-elem__header">{{ ex.title }}</h4>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+<hr />
+{% endblock %}
+
+
+
+{% block script %}
+
+
+
+{% endblock %}

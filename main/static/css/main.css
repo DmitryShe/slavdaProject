@@ -790,7 +790,7 @@ strong {
 }
 
 .developer__img-wrap {
-  width: 30%;
+  width: 49.9%;
   height: 700px;
 }
 .developer__img-wrap img {
@@ -799,7 +799,7 @@ strong {
 }
 
 .developer__about {
-  width: 69%;
+  width: 49.9%;
 }
 
 .contacts-organization__title {
@@ -821,6 +821,120 @@ strong {
 }
 
 .contacts-path__list-item span::before {
+  content: "/";
+  padding-right: 0.3rem;
+}
+
+/* for hotels page */
+.excursions-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: stretch;
+  gap: 10px;
+}
+
+.excursions-card-elem {
+  height: 270px;
+  position: relative;
+  margin-top: 14px;
+  cursor: pointer;
+}
+.excursions-card-elem .excursions-card-elem__img_wrap {
+  transition: all 0.3s;
+  filter: brightness(40%);
+}
+
+.excursions-card-elem:hover .excursions-card-elem__img_wrap {
+  transition: all 0.3s;
+  filter: brightness(100%);
+}
+
+.excursions-card-elem__img_wrap {
+  height: 200px;
+}
+.excursions-card-elem__img_wrap .excursions-card-elem__img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.excursions-card-elem__img_wrap a:hover {
+  opacity: 1;
+}
+
+.excursions-card-elem__type {
+  position: absolute;
+  background-color: #ff931e;
+  top: 25px;
+  padding: 6px;
+  border-radius: 0 4px 4px 0;
+}
+.excursions-card-elem__type p {
+  color: white;
+}
+
+.excursions-card-elem__price {
+  position: absolute;
+  background-color: #ff931e;
+  bottom: 70px;
+  right: 0;
+  padding: 2px;
+  border-radius: 0 0px 0px 0;
+}
+.excursions-card-elem__price p {
+  color: white;
+}
+
+.excursions-card-elem__header_wrap .excursions-card-elem__header {
+  font-size: 20px;
+  line-height: 24px;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -ms-line-clamp: 3;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+}
+
+@media (width <= 1265px) {
+  .excursions-cards-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (width <= 865px) {
+  .excursions-cards-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (width <= 524px) {
+  .excursions-cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+.excursions-cards_wrap {
+  display: flex;
+}
+
+.excursions-path-container {
+  background-color: var(--theme-second);
+}
+
+.excursions-path__list-item {
+  display: inline;
+}
+
+.excursions-path__list-item span {
+  font-family: "Merriweather";
+  opacity: 0.7;
+  color: var(--text-color);
+}
+
+.excursions-path__list-item span::before {
   content: "/";
   padding-right: 0.3rem;
 }

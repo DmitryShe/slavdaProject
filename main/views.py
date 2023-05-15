@@ -11,10 +11,13 @@ from django.views import generic
 from .models import Hotels
 from .models import News
 from .models import FoodBusiness
+from .models import Showplaces
 from .models import PlacementType
 from .models import KitchenType
 from .models import FoodType
+from .models import ShowplacesType
 from .models import CiteInformations
+from .models import Excursion
 
 
 
@@ -22,60 +25,41 @@ def index(request):
     news = News.objects.all()
     hotels = Hotels.objects.all()
     foods = FoodBusiness.objects.all()
+    looks = Showplaces.objects.all()
     context = {
         'news': news,
         'hotels': hotels,
         'foods': foods,
+        'looks': looks,
     }
     return render(request, 'main/index.html', context)
 
 # hotels pages
-
-
-
 class HotelsView(generic.ListView):
     model = Hotels
     template_name = 'main/hotels.html'
     context_object_name = 'hotels'
     paginate_by = 12
-
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         filter_a = self.request.GET.get('type') 
         filter_b = self.request.GET.get('price')
-        k = 2000
-
-        if (filter_a == None and filter_b == None) or (filter_a == 0 and filter_b == 0):
-            return queryset
         
-        if filter_a != None and filter_b == None:
+        if filter_a is None or filter_a.strip() == '0':
+            filter_a = False
+        if filter_b is None or filter_b.strip() == '0':
+            filter_b = False
+
+        if (filter_a is True or filter_a) and (filter_b is True or filter_b):
+            queryset = queryset.filter(placementType__typeOfPlacment=filter_a, price__range=(0, filter_b))
+        elif (filter_a is True or filter_a) and filter_b is False:
             queryset = queryset.filter(placementType__typeOfPlacment=filter_a)
-            return queryset
-        
-        if filter_a == '0' and filter_b:
+        elif filter_a is False and (filter_b is True or filter_b):
+            queryset = queryset.filter(price__range=(0, filter_b))
+        else:
+            queryset = queryset
             
-            x = int(filter_b) - k
-            if x < 0:
-                queryset = queryset
-            elif 0 <= int(filter_b) < 10001:
-                queryset = queryset.filter(price__range=(x, filter_b))
-            else:
-                queryset = queryset.filter(price__range=(10001, 1000000))
-            return queryset
-
-        if filter_a and filter_b:
-            x = int(filter_b) - k
-
-
-            if x <= 0:
-                queryset = queryset.filter(placementType__typeOfPlacment=filter_a)
-            elif 1 <= x < 12000:
-                queryset = queryset.filter(placementType__typeOfPlacment=filter_a, price__range=(x, filter_b))
-            else:
-                queryset = queryset.filter(placementType__typeOfPlacment=filter_a, price__range=(12000, 1000000))
-            return queryset
-        
-
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -93,7 +77,6 @@ class HotelsView(generic.ListView):
 
     @staticmethod
     def filter_options():
-        
         return PlacementType.objects.all()
 
 class HotelPageView(generic.DetailView):
@@ -108,6 +91,52 @@ class FoodView(generic.ListView):
     context_object_name = "foods"
     paginate_by = 12
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filter_a = self.request.GET.get('type') 
+        filter_b = self.request.GET.get('price')
+        filter_c = self.request.GET.get('kitchen')
+
+        if filter_a is None or filter_a.strip() == '0':
+            filter_a = False
+        if filter_b is None or filter_b.strip() == '0':
+            filter_b = False
+        if filter_c is None or filter_c.strip() == '0':
+            filter_c = False
+
+
+        if filter_a is False and filter_b is False and filter_c is False:
+            queryset = queryset
+            
+        elif (filter_a is True or filter_a) and filter_b is False and filter_c is False:
+            queryset = queryset.filter(kitchenType__typeOfKitchen=filter_a)
+            print(queryset)
+            print('1')
+        elif filter_a is False and (filter_b is True or filter_b) and filter_c is False:
+            queryset = queryset.filter(price__range=(0, filter_b))
+            print('2')
+        elif filter_a is False and filter_b is False and (filter_c is True or filter_c):
+            queryset = queryset.filter(foodType__typeOfFood=filter_c)
+            print('3')
+        elif (filter_a is True or filter_a) and (filter_b is True or filter_b) and filter_c is False:
+            queryset = queryset.filter(kitchenType__typeOfKitchen=filter_a, price__range=(0, filter_b))
+            print('4')
+        elif (filter_a is True or filter_a) and filter_b is False and (filter_c is True or filter_c):
+            queryset = queryset.filter(kitchenType__typeOfKitchen=filter_a, foodType__typeOfFood=filter_c)
+            print('5')
+        elif filter_a is False and (filter_b is True or filter_b) and (filter_c is True or filter_c):
+            queryset = queryset.filter(price__range=(0, filter_b), foodType__typeOfFood=filter_c)
+            print('6')
+        elif (filter_a is True or filter_a) and (filter_b is True or filter_b) and (filter_c is True or filter_c):
+            queryset = queryset.filter(kitchenType__typeOfKitchen=filter_a, price__range=(0, filter_b), foodType__typeOfFood=filter_c)
+            print('7')
+        else:
+            print('8')
+            queryset = queryset
+        
+        return queryset
+
+
     @staticmethod
     def filter_options():
         return KitchenType.objects.all()
@@ -115,6 +144,55 @@ class FoodView(generic.ListView):
     @staticmethod
     def filter_food_options():
         return FoodType.objects.all()
+
+class FoodPageView(generic.DetailView):
+    model = FoodBusiness
+    context_object_name = 'food'
+    template_name = 'main/_food_card.html'
+
+# looks pages
+class LookView(generic.ListView):
+    model = Showplaces
+    template_name = 'main/looks.html'
+    context_object_name = 'looks'
+    paginate_by = 12
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filter_a = self.request.GET.get('type') 
+        filter_b = self.request.GET.get('price')
+        
+        if filter_a is None or filter_a.strip() == '0':
+            filter_a = False
+        if filter_b is None or filter_b.strip() == '0':
+            filter_b = False
+
+        if (filter_a is True or filter_a) and (filter_b is True or filter_b):
+            queryset = queryset.filter(showplacesType__typeOfLooks=filter_a, price__range=(0, filter_b))
+        elif (filter_a is True or filter_a) and filter_b is False:
+            queryset = queryset.filter(showplacesType__typeOfLooks=filter_a)
+        elif filter_a is False and (filter_b is True or filter_b):
+            queryset = queryset.filter(price__range=(0, filter_b))
+        else:
+            queryset = queryset
+
+        return queryset
+
+
+    @staticmethod
+    def filter_options():
+        return ShowplacesType.objects.all()
+    
+class LookPageView(generic.DetailView):
+    model = Showplaces
+    context_object_name = 'look'
+    template_name = 'main/_look_card.html'
+
+class ExcursionView(generic.ListView):
+    model = Excursion
+    context_object_name = 'excursions'
+    template_name = 'main/excursion.html'
+    paginate_by = 9
 
 # news pages
 class NewsListView(generic.ListView):
@@ -176,6 +254,31 @@ def newsPage(request, news_id):
     }
     return render(request, 'main/_news_card.html', context)
 '''
+
+
+class MyViewClass(generic.ListView):
+    model = Hotels
+    template_name = 'main/__test.html'
+    context_object_name = 'test'
+
+    '''
+    def get(self, request):
+        d = {
+            'name': 'mark',
+            'age': 52
+        }
+        return JsonResponse(d)
+        return render(request, 'main/__test.html')
+    '''
+
+    def create_response(self, request, data):
+        d = {
+            'name': 'mark',
+            'age': 52
+        }
+        return JsonResponse(d)
+
+
 
 class AjaxHandler(View):
 

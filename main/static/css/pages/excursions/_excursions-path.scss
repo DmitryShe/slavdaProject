@@ -1,0 +1,19 @@
+.excursions-path-container {
+    background-color: var(--theme-second);
+}
+
+.excursions-path__list-item {
+    display: inline;
+}
+
+.excursions-path__list-item span {
+    font-family: "Merriweather";
+    opacity: 0.7;
+    color: var(--text-color);
+}
+
+.excursions-path__list-item span::before {
+    content: "/";
+    padding-right: 0.3rem;
+    
+}

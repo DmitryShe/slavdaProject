@@ -1,0 +1,111 @@
+/* for hotels page */
+
+.excursions-cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: stretch;
+    gap: 10px;
+}
+
+.excursions-card-elem {
+    height: 270px;
+    //width: 280px;
+    position: relative;
+    margin-top: 14px;
+    cursor: pointer;
+
+    .excursions-card-elem__img_wrap {
+        transition: all 0.3s;
+        filter: brightness(40%);
+    }
+}
+
+.excursions-card-elem:hover {
+    
+    .excursions-card-elem__img_wrap {
+        transition: all 0.3s;
+        filter: brightness(100%);
+    }
+}
+
+.excursions-card-elem__img_wrap {
+
+    height: 200px;
+
+    .excursions-card-elem__img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    a:hover {
+        opacity: 1;
+    }
+}
+
+.excursions-card-elem__type {
+    position: absolute;
+    background-color: #ff931e;
+    top: 25px;
+    padding: 6px;
+    border-radius: 0 4px 4px 0;
+    
+    p {
+        color: white;
+    }
+}
+
+.excursions-card-elem__price {
+    position: absolute;
+    background-color: #ff931e;
+    bottom: 70px;
+    right: 0;
+    padding: 2px;
+    border-radius: 0 0px 0px 0;
+    
+    p {
+        color: white;
+    }
+}
+
+.excursions-card-elem__header_wrap {
+
+    .excursions-card-elem__header {
+        font-size: 20px;
+        line-height: 24px;
+
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -ms-line-clamp: 3;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        display: -webkit-box;
+        display: box;
+        word-wrap: break-word;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+    }
+}
+
+
+@media (width <= 1265px) {
+    .excursions-cards-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (width <= 865px) {
+    .excursions-cards-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (width <= 524px) {
+    .excursions-cards-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+

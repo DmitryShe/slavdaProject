@@ -162,19 +162,19 @@
 
   <section class="index-hotels">
     <div class="index-hotels__header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Где поесть</h2></div>
-    {% if hotels %}
+    {% if foods %}
     <div class="index-hotels__swiper-container p-l-63 p-r-63">
       <div class="swiper index-food__swiper">
         <div class="swiper-wrapper">
-          {% for hotel in hotels %}
+          {% for food in foods %}
           <div class="swiper-slide index-hotels__swiper-slide">
-            <a href="{% url 'hotel_page' hotel.id %}">
+            <a href="{% url 'food' food.id %}">
               <div class="index-hotel__card-wrap">
                 <div class="index-hotels__card">
-                  <img class="index-hotels__card_img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt="" />
+                  <img class="index-hotels__card_img" src="{{ food.FoodBusiness_images.first.getUrl.url }}" alt="" />
                 </div>
                 <div class="index-hotels__card_content">
-                  <h5 class="index-hotels__card_title">{{ hotel.title }}</h5>
+                  <h5 class="index-hotels__card_title">{{ food.title }}</h5>
                 </div>
               </div>
             </a>
@@ -200,7 +200,7 @@
         </svg>
       
       </div>
-      <button class="btn info m-l-20 m-r-20" onclick="document.location='/food' ">Все заведения</button>
+      <button class="btn info m-l-20 m-r-20" onclick="document.location='/foods' ">Все заведения</button>
       <div class="next-prev index-food__button-next">
         <svg 
           version="1.1" 
@@ -225,19 +225,19 @@
 
   <section class="index-hotels">
     <div class="index-hotels__header p-l-63 p-r-63 p-t-20 p-b-20"><h2 class="text-center">Что посмотреть</h2></div>
-    {% if hotels %}
+    {% if looks %}
     <div class="index-hotels__swiper-container p-l-63 p-r-63">
       <div class="swiper index-look__swiper">
         <div class="swiper-wrapper">
-          {% for hotel in hotels %}
+          {% for look in looks %}
           <div class="swiper-slide index-hotels__swiper-slide">
-            <a href="{% url 'hotel_page' hotel.id %}">
+            <a href="{% url 'look' look.id %}">
               <div class="index-hotel__card-wrap">
                 <div class="index-hotels__card">
-                  <img class="index-hotels__card_img" src="{{ hotel.hotel_images.first.getUrl.url }}" alt="" />
+                  <img class="index-hotels__card_img" src="{{ look.Showplaces_images.first.getUrl.url }}" alt="" />
                 </div>
                 <div class="index-hotels__card_content">
-                  <h5 class="index-hotels__card_title">{{ hotel.title }}</h5>
+                  <h5 class="index-hotels__card_title">{{ look.title }}</h5>
                 </div>
               </div>
             </a>
@@ -263,7 +263,7 @@
         </svg>
       
       </div>
-      <button class="btn info m-l-20 m-r-20" onclick="document.location='/hotels' ">Все достопримечательности</button>
+      <button class="btn info m-l-20 m-r-20" onclick="document.location='/looks' ">Все достопримечательности</button>
       <div class="next-prev index-look__button-next">
         <svg 
           version="1.1" 
