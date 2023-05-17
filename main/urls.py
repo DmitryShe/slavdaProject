@@ -19,6 +19,7 @@ urlpatterns = [
     path('looks/<int:pk>', views.LookPageView.as_view(), name='look'),
 
     path('excursions', views.ExcursionView.as_view(), name='excursions'),
+    path('excursions/<int:pk>', views.ExcursionPageView.as_view(), name='excursion'),
 
     path('contacts/', views.CotactsView.as_view(), name='contacts'),
     path('test', views.MyViewClass.as_view(), name='test'),

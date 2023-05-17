@@ -1,0 +1,195 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block main %} 
+<main>
+    <section class="excursion-path">
+        <div class="excursion-path-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <ul class="excursion-path__list">
+                <li class="excursion-path__list-item"><a href="/">Главная страница</a></li>
+                <li class="excursion-path__list-item"><a href="/excursions"><span class="opacity-1">Рубрика: Экскурсии</span></a></li>
+                <li class="excursion-path__list-item"><span>{{ excursion.title }}</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="excursion_card-content">
+        <div class="excursion_card-content-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <div class="excursionl_card__header"><h1>{{ excursion.title }}</h1></div>
+        </div>
+    </section>
+
+    
+
+    <section class="excursion-swiper">
+        <div class="excursion-swiper-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <div class="swiper excursion_swiper">
+                <div class="swiper-wrapper">
+                    {% for img in excursion.Excursion_images.all %}
+                    <div class="swiper-slide excursion-swiper-slide"><img src="{{ img.getUrl.url }}" alt="" /></div>
+                    
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-next swiper-button__excursion"></div>
+                <div class="swiper-button-prev swiper-button__excursion"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="excursion-description">
+        <div class="excursion-description p-l-63 p-r-63 p-t-20 p-b-20">
+            <h3>Описание</h3>
+            <p>{{ excursion.description|safe }}</p>
+        </div>
+    </section>
+
+    <section class="excursion-route">
+        <div class="excursion-route p-l-63 p-r-63 p-t-20 p-b-20">
+            <h3>Маршрут</h3>
+            <p>{{ excursion.route|safe }}</p>
+        </div>
+    </section>
+
+    <section class="excursion-services">
+        <div class="excursion-services-container p-l-63 p-r-63 p-t-20 p-b-20">
+            <div class="excursion__time_start">
+                <h5 class="excursion-services__header">Время начала</h5>
+                <p class="excursion-services__text">{{ excursion.timeStart }}</p>
+            </div>
+            <div class="excursion__duration">
+                <h5 class="excursion-services__header">Продолжительность</h5>
+                <p class="excursion-services__text">{{ excursion.exDuration }}</p>
+            </div>
+            <div class="excursion__price">
+                <h5 class="excursion-services__header">Вид экскурсии</h5>
+                <p class="excursion-services__text">{{ excursion.excursionType }}</p>
+            </div>
+            <div class="excursion__operator">
+                <h5 class="excursion-services__header">Организатор</h5>
+                <p class="excursion-services__text">{{ excursion.tourOperator }}</p>
+            </div>
+            <div class="excursion__operator">
+                <h5 class="excursion-services__header">Cайт</h5>
+                <p class="excursion-services__text"><a href="{{ excursion.link }}">{{ excursion.link }}</a></p>
+            </div>
+            <div class="excursion__price">
+                <h5 class="excursion-services__header">Цена</h5>
+                <p class="excursion-services__text">{{ excursion.price }}</p>
+            </div>
+            
+
+
+        </div>
+    </section>
+
+    <section class="excursion-map">
+        <div class="excursion-map-container  p-t-20 p-b-20">
+            <div id="ExcursionMap"></div>
+        </div>
+    </section>
+
+
+    
+</main>
+<hr />
+{% endblock %}
+
+{% block script %} 
+
+<script src="{% static 'js/lib.swiper.min.js' %}"></script>
+<script src="{% static 'js/_swiper-excursion.js' %}"></script>
+<script>
+let excursionPoints = []
+'{% for r in excursion.ex_route.all %}'
+excursionPoints.push([ 
+    parseFloat(('{{ r.routeX }}').replace(',', '.')),
+    parseFloat(('{{ r.routeY }}').replace(',', '.'))
+])
+'{% endfor %}'
+
+window.onload = function() {
+    routing_Mode = 'pedestrian';
+    points = excursionPoints;
+    ymaps.ready(init);
+}
+
+
+function init() {
+    referencePoints = points;
+
+    multiRoute = new ymaps.multiRouter.MultiRoute({
+        referencePoints: referencePoints,
+        params: { routingMode: routing_Mode }
+    }, {
+        // Внешний вид путевых точек.
+        wayPointStartIconColor: "#fff",
+        wayPointStartIconFillColor: "#f00",
+        wayPointFinishIconColor: "#fff",
+        wayPointFinishIconFillColor: "#f00",
+
+        viaPointIconRadius: 7,
+        viaPointIconFillColor: "#000088",
+        viaPointActiveIconFillColor: "#E63E92",
+
+        pinIconFillColor: "#000088",
+        pinActiveIconFillColor: "#B3B3B3",
+
+        // Внешний вид линии маршрута.
+        routeStrokeWidth: 2,
+        routeStrokeColor: "#000088",
+        routeActiveStrokeWidth: 6,
+        routeActiveStrokeColor: "#E63E92",
+
+        // Внешний вид линии пешеходного маршрута.
+        routeActivePedestrianSegmentStrokeStyle: "solid",
+        routeActivePedestrianSegmentStrokeColor: "#00CDCD",
+
+        // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+        boundsAutoApply: true
+    });
+
+    function customizeSecondPoint() {
+        multiRoute.model.events.once("requestsuccess", function () {
+            var lastIndex = referencePoints.length - 1;
+            var startPoint = multiRoute.getWayPoints().get(0);
+            var finishPoint = multiRoute.getWayPoints().get(lastIndex);
+    
+            ymaps.geoObject.addon.balloon.get(startPoint);
+            ymaps.geoObject.addon.balloon.get(finishPoint);
+            startPoint.options.set({
+                preset: "islands#redStretchyIcon",
+                iconContentLayout: ymaps.templateLayoutFactory.createClass(
+                    'Старт'
+                ),
+                balloonContentLayout: ymaps.templateLayoutFactory.createClass(
+                    'Старт'
+                )
+            });
+            finishPoint.options.set({
+                preset: "islands#redStretchyIcon",
+                iconContentLayout: ymaps.templateLayoutFactory.createClass(
+                    'Финиш'
+                ),
+                balloonContentLayout: ymaps.templateLayoutFactory.createClass(
+                    'Финиш'
+                )
+            });
+        });
+    }
+
+    customizeSecondPoint();
+
+    var myMap = new ymaps.Map('ExcursionMap', {
+        center: referencePoints[0],
+        zoom: 17,
+        controls: [ ]
+    }, {autoFitToViewport: 'always'});
+
+    myMap.geoObjects.add(multiRoute);
+}
+
+</script>
+{% endblock %}

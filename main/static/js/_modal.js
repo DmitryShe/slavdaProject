@@ -15,7 +15,6 @@ closeModal.onclick = () => {
 
 window.onclick = (event) => {
     if (event.target == modalContainer) {
-        console.log('true')
         modal.style.display = "none";
     }
 }

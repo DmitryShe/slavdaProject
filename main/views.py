@@ -18,6 +18,7 @@ from .models import FoodType
 from .models import ShowplacesType
 from .models import CiteInformations
 from .models import Excursion
+from .models import ExcursionType
 
 
 
@@ -193,6 +194,15 @@ class ExcursionView(generic.ListView):
     context_object_name = 'excursions'
     template_name = 'main/excursion.html'
     paginate_by = 9
+
+    @staticmethod
+    def filter_options():
+        return ExcursionType.objects.all()
+
+class ExcursionPageView(generic.DetailView):
+    model = Excursion
+    template_name = 'main/_excursion_card.html'
+    context_object_name = 'excursion'
 
 # news pages
 class NewsListView(generic.ListView):

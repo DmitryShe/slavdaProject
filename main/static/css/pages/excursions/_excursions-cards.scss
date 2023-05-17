@@ -8,10 +8,10 @@
 }
 
 .excursions-card-elem {
-    height: 270px;
+    height: 400px;
     //width: 280px;
     position: relative;
-    margin-top: 14px;
+    //margin-top: 14px;
     cursor: pointer;
 
     .excursions-card-elem__img_wrap {
@@ -30,7 +30,7 @@
 
 .excursions-card-elem__img_wrap {
 
-    height: 200px;
+    height: 320px;
 
     .excursions-card-elem__img {
         object-fit: cover;
@@ -58,7 +58,7 @@
 .excursions-card-elem__price {
     position: absolute;
     background-color: #ff931e;
-    bottom: 70px;
+    bottom: 80px;
     right: 0;
     padding: 2px;
     border-radius: 0 0px 0px 0;

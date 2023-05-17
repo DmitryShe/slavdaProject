@@ -40,7 +40,7 @@
                 <div class="news-card__content">
                     <h3 class="news-card__header text-right"><a href="{% url 'news_detail' elem.id %}">{{ elem.title }}</a></h3>
                     <h4 class="news-card__date text-right">{{ elem.date | date:"j E Y" }}</h4>
-                    <p class="news-card__description">{{ elem.description | truncatechars:809 }}</p>
+                    <p class="news-card__description">{{ elem.description | truncatechars:809 |safe }}</p>
                     <br />
                     <a class="news-card__link_read-next" href="{% url 'news_detail' elem.id %}">Читать далее...</a>
                 </div>

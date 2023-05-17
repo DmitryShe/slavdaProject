@@ -1,0 +1,17 @@
+.excursion-services__header {
+    display: inline;
+    line-height: 1.5;
+}
+
+.excursion-services__text {
+    display: inline;
+}
+
+.excursion-services-container div {
+    display: grid;
+    align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    grid-gap: 25px 55px;
+    grid-template-columns: minmax(200px, 20%) repeat(auto-fit, minmax(200px, 100%));
+}

@@ -19,31 +19,56 @@
             <div class="excursions-filters-container p-l-63 p-r-63">
                 <div class="excursions-filters__options">
                     <form action="/excursions" method="GET" class="excursions-form" id="ExcursionsForm">
-                    <div>
-                        <select name="type" class="excursions-form__select">
-                            <option value="0" class="excursions-form__option">Тип экскурсии</option>
-
-                        </select>
-                        <select name="price" id="" class="excursions-form__select" form="ExcursionsForm">
-                            <option value="0" class="excursions-form__option">Цена</option>
-                            <option value="2000" class="excursions-form__option">Меньше 2000р.</option>
-                            <option value="4000" class="excursions-form__option">2000-4000р.</option>
-                            
-                        </select>
                         
-                    </div>
+                        <div class="m-b-20">
+                            <h5>Тип экскурсии</h5>
+                            <div class="excursions-form__options_wrap">
+                                {% if view.filter_options %}
+                                {% for el in view.filter_options %}
+                                <div class="m-t-4 m-b-2">
+                                    <input type="checkbox" id="{{ el.id }}" name="{{ el }}">
+                                    <label for="{{ el.id }}">{{ el }}</label>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="m-b-20">
+                            <h5>Длительность</h5>
+                            <div class="excursions-form__options_wrap">
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_0" name="hours" value="0">
+                                <label for="Duration_0">Все </label></div>
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_2" name="hours" value="2">
+                                <label for="Duration_2">0 &ndash; 2 часа </label></div>
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_4" name="hours" value="4">
+                                <label for="Duration_4">2 &ndash; 4 часа</label></div>
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_6" name="hours" value="6">
+                                <label for="Duration_6">4 &ndash; 6 часов</label></div>
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_8" name="hours" value="8">
+                                <label for="Duration_8">6 &ndash; 8 часов</label></div>
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_10" name="hours" value="10">
+                                <label for="Duration_10">8 &ndash; 10 часов</label></div>
+                            </div>
+                        </div>
                         
+                        <div>
+                            <h5>Цена</h5>
+                            <div>
+                                
+                                <input type="text" placeholder="От ...">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="До ...">
+                            </div>
+                        </div>
+                        <div class="m-t-2 m-b-2 excursions-form__button_wrap">
+                            <input type="submit" class="btn btn-excursions m-r-4" form="ExcursionsForm" />
+                            <button class="btn btn-excursions">Сбросить</button>
+                        </div>
                     </form>
-                    <div class="m-t-2 m-b-2 excursions-form__button_wrap">
-                        <input type="submit" class="btn btn-excursions m-r-4" form="ExcursionsForm" />
-                        <button class="btn btn-excursions">Сбросить</button>
-                    </div>
+                    
                 </div>
 
-                <div class="excursions-filters__btn-map_wrap m-t-2 m-b-2">
-                    <button class="btn btn-excursions" id="OnMapBtn">На карте</button>
-                </div>
-                
             </div>
         </div>
 
@@ -51,7 +76,7 @@
             <div class="excursions-cards-container p-l-63 p-r-63">
                 {% for ex in excursions %}
                 <div class="excursions-card-elem">
-                    <a class="opacity-1" href="todo">
+                    <a class="opacity-1" href="{% url 'excursion' ex.id %}">
                         <div class="excursions-card-elem__img_wrap">
                             <img class="excursions-card-elem__img" src="{{ ex.Excursion_images.first.getUrl.url }}" alt=""/>
                         </div>

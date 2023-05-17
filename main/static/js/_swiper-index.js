@@ -19,7 +19,7 @@ var swiper = new Swiper(".index-grid__swiper", {
 });
 
 /** news swiper */
-var newsSwiper = new Swiper(".index-news__swiper", {
+let newsSwiper = new Swiper(".index-news__swiper", {
     slidesPerView: 3,
     spaceBetween: 20,
     rewind: true,
