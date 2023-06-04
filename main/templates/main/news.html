@@ -19,12 +19,17 @@
     
     <section class="news-filter">
         <div class="news-filter__elem p-l-63 p-r-63 p-b-20">
-            <div class="news-filter__datepicker">
-                <input class="news-filter__datepicker_input" type="date" />
-            </div>
-            <span> — </span>
-            <div class="news-filter__datepicker">
-                <input class="news-filter__datepicker_input" type="date" />
+            <form action="/news" method="get" class="news-form" id="NewsForm">
+                <div class="news-filter__datepicker">
+                    <input class="news-filter__datepicker_input" type="date" form="NewsForm" name="start_date">
+                </div>
+                <span> — </span>
+                <div class="news-filter__datepicker">
+                    <input class="news-filter__datepicker_input" type="date" form="NewsForm" name="end_date">
+                </div>
+            </form>
+            <div class="news-filter__input">
+                <input type="submit" class="btn btn-excursions m-r-4" form="NewsForm" value="Поиск"/> 
             </div>
         </div>
     </section>

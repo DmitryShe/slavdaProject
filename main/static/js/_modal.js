@@ -4,18 +4,17 @@ let closeModal = document.getElementsByClassName('hotels-modal__close')[0];
 let modalContainer = document.getElementsByClassName('hotels-modal-container')[0];
 
 
-
 btnOpenMap.onclick = () => {
     modal.style.display = "block";
-}
+};
 
 closeModal.onclick = () => {
     modal.style.display = "none";
-}
+};
 
 window.onclick = (event) => {
     if (event.target == modalContainer) {
         modal.style.display = "none";
-    }
-}
+    };
+};
 

@@ -20,39 +20,40 @@
     <section class="hotels-filters">
         <div class="hotels-filters-container p-l-63 p-r-63">
             <div class="hotels-filters__options">
-                <form action="/looks" method="GET" class="hotels-form" id="HotelsForm">
+                <form action="/looks" method="GET" class="hotels-form" id="HotelsForm" name="HotelsFilter">
                   <div>
                     <select name="type" class="hotels-form__select">
                         <option value="0" class="hotels-form__option">Тип достопримечательности</option>
 
-                        {% if view.filter_options %}
-                        {% for el in view.filter_options %}
+                        {% if filter_options %}
+                        {% for el in filter_options %}
                         <option value="{{ el }}" class="hotels-form__option">{{ el }}</option>
                 
                         {% endfor %}
                         {% endif %}
                     </select>
                     <select name="price" id="" class="hotels-form__select" form="HotelsForm">
-                        <option value="0" class="hotels-form__option">Цена</option>
-                        <option value="2000" class="hotels-form__option">Меньше 2000р.</option>
-                        <option value="4000" class="hotels-form__option">2000-4000р.</option>
-                        <option value="6000" class="hotels-form__option">4000-6000р.</option>
-                        <option value="8000" class="hotels-form__option">6000-8000р.</option>
-                        <option value="10000" class="hotels-form__option">8000-10000р.</option>
-                        <option value="10001" class="hotels-form__option">Больше 10000р.</option>
+                        <option value="0" class="hotels-form__option" id="HotelsPriceOption">Цена</option>
+                        <option value="0_2000" class="hotels-form__option">Меньше 2000р.</option>
+                        <option value="2001_4000" class="hotels-form__option">2001-4000р.</option>
+                        <option value="4001_6000" class="hotels-form__option">4001-6000р.</option>
+                        <option value="6001_8000" class="hotels-form__option">6001-8000р.</option>
+                        <option value="8001_10000" class="hotels-form__option">8001-10000р.</option>
+                        <option value="10001_110000" class="hotels-form__option">Больше 10000р.</option>
                     </select>
                     
                   </div>
                     
                 </form>
                 <div class="m-t-2 m-b-2 hotels-form__button_wrap">
-                    <input type="submit" class="btn btn-hotels m-r-4" form="HotelsForm" />
-                    <button class="btn btn-hotels">Сбросить</button>
+                    <input type="submit" class="btn btn-hotels m-r-4" form="HotelsForm" id="HotelsForm__submit"/>
+                    <button class="btn btn-hotels" id="BtnReset">Сбросить</button>
                 </div>
             </div>
 
             <div class="hotels-filters__btn-map_wrap m-t-2 m-b-2">
                 <button class="btn btn-hotels" id="OnMapBtn">На карте</button>
+
             </div>
             
         </div>
@@ -60,48 +61,36 @@
 
     <section class="hotels-cards">
         <div class="hotels-cards-container p-l-63 p-r-63">
-        {% for look in looks %}
-            <div class="hotels-card-elem">
-                <a class="opacity-1" href="{% url 'look' look.id %}">
-                <div class="hotels-card-elem__img_wrap">
-                    <img class="hotels-card-elem__img" src="{{ look.Showplaces_images.first.getUrl.url }}" alt=""/>
-                </div>
-
-                <div class="hotels-card-elem__type">
-                    <p>{{ look.showplacesType }}</p>
-                </div>
-
-                <div class="hotels-card-elem__price">
-                    <p>Цена: {{ look.price }}</p>
-                </div>
-
-                <div class="hotels-card-elem__header_wrap">
-                    <h4 class="hotels-card-elem__header">{{ look.title }}</h4>
-                </div>
-                </a>
-            </div>
-        {% endfor %}
-
-
+            <!-- cards -->
         </div>
     </section>
-    <section class="hotels-pagination">
-    {% if is_paginated %}
-        <div class="pagination text-center">
-          <span class="page-links">
-              {% if page_obj.has_previous %}
-                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-              {% endif %}
-              <span class="page-current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+
+    <section class="pagination-main">
+        {% if page %}
+            <div class="pagination">
+              <span class="pagination__page-links">
+                  {% if page.has_previous %}
+                      <a href="{{ request.path }}?page={{ page.previous_page_number }}">
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="44px" height="44px" >
+                            <path class="cls-1" d="M117.86,140.5a5,5,0,0,1-3.53-1.46L78.6,103.32a5,5,0,0,1,0-7.07l35.73-35.73a5,5,0,1,1,7.07,7.07L89.21,99.78,121.4,132a5,5,0,0,1-3.54,8.53Z"/>
+                            <path class="cls-1" d="M154.29,175.69H46a21.57,21.57,0,0,1-21.54-21.54V45.85A21.57,21.57,0,0,1,46,24.31H154.29a21.57,21.57,0,0,1,21.54,21.54v108.3A21.57,21.57,0,0,1,154.29,175.69ZM46,34.31A11.55,11.55,0,0,0,34.46,45.85v108.3A11.55,11.55,0,0,0,46,165.69H154.29a11.55,11.55,0,0,0,11.54-11.54V45.85a11.55,11.55,0,0,0-11.54-11.54Z"/>
+                        </svg>
+                      </a>
+                  {% endif %}
+                  <span class="pagination__page-current">
+                      Страница {{ page.number }} из {{ page.paginator.num_pages }}
+                  </span>
+                  {% if page.has_next %}
+                      <a href="{{ request.path }}?page={{ page.next_page_number }}">
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="44px" height="44px">
+                            <path class="cls-1" d="M82.28,140.5A5,5,0,0,1,78.75,132l32.18-32.19L78.75,67.59a5,5,0,0,1,7.07-7.07l35.72,35.73a5,5,0,0,1,0,7.07L85.82,139A5,5,0,0,1,82.28,140.5Z"/>
+                            <path class="cls-1" d="M154.15,175.69H45.85a21.57,21.57,0,0,1-21.54-21.54V45.85A21.57,21.57,0,0,1,45.85,24.31h108.3a21.57,21.57,0,0,1,21.54,21.54v108.3A21.57,21.57,0,0,1,154.15,175.69ZM45.85,34.31A11.56,11.56,0,0,0,34.31,45.85v108.3a11.56,11.56,0,0,0,11.54,11.54h108.3a11.56,11.56,0,0,0,11.54-11.54V45.85a11.56,11.56,0,0,0-11.54-11.54Z"/>
+                        </svg>
+                      </a>
+                  {% endif %}
               </span>
-              {% if page_obj.has_next %}
-                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-              {% endif %}
-          </span>
-        </div>
-    {% endif %}
-    
+            </div>
+        {% endif %}
     </section>
 
     <section class="hotels-modal" >
@@ -122,62 +111,19 @@
 
 {% block script %} 
 <script src="{% static 'js/_modal.js' %}"></script>
+<script src="{% static 'js/_resetBtn.js' %}"></script>
+<script src="{% static 'js/_json-look-load.js' %}"></script>
+
+
 <script>
-
-    let geoData = {
-        "type": "FeatureCollection",
-        "features": []
+    // first load
+    function LoadButtonClick() { 
+        let loadButton = document.getElementById('HotelsForm__submit');
+        loadButton.click(); 
     };
-
-    '{% for look in looks %}'
-	geoData.features.push({ 
-        'type': "Feature",
-        'id': Number('{{look.getCoordinates.id}}'),
-        'geometry': {
-            "type": "Point", 
-            "coordinates": [
-                parseFloat(('{{ look.getCoordinates.pointX }}').replace(',', '.')),
-                parseFloat(('{{ look.getCoordinates.pointY }}').replace(',', '.'))
-            ]
-        },
-        "properties": {
-            "balloonContentHeader": "<font size=3><b><a target='_blank' href='https://yandex.ru'>Здесь может быть ваша ссылка</a></b></font>", 
-            "balloonContentBody": "<p>Ваше имя: <input name='login'></p><p><em>Телефон в формате 2xxx-xxx:</em>  <input></p><p><input type='submit' value='Отправить'></p>", 
-            "balloonContentFooter": "<font size=1>Информация предоставлена: </font> <strong>этим балуном</strong>", 
-            "clusterCaption": "<strong><s>Еще</s> одна</strong> метка", 
-            "hintContent": "<strong>Текст  <s>подсказки</s></strong>"
-        }
-    });
-    '{% endfor %}'
-
-
-
-    ymaps.ready(init);
-
-    function init() {
-        let hotelsMap = new ymaps.Map('HotelsMap', {
-            center: [55.751574, 37.573856],
-            zoom: 10
-        }, {
-            searchControlProvider: 'yandex#search'
-        }),
-        objectManager = new ymaps.ObjectManager({
-            // Чтобы метки начали кластеризоваться, выставляем опцию.
-            clusterize: true,
-            // ObjectManager принимает те же опции, что и кластеризатор.
-            gridSize: 32,
-            clusterDisableClickZoom: true
-        });
-
-            // Чтобы задать опции одиночным объектам и кластерам,
-            // обратимся к дочерним коллекциям ObjectManager.
-        objectManager.objects.options.set('preset', 'islands#greenDotIcon');
-        objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-        hotelsMap.geoObjects.add(objectManager);
-
-        objectManager.add(geoData);
-    }
+    window.onload = LoadButtonClick;
 </script>
+
 
 
 

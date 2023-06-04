@@ -19,7 +19,12 @@
 }
 
 /* for news page */
+/*
 .news-filter__elem {
+    display: flex;
+    align-items: center;
+}*/
+.news-form {
   display: flex;
   align-items: center;
 }
@@ -40,8 +45,12 @@
   padding: 0 16px;
 }
 
+.news-filter__input {
+  width: 189px;
+}
+
 @media (max-width: 768px) {
-  .news-filter__elem {
+  .news-form {
     flex-direction: column;
     align-items: start;
   }

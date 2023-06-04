@@ -14,6 +14,18 @@
         .test-grid > div {
             border: 1px solid black;
         }
+
+        .test-form {
+            width: 400px;
+            height: 400px;
+            background-color: cadetblue;
+            display: flex;
+            flex-direction: column;
+            margin: 20px auto;
+        }
+        .test-form__submit {
+            margin: 20px auto;
+        }
     </style>
     <title>test</title>
 </head>
@@ -25,10 +37,129 @@
         <div><p>four</p></div>
         <div><p>five</p></div>
         <div><p>six</p></div>
-
-
     </section>
 
+    
+    <section>
+        <form action="test" class="test-form" onsubmit="return false">
+            <select name="opt" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <input type="submit" class="test-form__submit" id="test-form__submit">
+        </form>
+    </section>
+    
+    <section class="test-hotel-card" id="SectionHotelsCards">
+        <div class="test-hotel-card__container" id="test-div">
+            
+        </div>
+    </section>
+
+    <script>
+        function blockForm(e) {
+            e.PreventDefault();
+            
+        }
+
+        let address = document.location.href;
+        console.log('async fun is run');
+        console.log(address);
+        async function getFetch() {
+            let response = await fetch('/test', {
+                method: "get",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                }
+            });
+
+            if (response.ok) {
+                var json = await response.json();
+                console.log(json);
+                
+            } else {
+                console.log('error');
+            };
+
+
+            //let cardTest = document.getElementById('test-div');
+            //let delNode = document.getElementsByClassName('hotels-card-elem-test');
+            //console.log(delNode);
+            /*
+            for (let i = 0; i < delNode.length; i++) {
+                cardTest.removeChild(delNode[i]);
+                console.log('del');
+            }*/
+            
+            
+            //document.querySelectorAll('hotels-card-elem-test').forEach(el => el.remove());
+            
+            let card = document.getElementById('test-div');
+            
+
+            card.insertAdjacentHTML('beforeend', 
+                `<div class="hotels-card-elem-test">
+                    <a class="opacity-1" href="#">
+                        <div class="hotels-card-elem__img_wrap">
+                            <img class="hotels-card-elem__img" src="" alt=""/>
+                        </div>
+
+                        <div class="hotels-card-elem__type">
+                            <p></p>
+                        </div>
+
+                        <div class="hotels-card-elem__price">
+                            <p>Цена: </p>
+                        </div>
+
+                        <div class="hotels-card-elem__header_wrap">
+                            <h4 class="hotels-card-elem__header"></h4>
+                        </div>
+                    </a>
+                </div>`
+            );
+            
+        }
+        /*
+        div.hotels-card-elem
+          a.opacity-1
+            div.hotels-card-elem__img_wrap
+              img.hotels-card-elem__img
+            div.hotels-card-elem__type
+              p.
+            div.hotels-card-elem__price
+              p.
+            div.hotels-card-elem__header_wrap
+              h4.hotels-card-elem__header
+
+        <div class="hotels-card-elem">
+            <a class="opacity-1" >
+            <div class="hotels-card-elem__img_wrap">
+                <img class="hotels-card-elem__img"  alt=""/>
+            </div>
+
+            <div class="hotels-card-elem__type">
+                <p></p>
+            </div>
+
+            <div class="hotels-card-elem__price">
+                <p>Цена: </p>
+            </div>
+
+            <div class="hotels-card-elem__header_wrap">
+                <h4 class="hotels-card-elem__header"></h4>
+            </div>
+            </a>
+        </div>
+        */
+        const fetchFunc = document.getElementById('test-form__submit');
+        fetchFunc.onclick = () => getFetch();
+
+        
+    </script>
+
+    
 
 
 
@@ -47,6 +178,7 @@
 
 
     <script>
+        /*
         async function getFetch() {
             let address = document.location.href;
             console.log('async fun is run');
@@ -67,7 +199,7 @@
     const fetchFunc = document.getElementById('test_btn');
     fetchFunc.onclick = () => getFetch();
 
-
+*/
     </script>
 </body>
 </html>

@@ -22,7 +22,7 @@ urlpatterns = [
     path('excursions/<int:pk>', views.ExcursionPageView.as_view(), name='excursion'),
 
     path('contacts/', views.CotactsView.as_view(), name='contacts'),
-    path('test', views.MyViewClass.as_view(), name='test'),
+    #path('test', views.MyViewClass.as_view(), name='test'),
     
     re_path(r'^froala_editor/', include('froala_editor.urls'))
 ]

@@ -65,6 +65,17 @@ class OrganizationCoordinaties(models.Model):
         verbose_name = 'Координаты предприятия'
         verbose_name_plural = 'Координаты предприятий'
 
+class CiteTags(models.Model):
+    title = models.CharField('Название тега', max_length=30)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Тэг сайта'
+        verbose_name_plural = 'Тэг сайта'
+
+
 # вид экскурсии, пешая на машине, велосипед
 class ExcursionType(models.Model):
     typeOfexcursion = models.CharField('Вид экскурсии', max_length=100)
@@ -94,6 +105,7 @@ class Hotels(models.Model):
     coordinates   = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True, verbose_name="Координаты")
     placementType = models.ForeignKey(PlacementType, on_delete=models.SET_NULL, null=True, verbose_name="Заведение")
     description   = FroalaField()
+    tags = models.ManyToManyField(CiteTags, null=True, verbose_name="Тэги", related_name='hotel_tags')
     
     
     def __str__(self):
@@ -135,6 +147,7 @@ class FoodBusiness(models.Model):
     kitchenType   = models.ForeignKey(KitchenType, on_delete = models.SET_NULL, null=True)
     foodType      = models.ForeignKey(FoodType, on_delete = models.SET_NULL, null=True)
     description   = FroalaField()
+    tags = models.ManyToManyField(CiteTags, null=True, verbose_name="Тэги")
     
     def __str__(self):
         return self.title
@@ -174,6 +187,7 @@ class Showplaces(models.Model):
     showPlacesCoord  = models.ForeignKey(OrganizationCoordinaties, on_delete = models.SET_NULL, null=True)
     showplacesType   = models.ForeignKey(ShowplacesType, on_delete = models.SET_NULL, null=True)
     description      = FroalaField()
+    tags = models.ManyToManyField(CiteTags, null=True, verbose_name="Тэги")
     
     def __str__(self):
         return self.title
@@ -207,26 +221,28 @@ class Excursion(models.Model):
     description = FroalaField()
     route = FroalaField()
     timeStart = models.CharField('Время начала экскурсии', max_length=20)
-    exDuration = models.CharField('Продолжительность экскурсии', max_length=20)
+    exDuration = models.IntegerField('Продолжительность экскурсии')
     tourOperator = models.CharField('Организатор', max_length=100)
     link = models.CharField('Ссылка на экскурсию, организатора', max_length=100)
     price = models.IntegerField('Цена экскурсии')
     excursionType = models.ForeignKey(ExcursionType, on_delete = models.SET_NULL, null=True, verbose_name='вид экскурсии')
+    routeCoordinaties = models.ManyToManyField(OrganizationCoordinaties, related_name='ex_route', verbose_name='экскурсия')
+    tags = models.ManyToManyField(CiteTags, verbose_name="Тэги")
 
     def __str__(self):
         return self.title
     
-    
-
     class Meta:
         verbose_name = 'Экскурсии'
         verbose_name_plural = 'Экскурсии'
 
+'''
 class RouteCoordinates(models.Model):
     title = models.CharField('Название точки', max_length=40)
     routeX = models.FloatField('координата X')
     routeY = models.FloatField('координата Y')
     excursion = models.ForeignKey(Excursion, on_delete=models.SET_NULL, related_name='ex_route', null=True, verbose_name='экскурсия')
+'''
 
 class ExcursionGallery(models.Model):
     title = models.CharField('Наименование изображения', max_length=200)

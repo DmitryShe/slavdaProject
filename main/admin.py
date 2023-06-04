@@ -4,7 +4,6 @@ from .models import PlacementType
 from .models import ShowplacesType
 from .models import KitchenType
 from .models import OrganizationCoordinaties
-from .models import RouteCoordinates
 from .models import HotelsGallery
 from .models import FoodBusinessGallery
 from .models import ShowplacesGallery
@@ -19,6 +18,7 @@ from .models import Showplaces
 from .models import CiteInformations
 from .models import FoodType
 from .models import ExcursionType
+from .models import CiteTags
 
 
 
@@ -30,6 +30,7 @@ admin.site.register(News)
 admin.site.register(OrganizationCoordinaties)
 admin.site.register(CiteInformations)
 admin.site.register(ExcursionType)
+admin.site.register(CiteTags)
 
 
 
@@ -50,9 +51,7 @@ class GalleryExcursionInline(admin.TabularInline):
     fk_name = 'excursion'
     model = ExcursionGallery
 
-class RouteExcursionInline(admin.TabularInline):
-    fk_name = 'excursion'
-    model = RouteCoordinates
+
 
 
 @admin.register(Hotels)
@@ -69,4 +68,4 @@ class ShoplacesAdmin(admin.ModelAdmin):
 
 @admin.register(Excursion)
 class ExcursionAdmin(admin.ModelAdmin):
-    inlines = [GalleryExcursionInline, RouteExcursionInline]
+    inlines = [GalleryExcursionInline, ]

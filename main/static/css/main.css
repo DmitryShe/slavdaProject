@@ -758,6 +758,41 @@ strong {
   flex: 1 1 auto;
 }
 
+/* btn up */
+.btn-up {
+  position: fixed;
+  background-color: #673ab7;
+  right: 20px;
+  bottom: 0px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 50px;
+  z-index: 999;
+}
+
+.btn-up::before {
+  content: "";
+  width: 40px;
+  height: 40px;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
+}
+
+.btn-up_hide {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-up:hover {
+    background-color: #512da8;
+  }
+}
 @media (width <= 1050px) {
   .footer-container {
     display: none;
@@ -803,9 +838,23 @@ strong {
 }
 
 .developer__about {
-  width: 49.9%;
+  width: 45.9%;
+  text-align: justify;
 }
 
+@media (width <= 768px) {
+  .developers-info {
+    flex-direction: column;
+  }
+  .developer__img-wrap {
+    width: 100%;
+    min-height: 400px;
+  }
+  .developer__about {
+    width: 100%;
+    text-align: justify;
+  }
+}
 .contacts-organization__title {
   margin-bottom: 20px;
 }
@@ -1037,7 +1086,7 @@ strong {
   font-size: 18px;
   margin: 2px 0;
 }
-input[type=text] {
+input[type=text], input[type=number] {
   transition: all 0.2s linear;
   padding: 12px 20px;
   height: 36px;
@@ -1417,23 +1466,6 @@ index-grid__swiper-slide_text
   transition: 0.3s ease;
 }
 
-/*
-index-news
-index-news__header
-
-index-news__swiper-container
-index-news__swiper
-index-news__swiper-slide
-
-index-news__card
-index-news__card_content
-index-news__card_img
-index-news__card_title
-index-news__card_text
-
-index-news__button-prev
-index-news__button-next
-*/
 /* for index page */
 .index-news__swiper-container {
   position: relative;
@@ -1509,21 +1541,6 @@ index-news__button-next
   box-orient: vertical;
 }
 
-/*
-index-news
-index-news__header
-
-index-news__swiper-container
-index-news__swiper
-index-news__swiper-slide
-
-index-news__swiper-slide_link
-index-news__card
-index-news__card_content
-index-news__card_img
-index-news__card_title
-index-news__card_text
-*/
 /* index hotels */
 /* for index page */
 .index-hotels {
@@ -1667,7 +1684,12 @@ index-news__card_text
 }
 
 /* for news page */
+/*
 .news-filter__elem {
+    display: flex;
+    align-items: center;
+}*/
+.news-form {
   display: flex;
   align-items: center;
 }
@@ -1688,8 +1710,12 @@ index-news__card_text
   padding: 0 16px;
 }
 
+.news-filter__input {
+  width: 189px;
+}
+
 @media (max-width: 768px) {
-  .news-filter__elem {
+  .news-form {
     flex-direction: column;
     align-items: start;
   }
@@ -2004,6 +2030,19 @@ index-news__card_text
 #HotelsMap {
   width: 100%;
   height: 500px;
+}
+
+.tags__elem {
+  list-style-type: none;
+  background-color: #4caf50;
+  color: white;
+  display: inline-block;
+  text-transform: lowercase;
+  font-size: 14px;
+  margin: 0 4px;
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 body {

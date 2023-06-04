@@ -103,10 +103,10 @@
 <script src="{% static 'js/_swiper-excursion.js' %}"></script>
 <script>
 let excursionPoints = []
-'{% for r in excursion.ex_route.all %}'
+'{% for r in excursion.routeCoordinaties.all %}'
 excursionPoints.push([ 
-    parseFloat(('{{ r.routeX }}').replace(',', '.')),
-    parseFloat(('{{ r.routeY }}').replace(',', '.'))
+    parseFloat(('{{ r.pointX }}').replace(',', '.')),
+    parseFloat(('{{ r.pointY }}').replace(',', '.'))
 ])
 '{% endfor %}'
 

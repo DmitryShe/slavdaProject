@@ -17,9 +17,23 @@
 }
 
 .developer__about {
-  width: 49.9%;
+  width: 45.9%;
+  text-align: justify;
 }
 
+@media (width <= 768px) {
+  .developers-info {
+    flex-direction: column;
+  }
+  .developer__img-wrap {
+    width: 100%;
+    min-height: 400px;
+  }
+  .developer__about {
+    width: 100%;
+    text-align: justify;
+  }
+}
 .contacts-organization__title {
   margin-bottom: 20px;
 }

@@ -3,6 +3,26 @@
 
 @import "swiper-bundle.min.css";
 
+.tags {
+
+}
+
+.tags__elem {
+    list-style-type: none;
+    background-color: #4caf50;
+    color: white;
+    display: inline-block;
+    text-transform: lowercase;
+    //font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 0 4px;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+
+
 body {
     max-width: 1280px;
     margin: 0 auto;

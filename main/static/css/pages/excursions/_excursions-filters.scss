@@ -41,9 +41,7 @@
 
 }
 
-
-
-input[type="text"] {
+input[type="text"], input[type="number"] {
   transition: all 0.2s linear;
   padding: 12px 20px;
   height: 36px;
