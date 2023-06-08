@@ -301,6 +301,21 @@ class ExcursionView(generic.ListView):
     template_name = 'main/excursion.html'
     #paginate_by = 9
 
+    def index(self):
+        data = self.request.GET.dict()
+        return data
+        if self.request.method == 'GET':
+            my_data = self.request.GET.get('hours', None)
+            self.request.session['my_data'] = my_data
+            print('data_session', my_data)
+            
+            #print('all_values', [print(i) for i in self.request.GET.lists() ])
+            return HttpResponse(my_data )
+        else:
+            my_data = self.request.session.get('my_data', None)
+            print('else render')
+            return render(self.request, 'main/excursion.html', {'my_data': my_data})
+
     @staticmethod
     def filter_options():
         return ExcursionType.objects.all()
@@ -323,7 +338,7 @@ class ExcursionView(generic.ListView):
     
     def get_queryset(self):
         queryset = super().get_queryset()
-        print(queryset.values())
+        #print(queryset.values())
         filters = self.request.GET.dict()
         temp_filter = {
             'hours': '0_0',
@@ -366,6 +381,8 @@ class ExcursionView(generic.ListView):
             queryset = queryset.filter(excursionType__typeOfexcursion__in=temparr)
 
         return queryset
+
+    
 
 class ExcursionPageView(generic.DetailView):
     model = Excursion

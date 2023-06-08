@@ -10,7 +10,7 @@ async function handleFormSubmit(event) {
     const response = await sendData(data);
 
     // получим данные, загрузим карту
-    console.log('responsw', response);
+    // console.log('responsw', response);
 
     const map = await ymaps.ready(init(response));
 }
@@ -35,28 +35,57 @@ function serializeForm(formNode) {
 async function sendData(data) {
     let arr = Array.from(data.entries());
     let url = `/hotels?${arr[0][0]}=${arr[0][1]}&${arr[1][0]}=${arr[1][1]} `;
-    console.log(url);
+    //console.log(url);
 
     let response = await fetch(url, {
         method: "get",
         headers: { "X-Requested-With": "XMLHttpRequest", }
     });
 
+    function createColorTable(json) {
+        let uniqCollection = new Set();
+        let table = {};
+        let colors = [
+            'tags-orange', 'tags-blue', 'tags-pink', 'tags-red', 'tags-green', 'tags-brown', 'tags-coral'
+        ];
+        for (el in json) {
+            uniqCollection.add(json[el]['placementType']);
+        };
+        let i = 0
+        for (let el of uniqCollection) {
+            if (colors[i]) {
+                table[el] = colors[i];
+                i += 1
+            } else {
+                table[el] = colors[0];
+            }
+            
+        };
+
+        return table;
+
+    };
+
     if (response.ok) {
         var json = await response.json();
-        console.log(json);
+        
         document.querySelectorAll('div.hotels-card-elem').forEach(el => el.remove());
+        
+        let colorTable = createColorTable(json);
+
         for (key in json) {
-            createCards(json[key]);
-        }
+            createCards(json[key], colorTable);
+
+        };
+        
         return json;
     } else {
-        console.log('error');
+        //console.log('error');
     };
 }
 
 /* создаем карточки отелей */
-function createCards(data) {
+function createCards(data, colorTable) {
     let card = document.getElementsByClassName('hotels-cards-container')[0];
     //console.log('card: ', card);
     //console.log('remCard:', removeCard);
@@ -67,14 +96,14 @@ function createCards(data) {
         if (i < 3) {
             tagsArray.push(temp[key]['title']);
             i += 1;
-            console.log(i);
+            // console.log(i);
         };
         //console.log('te', key, temp[key]['title']);
     };
     i = 0;
     let html = tagsArray.map((item) => `<li class="tags__elem">${item}</li>`).join('');
     //console.log('tagsarr', html);
-
+    
     card.insertAdjacentHTML('afterbegin',
         `<div class="hotels-card-elem">
             <a class="opacity-1" href="${data['pageLink']}">
@@ -82,7 +111,7 @@ function createCards(data) {
                 <img class="hotels-card-elem__img" src="${data['imageUrl']}" alt="" />
             </div>
 
-            <div class="hotels-card-elem__type">
+            <div class="hotels-card-elem__type ${colorTable[data['placementType']]}">
                 <p>${data['placementType']}</p>
             </div>
 
@@ -153,7 +182,7 @@ function init(data) {
             
         });
     }
-    console.log('geoData after', geoData);
+    //console.log('geoData after', geoData);
     objectManager.add(geoData);
 
     

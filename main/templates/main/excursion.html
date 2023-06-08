@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block main %}
+
 <main>
     <section class="excursions-path">
         <div class="excursions-path-container p-l-63 p-r-63 p-t-20 p-b-20">
@@ -18,16 +19,17 @@
         <div class="excursions-filters">
             <div class="excursions-filters-container p-l-63 p-r-63">
                 <div class="excursions-filters__options">
-                    <form action="/excursions" method="GET" class="excursions-form" id="ExcursionsForm">
+                    <form action="/excursions" method="GET" class="excursions-form" id="ExcursionsForm" name="ExcursionsForm">
                         
                         <div class="m-b-20">
                             <h5>Тип экскурсии</h5>
                             <div class="excursions-form__options_wrap">
-                                {% if view.filter_options %}
+                                {% if view.filter_options  %}
                                 {% for el in view.filter_options %}
                                 <div class="m-t-4 m-b-2">
-                                    <input type="checkbox" id="{{ el.id }}" name="{{ el }}">
+                                    <input type="checkbox" id="{{ el.id }}" name="{{ el }}" >
                                     <label for="{{ el.id }}">{{ el }}</label>
+                                    
                                 </div>
                                 {% endfor %}
                                 {% endif %}
@@ -36,17 +38,17 @@
                         <div class="m-b-20">
                             <h5>Длительность</h5>
                             <div class="excursions-form__options_wrap">
-                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_0" name="hours" value="0_0">
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_0" name="hours" value="0_0" {% if view.index.hours == '0_0' %} checked {% endif %}>
                                 <label for="Duration_0">Все </label></div>
-                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_2" name="hours" value="1_2">
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_2" name="hours" value="1_2" {% if view.index.hours == '1_2' %} checked {% endif %}>
                                 <label for="Duration_2">0 &ndash; 2 часа </label></div>
-                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_4" name="hours" value="3_4">
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_4" name="hours" value="3_4" {% if view.index.hours == '3_4' %} checked {% endif %}>
                                 <label for="Duration_4">2 &ndash; 4 часа</label></div>
-                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_6" name="hours" value="5_6">
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_6" name="hours" value="5_6" {% if view.index.hours == '5_6' %} checked {% endif %}>
                                 <label for="Duration_6">4 &ndash; 6 часов</label></div>
-                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_8" name="hours" value="7_8">
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_8" name="hours" value="7_8" {% if view.index.hours == '7_8' %} checked {% endif %} >
                                 <label for="Duration_8">6 &ndash; 8 часов</label></div>
-                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_10" name="hours" value="9_100">
+                                <div class="m-t-4 m-b-2"><input type="radio" id="Duration_10" name="hours" value="9_100" {% if view.index.hours == '9_100' %} checked {% endif %}>
                                 <label for="Duration_10">8 &ndash; 10 часов</label></div>
                             </div>
                         </div>
@@ -54,15 +56,15 @@
                         <div>
                             <h5>Цена</h5>
                             <div>
-                                <input type="number" placeholder="От ..." name="price_start" form="ExcursionsForm" >
+                                <input type="number" placeholder="От ..." name="price_start" form="ExcursionsForm" {% if view.index.price_start %} value={{ view.index.price_start }} {% endif %}>
                             </div>
                             <div>
-                                <input type="number" placeholder="До ..." name="price_end" form="ExcursionsForm">
+                                <input type="number" placeholder="До ..." name="price_end" form="ExcursionsForm" {% if view.index.price_end %} value={{ view.index.price_end }} {% endif %}>
                             </div>
                         </div>
                         <div class="m-t-2 m-b-2 excursions-form__button_wrap">
                             <input type="submit" class="btn btn-excursions m-r-4" form="ExcursionsForm" />
-                            <button class="btn btn-excursions">Сбросить</button>
+                            <button class="btn btn-excursions" id="BtnReset">Сбросить</button>
                         </div>
                     </form>
                     
@@ -81,7 +83,7 @@
                         </div>
         
                         <div class="excursions-card-elem__type">
-                            <p>{{ ex.excursionType }}</p>
+                            <p class="excursions-card-elem__type_text">{{ ex.excursionType }}</p>
                         </div>
         
                         <div class="excursions-card-elem__price">
@@ -97,9 +99,97 @@
             </div>
         </div>
     </section>
+
+    <div class="test_del">
+        
+        {% if view.my_data %}
+            <p>Значение из сессии: {{ view.my_data }}</p>
+        {% endif %}
+    </div>
 </main>
 <hr />
 {% endblock %}
 
 {% block script %}
+<script>
+    let tempVarExcursion = [];
+    {% if view.filter_options  %}
+        {% for el in view.filter_options %}
+
+        
+        tempVarExcursion.push('{{ el }}');
+
+        {% endfor %}
+    {% endif %}
+
+    const UniqTypesCollectionEx = new Set(tempVarExcursion);
+    
+    function createColorTable(set) {
+        
+        let table = {};
+        let colors = [
+            'tags-orange', 'tags-blue', 'tags-pink', 'tags-red', 'tags-green', 'tags-brown', 'tags-coral'
+        ];
+        let elem_arr = document.getElementsByClassName('excursions-card-elem__type_text')
+
+        let i = 0
+        for (let el of set) {
+            if (colors[i]) {
+                table[el] = colors[i];
+                i += 1
+            } else {
+                table[el] = colors[0];
+            }
+            
+        };
+
+         // console.log(elem_arr)
+        for (let el of elem_arr) {
+            //console.log(el.outerText)
+            el.offsetParent.className += ` ${table[el.outerText]}`;
+
+            
+        }
+
+
+    }
+
+    createColorTable(UniqTypesCollectionEx);
+/*
+    const FormElem = document.getElementById('ExcursionsForm');
+    FormElem.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let formData = serializeForm(FormElem);
+        let dataArr = Array.from(formData.entries());
+        console.log(dataArr);
+        let dataObj = Object.fromEntries(dataArr);
+        
+        for (elem in dataObj) {
+
+            sessionStorage.setItem(elem, dataObj[elem]);
+        }
+
+
+
+        
+        // sessionStorage.setItem()
+
+
+        
+        const excursionType = document.getElementById().value;
+        const excursionDuration = document.getElementById().value;
+        const excursionPrice = document.getElementById().value;
+        
+        localStorage.setItem('excursionType', excursionType);
+        localStorage.setItem('excursionDuration', excursionDuration);
+        localStorage.setItem('excursionPrice', excursionPrice);
+    })
+
+    function serializeForm(formNode) {
+        return new FormData(formNode);
+    }
+    */
+
+</script>
+<script src="{% static 'js/_resetBtn-excursion.js' %}"></script>
 {% endblock %}
